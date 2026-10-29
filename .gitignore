@@ -37,3 +37,12 @@ build/
 
 ### Mac OS ###
 .DS_Store
+
+
+# Variables de entorno y archivos secretos
+.env
+.env.*
+!.env.example
+
+# Archivos locales de configuración
+*.local
