@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="jakarta.faces.core"
+      xmlns:ui="jakarta.faces.facelets"
+      xmlns:p="http://primefaces.org/ui">
+<f:metadata>
+    <f:viewAction action="#{ventasUI.iniciar}"/>
+</f:metadata>
+<h:head>
+    <title>Reportes de ventas</title>
+    <h:outputStylesheet name="estadisticas.css"/>
+</h:head>
+<h:body>
+    <header>Autos Lee</header>
+    <div class="layout">
+        <main>
+            <h2>Reportes de ventas</h2>
+            <p:dataTable value="#{ventasUI.ventas}" var="v"
+                         emptyMessage="No hay ventas registradas.">
+                <p:column headerText="Vehículo vendido">
+                    <h:outputText value="#{v.vehiculo}"/>
+                </p:column>
+                <p:column headerText="Fecha de venta">
+                    <h:outputText value="#{v.fecha}"/>
+                </p:column>
+                <p:column headerText="Importe">
+                    <h:outputText value="#{v.importe}">
+                        <f:convertNumber type="currency" currencySymbol="$"/>
+                    </h:outputText>
+                </p:column>
+            </p:dataTable>
+        </main>
+        <ui:include src="menu.xhtml"/>
+    </div>
+</h:body>
+</html>
