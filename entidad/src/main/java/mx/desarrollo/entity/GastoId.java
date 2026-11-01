@@ -11,7 +11,7 @@ import java.util.Objects;
 @Embeddable
 public class GastoId implements Serializable {
     @Serial
-    private static final long serialVersionUID = 5304078638588555619L;
+    private static final long serialVersionUID = -274401930322118254L;
     @NotNull
     @Column(name = "Id_Gasto", nullable = false)
     private Integer idGasto;

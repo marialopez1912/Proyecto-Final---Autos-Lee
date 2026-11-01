@@ -11,7 +11,7 @@ import java.util.Objects;
 @Embeddable
 public class CitaId implements Serializable {
     @Serial
-    private static final long serialVersionUID = 4009292946921923247L;
+    private static final long serialVersionUID = 3197081688888835040L;
     @NotNull
     @Column(name = "Id_Cita", nullable = false)
     private Integer idCita;

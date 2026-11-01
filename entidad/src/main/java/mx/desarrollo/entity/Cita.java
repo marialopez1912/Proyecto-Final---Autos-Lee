@@ -7,10 +7,15 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 @Entity
-@Table(name = "cita", schema = "autos_lee")
+@Table(name = "cita")
 public class Cita {
     @EmbeddedId
     private CitaId id;
+
+    @MapsId("usuarioIdUsuario")
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "Usuario_Id_Usuario", nullable = false)
+    private Usuario usuarioIdUsuario;
 
     @MapsId("id")
     @JoinColumns({
@@ -42,6 +47,14 @@ public class Cita {
 
     public void setId(CitaId id) {
         this.id = id;
+    }
+
+    public Usuario getUsuarioIdUsuario() {
+        return usuarioIdUsuario;
+    }
+
+    public void setUsuarioIdUsuario(Usuario usuarioIdUsuario) {
+        this.usuarioIdUsuario = usuarioIdUsuario;
     }
 
     public Auto getAuto() {

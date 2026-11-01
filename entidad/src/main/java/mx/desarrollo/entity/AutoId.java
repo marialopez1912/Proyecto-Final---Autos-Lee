@@ -11,7 +11,7 @@ import java.util.Objects;
 @Embeddable
 public class AutoId implements Serializable {
     @Serial
-    private static final long serialVersionUID = 9036396734052601129L;
+    private static final long serialVersionUID = -5230301233415718625L;
     @NotNull
     @Column(name = "Id_Auto_Sistema", nullable = false)
     private Integer idAutoSistema;
