@@ -1,3 +1,4 @@
+
 package mx.desarrollo.autenticacion.facade;
 
 import mx.desarrollo.autenticacion.delegate.DelegateAdministrador;
@@ -11,8 +12,15 @@ public class FacadeAdministrador {
         this.delegateAdministrador = new DelegateAdministrador();
     }
 
-    public void guardarAdministrador(Administrador administrador){
+    public Administrador login(String identificador, String password) {
+        return delegateAdministrador.login(identificador, password);
+    }
+
+    public void guardarAdministrador(Administrador administrador) {
         delegateAdministrador.saveAdministrador(administrador);
     }
 
+    public Administrador buscarPorCorreoOUsuario(String identificador) {
+        return delegateAdministrador.buscarPorCorreoOUsuario(identificador);
+    }
 }
