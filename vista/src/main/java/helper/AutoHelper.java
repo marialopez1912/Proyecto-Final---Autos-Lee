@@ -14,5 +14,4 @@ public class AutoHelper{
     public static void saveAuto(Auto auto) {
         ServiceFacadeLocator.getInstanceFacadeAuto().saveAuto(auto);
     }
-
 }
