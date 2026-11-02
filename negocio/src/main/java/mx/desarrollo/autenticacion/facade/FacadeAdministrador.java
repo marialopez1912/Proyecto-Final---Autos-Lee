@@ -11,7 +11,11 @@ public class FacadeAdministrador {
         this.delegateAdministrador = new DelegateAdministrador();
     }
 
-    public void guardarAdministrador(Administrador administrador){
+    public Administrador login(String password, String correo) {
+        return delegateAdministrador.login(password, correo);
+    }
+
+    public void guardarAdministrador(Administrador administrador) {
         delegateAdministrador.saveAdministrador(administrador);
     }
 
