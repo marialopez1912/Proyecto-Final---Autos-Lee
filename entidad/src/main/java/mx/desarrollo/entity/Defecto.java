@@ -7,7 +7,7 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 @Entity
-@Table(name = "defecto", schema = "autos_lee")
+@Table(name = "defecto", schema = "defaultdb")
 public class Defecto {
     @EmbeddedId
     private DefectoId id;

@@ -7,12 +7,17 @@ import jakarta.validation.constraints.Size;
 import java.math.BigDecimal;
 
 @Entity
-@Table(name = "auto", schema = "autos_lee")
+@Table(name = "auto", schema = "defaultdb")
 public class Auto {
-    @EmbeddedId
-    private AutoId id;
+    //@EmbeddedId
+    //private AutoId id;
 
-    @MapsId("administradorIdAdministrador")
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "Id_Auto_Sistema", nullable = false)
+    private Integer id;
+
+    //@MapsId("administradorIdAdministrador")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "Administrador_Id_Administrador", nullable = false)
     private Administrador administradorIdAdministrador;
@@ -97,13 +102,13 @@ public class Auto {
     @Column(name = "Tipo_Combustible", nullable = false, length = 60)
     private String tipoCombustible;
 
-    public AutoId getId() {
-        return id;
-    }
+    //public AutoId getId() {
+     //   return id;
+    //}
 
-    public void setId(AutoId id) {
-        this.id = id;
-    }
+    //public void setId(AutoId id) {
+     //   this.id = id;
+    //}
 
     public Administrador getAdministradorIdAdministrador() {
         return administradorIdAdministrador;

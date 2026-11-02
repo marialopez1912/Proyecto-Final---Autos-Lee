@@ -7,7 +7,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 @Entity
-@Table(name = "cita", schema = "autos_lee")
+@Table(name = "cita", schema = "defaultdb")
 public class Cita {
     @EmbeddedId
     private CitaId id;

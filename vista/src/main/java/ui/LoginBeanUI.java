@@ -11,6 +11,7 @@ import jakarta.enterprise.context.SessionScoped;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.inject.Named;
+import mx.desarrollo.entity.Auto;
 import mx.desarrollo.entity.Usuario;
 
 import java.io.IOException;
@@ -36,7 +37,9 @@ public class LoginBeanUI implements Serializable{
     }
 
     public void login() throws IOException{
-        String appURL = "/index.xhtml";
+        String appURL = "/inde" +
+                "" +
+                "x.xhtml";
         // los atributos de usuario vienen del xhtml 
         Usuario us= new Usuario();
         us.setId(0);

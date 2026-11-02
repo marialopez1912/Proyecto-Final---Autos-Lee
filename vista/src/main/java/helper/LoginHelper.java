@@ -25,6 +25,4 @@ public class LoginHelper implements Serializable {
         return ServiceFacadeLocator.getInstanceFacadeUsuario().login(password, correo);
     }
 
-
-
 }

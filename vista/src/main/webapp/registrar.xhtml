@@ -1,0 +1,107 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+<style>
+    body{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+    }
+
+    .container{
+        max-width: 600px;
+        width: 100%;
+        padding: 25px 30px;
+        background-color: lightslategray;
+
+    }
+</style>
+    <h:head>
+        <title>Registrar Auto</title>
+    </h:head>
+
+    <h:body>
+        <h:form id="formAuto">
+            <p:messages id="messages" showDetail="true" closeable="true" />
+            <div class="container">
+                <h:outputLabel for="marca" value="Marca:" />
+                <p:inputText id="marca" value="#{AutoBeanUI.auto.marca}" />
+                <br/>
+
+                <h:outputLabel for="modelo" value="Modelo:" />
+                <p:inputText id="modelo" value="#{AutoBeanUI.auto.modelo}" />
+                <br/>
+
+                <h:outputLabel for="version" value="Version:" />
+                <p:inputText id="version" value="#{AutoBeanUI.auto.version}" />
+                <br/>
+
+                <h:outputLabel for="anio" value="Anio:" />
+                <p:inputText id="anio" value="#{AutoBeanUI.auto.anio}" />
+                <br/>
+
+                <h:outputLabel for="vin" value="VIN:" />
+                <p:inputText id="vin" value="#{AutoBeanUI.auto.vin}" />
+                <br/>
+
+                <h:outputLabel for="placa" value="Placa:" />
+                <p:inputText id="placa" value="#{AutoBeanUI.auto.placa}" />
+                <br/>
+
+                <h:outputLabel for="carroceria" value="Carroceria:" />
+                <p:inputText id="carroceria" value="#{AutoBeanUI.auto.carroceria}" />
+                <br/>
+
+                <h:outputLabel for="tipo_motor" value="Tipo de motor:" />
+                <p:inputText id="tipo_motor" value="#{AutoBeanUI.auto.tipoMotor}" />
+                <br/>
+
+                <h:outputLabel for="tipo_combustible" value="Combustible:" />
+                <p:inputText id="tipo_combustible" value="#{AutoBeanUI.auto.tipoCombustible}" />
+                <br/>
+
+                <h:outputLabel for="cilindros" value="Cilindros:" />
+                <p:inputText id="cilindros" value="#{AutoBeanUI.auto.cilindros}" />
+                <br/>
+
+                <h:outputLabel for="potencia_maxima" value="Potencia_Maxima:" />
+                <p:inputText id="potencia_maxima" value="#{AutoBeanUI.auto.potenciaMaxima}" />
+                <br/>
+
+                <h:outputLabel for="transmision" value="Transmision:" />
+                <p:inputText id="transmision" value="#{AutoBeanUI.auto.transmision}" />
+                <br/>
+
+                <h:outputLabel for="frenos" value="Frenos:" />
+                <p:inputText id="frenos" value="#{AutoBeanUI.auto.frenos}" />
+                <br/>
+
+                <h:outputLabel for="suspension" value="Suspension:" />
+                <p:inputText id="suspension" value="#{AutoBeanUI.auto.suspension}" />
+                <br/>
+
+                <h:outputLabel for="precio_compra" value="Precio de compra:" />
+                <p:inputText id="precio_compra" value="#{AutoBeanUI.auto.precioCompra}" />
+                <br/>
+
+                <h:outputLabel for="porcentaje_ganancia" value="Ganancia (decimales):" />
+                <p:inputText id="porcentaje_ganancia" value="#{AutoBeanUI.auto.porcentajeGanancia}" />
+                <br/>
+
+                <h:outputLabel for="precio_venta" value="Precio de venta:" />
+                <p:inputText id="precio_venta" value="#{AutoBeanUI.auto.precioVenta}" />
+                <br/>
+
+                <p:commandButton value="Guardar auto"
+                    actionListener="#{AutoBeanUI.guardar()}" update="messages" />
+
+            </div>
+        </h:form>
+    </h:body>
+
+</html>
+

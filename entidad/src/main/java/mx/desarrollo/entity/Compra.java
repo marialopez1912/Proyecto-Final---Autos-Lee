@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "compra", schema = "autos_lee")
+@Table(name = "compra", schema = "defaultdb")
 public class Compra {
     @EmbeddedId
     private CompraId id;
