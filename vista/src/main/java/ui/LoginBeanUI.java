@@ -7,18 +7,21 @@ import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.inject.Named;
 import mx.desarrollo.entity.Usuario;
-import mx.desarrollo.entity.Administrador;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.List;
 
 @Named("loginUI")
 @SessionScoped
 public class LoginBeanUI implements Serializable {
 
+    // TODO: reemplazar por la consulta a la tabla Administrador
+    private static final List<String> CORREOS_ADMIN = List.of("admin@autoslee.com");
+
     private LoginHelper loginHelper;
     private Usuario usuario;
-    private Administrador administrador;
+    private boolean admin;
 
     public LoginBeanUI() {
         loginHelper = new LoginHelper();
@@ -27,55 +30,41 @@ public class LoginBeanUI implements Serializable {
     @PostConstruct
     public void init() {
         usuario = new Usuario();
-        administrador = null;
     }
 
     public void login() throws IOException {
-
-        String identificador = usuario.getCorreoElectronico();
-        String password = usuario.getContrasenia();
-
-        Administrador admin = loginHelper.loginAdministrador(
-                identificador, password);
-
-        if (admin != null) {
-            administrador = admin;
-
-            FacesContext.getCurrentInstance().getExternalContext().redirect(
-                    FacesContext.getCurrentInstance().getExternalContext()
-                            .getRequestContextPath() + "/panel.xhtml");
-
-            return;
-        }
-        Usuario us = loginHelper.Login(identificador, password);
-
-        if (us != null) {
+        Usuario us = loginHelper.Login(usuario.getCorreoElectronico(), usuario.getContrasenia());
+        if (us != null && us.getId() != null) {
             usuario = us;
-
+            admin = esAdministrador(us);
+            String destino = admin ? "/inicio.xhtml" : "/usuario.xhtml";
             FacesContext.getCurrentInstance().getExternalContext().redirect(
-                    FacesContext.getCurrentInstance().getExternalContext()
-                            .getRequestContextPath() + "/index.xhtml");
-
+                    FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath() + destino);
         } else {
-            FacesContext.getCurrentInstance().addMessage(null,
-                    new FacesMessage(
-                            FacesMessage.SEVERITY_WARN,
-                            "Usuario o contraseña incorrecta",
-                            "Intente de nuevo"));
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
+                    FacesMessage.SEVERITY_WARN, "Usuario o contraseña incorrecta:", "Intente de nuevo"));
         }
-    }    public Usuario getUsuario() {
-        return usuario;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    private boolean esAdministrador(Usuario us) {
+        String correo = us.getCorreoElectronico();
+        return correo != null && CORREOS_ADMIN.stream().anyMatch(c -> c.equalsIgnoreCase(correo));
     }
 
-    public Administrador getAdministrador() {
-        return administrador;
+    /** Para las páginas de admin: null si es admin, o la redirección que corresponda. */
+    public String validarAdmin() {
+        if (usuario == null || usuario.getId() == null) return "login?faces-redirect=true";
+        if (!admin) return "usuario?faces-redirect=true";
+        return null;
     }
 
-    public void setAdministrador(Administrador administrador) {
-        this.administrador = administrador;
+    /** Para las páginas de usuario: solo exige sesión. */
+    public String validarSesion() {
+        if (usuario == null || usuario.getId() == null) return "login?faces-redirect=true";
+        return null;
     }
+
+    public boolean isAdmin() { return admin; }
+    public Usuario getUsuario() { return usuario; }
+    public void setUsuario(Usuario usuario) { this.usuario = usuario; }
 }

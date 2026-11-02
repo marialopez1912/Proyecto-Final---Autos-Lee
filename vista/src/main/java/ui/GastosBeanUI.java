@@ -28,9 +28,8 @@ public class GastosBeanUI implements Serializable {
 
     public String iniciar() {
         // TODO: cuando exista el rol de administrador, validarlo aquí
-        if (loginUI.getUsuario() == null || loginUI.getUsuario().getId() == null) {
-            return "login?faces-redirect=true";
-        }
+        String r = loginUI.validarAdmin();
+        if (r != null) return r;
         cargar();
         return null;
     }
