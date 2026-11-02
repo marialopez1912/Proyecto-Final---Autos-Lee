@@ -10,6 +10,9 @@
     <!-- Declaración manual de entidades -->
     <class>mx.desarrollo.entity.Administrador</class>
     <class>mx.desarrollo.entity.Usuario</class>
+    <class>mx.desarrollo.entity.Auto</class>
+    <class>mx.desarrollo.entity.Gasto</class>
+    <class>mx.desarrollo.entity.Compra</class>
 
     <properties>
       <property name="hibernate.connection.driver_class"
@@ -27,7 +30,7 @@
 
         <property name="hibernate.show_sql" value="true"/>
       <property name="hibernate.format_sql" value="true"/>
-      <property name="hibernate.hbm2ddl.auto" value="validate"/>
+      <property name="hibernate.hbm2ddl.auto" value="none"/>
 
       <property name="hibernate.hikari.minimumIdle" value="5"/>
       <property name="hibernate.hikari.maximumPoolSize" value="10"/>
