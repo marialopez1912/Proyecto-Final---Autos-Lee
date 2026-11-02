@@ -75,12 +75,10 @@
 
     <h:form id="formPrincipal">
 
-        <!-- Barra superior -->
         <div class="barra">
             <span class="logo">Autos Lee</span>
         </div>
 
-        <!-- Menú desplegable -->
         <p:menubar styleClass="menuPrincipal">
 
             <p:menuitem value="Inicio"
@@ -116,7 +114,6 @@
 
         </p:menubar>
 
-        <!-- Contenido principal -->
         <div class="contenido">
 
             <h2 class="bienvenida">
@@ -154,7 +151,7 @@
                     <h3>Registro</h3>
                     <p>Registra nuevos administradores.</p>
                     <p:button value="Registrar"
-                              outcome="registroAdministrador.xhtml"
+                              outcome="panel.xhtml"
                               rendered="#{loginUI.administrador.esPrincipal}" />
                 </div>
 
