@@ -1,10 +1,7 @@
-
 package mx.desarrollo.autenticacion.facade;
 
 import mx.desarrollo.autenticacion.delegate.DelegateAdministrador;
 import mx.desarrollo.entity.Administrador;
-
-import java.util.List;
 
 public class FacadeAdministrador {
 
@@ -14,19 +11,8 @@ public class FacadeAdministrador {
         this.delegateAdministrador = new DelegateAdministrador();
     }
 
-    public Administrador login(String identificador, String password) {
-        return delegateAdministrador.login(identificador, password);
-    }
-
-    public void guardarAdministrador(Administrador administrador) {
+    public void guardarAdministrador(Administrador administrador){
         delegateAdministrador.saveAdministrador(administrador);
     }
 
-    public Administrador buscarPorCorreoOUsuario(String identificador) {
-        return delegateAdministrador.buscarPorCorreoOUsuario(identificador);
-    }
-
-    public List<Administrador> obtenerTodos() {
-        return delegateAdministrador.obtenerTodos();
-    }
 }

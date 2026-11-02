@@ -4,36 +4,36 @@
              xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_1.xsd"
              version="3.1">
 
-    <persistence-unit name="persistencePU">
-        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+<persistence-unit name="persistencePU">
+    <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
-        <!-- Declaración manual de entidades -->
-        <class>mx.desarrollo.entity.Administrador</class>
-        <class>mx.desarrollo.entity.Usuario</class>
-        <class>mx.desarrollo.entity.Auto</class>
-        <class>mx.desarrollo.entity.Gasto</class>
-        <class>mx.desarrollo.entity.Compra</class>
+    <!-- Declaración manual de entidades -->
+    <class>mx.desarrollo.entity.Administrador</class>
+    <class>mx.desarrollo.entity.Usuario</class>
+    <class>mx.desarrollo.entity.Auto</class>
 
-        <properties>
-            <property name="hibernate.connection.driver_class"
-                      value="com.mysql.cj.jdbc.Driver"/>
+    <properties>
+      <property name="hibernate.connection.driver_class"
+                 value="com.mysql.cj.jdbc.Driver"/>
 
-            <property name="hibernate.connection.url"
-                      value="jdbc:mysql://mysql-2fbfd24c-malena18ml-18dc.k.aivencloud.com:23910/defaultdb?sslMode=REQUIRED"/>
+        <property name="hibernate.connection.url"
+                  value="jdbc:mysql://mysql-2fbfd24c-malena18ml-18dc.k.aivencloud.com:23910/defaultdb?sslMode=REQUIRED"/>
 
-            <property name="hibernate.connection.username"
-                      value="avnadmin"/>
+        <property name="hibernate.connection.username"
+                  value="avnadmin"/>
 
-            <property name="hibernate.connection.password"
-                      value=""/>
 
-            <property name="hibernate.show_sql" value="true"/>
-            <property name="hibernate.format_sql" value="true"/>
-            <property name="hibernate.hbm2ddl.auto" value="none"/>
+        <property name="hibernate.connection.password" value=""/>
 
-            <property name="hibernate.hikari.minimumIdle" value="5"/>
-            <property name="hibernate.hikari.maximumPoolSize" value="10"/>
-            <property name="hibernate.hikari.idleTimeout" value="30000"/>
-        </properties>
-    </persistence-unit>
+
+        <property name="hibernate.show_sql" value="true"/>
+      <property name="hibernate.format_sql" value="true"/>
+
+
+      <property name="hibernate.hikari.minimumIdle" value="5"/>
+      <property name="hibernate.hikari.maximumPoolSize" value="10"/>
+      <property name="hibernate.hikari.idleTimeout" value="30000"/>
+    </properties>
+  </persistence-unit>
 </persistence>
+
