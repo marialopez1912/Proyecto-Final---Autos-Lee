@@ -67,6 +67,20 @@ public class LoginBeanUI implements Serializable {
         return usuario;
     }
 
+    public String validarAdmin() {
+        if (administrador == null) {
+            return "/login.xhtml?faces-redirect=true";
+        }
+        return null;
+    }
+
+    public String validarSesion() {
+        if (usuario == null || usuario.getId() == null) {
+            return "/login.xhtml?faces-redirect=true";
+        }
+        return null;
+    }
+
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
