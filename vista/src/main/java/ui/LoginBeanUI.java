@@ -119,6 +119,10 @@ public class LoginBeanUI implements Serializable {
         return administrador;
     }
 
+    public boolean getAdmin() {
+        return administrador != null && administrador.getId() != null;
+    }
+
     public void setAdministrador(Administrador administrador) {
         this.administrador = administrador;
     }
