@@ -23,7 +23,6 @@ public class VentasBeanUI implements Serializable {
     private BigDecimal total = BigDecimal.ZERO;
 
     public String iniciar() {
-        // TODO: cuando exista el rol de administrador, validarlo aquí
         String r = loginUI.validarAdmin();
         if (r != null) return r;
         ventas = helper.ventas();

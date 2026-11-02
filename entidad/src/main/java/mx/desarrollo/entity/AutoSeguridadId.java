@@ -12,7 +12,7 @@ import java.util.Objects;
 @Embeddable
 public class AutoSeguridadId implements Serializable {
     @Serial
-    private static final long serialVersionUID = -133698412827595955L;
+    private static final long serialVersionUID = -7637902418003749554L;
     @Size(max = 1000)
     @NotNull
     @Column(name = "Sistema_Seguridad", nullable = false, length = 1000)
