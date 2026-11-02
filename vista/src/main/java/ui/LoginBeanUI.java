@@ -47,7 +47,6 @@ public class LoginBeanUI implements Serializable {
 
             return;
         }
-
         Usuario us = loginHelper.Login(identificador, password);
 
         if (us != null) {
@@ -64,11 +63,7 @@ public class LoginBeanUI implements Serializable {
                             "Usuario o contraseña incorrecta",
                             "Intente de nuevo"));
         }
-    }
-
-
-
-    public Usuario getUsuario() {
+    }    public Usuario getUsuario() {
         return usuario;
     }
 
