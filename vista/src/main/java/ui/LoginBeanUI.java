@@ -35,7 +35,6 @@ public class LoginBeanUI implements Serializable {
         String identificador = usuario.getCorreoElectronico();
         String password = usuario.getContrasenia();
 
-        // Primero verificamos si es administrador.
         Administrador admin = loginHelper.loginAdministrador(
                 identificador, password);
 
@@ -44,12 +43,11 @@ public class LoginBeanUI implements Serializable {
 
             FacesContext.getCurrentInstance().getExternalContext().redirect(
                     FacesContext.getCurrentInstance().getExternalContext()
-                            .getRequestContextPath() + "/administrador.xhtml");
+                            .getRequestContextPath() + "/panel.xhtml");
 
             return;
         }
 
-        // Si no es administrador, verificamos si es usuario normal.
         Usuario us = loginHelper.Login(identificador, password);
 
         if (us != null) {
