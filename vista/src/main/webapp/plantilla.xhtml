@@ -9,22 +9,27 @@
 </f:metadata>
 <h:head>
     <title>Autos Lee</title>
-    <h:outputStylesheet name="estadisticas.css"/>
+
+    <h:outputStylesheet library="css"
+                        name="estilos.css"/>
+
 </h:head>
 <h:body>
-    <div class="barra-superior">
+    <header class="barra-superior">
         <span class="logo">Autos Lee</span>
         <span class="iconos">
             <i class="pi pi-shopping-cart"></i>
             <i class="pi pi-users"></i>
             <i class="pi pi-chart-pie"></i>
         </span>
-    </div>
+    </header>
     <div class="layout">
-        <div class="contenido">
+        <main class="contenido">
             <ui:insert name="contenido"/>
-        </div>
-        <ui:include src="/menu.xhtml"/>
+        </main>
+        <ui:insert name="menu">
+            <ui:include src="/menu.xhtml"/>
+        </ui:insert>
     </div>
 </h:body>
 </html>
