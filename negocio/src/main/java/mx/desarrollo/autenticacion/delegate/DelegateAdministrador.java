@@ -1,4 +1,3 @@
-
 package mx.desarrollo.autenticacion.delegate;
 
 import mx.desarrollo.entity.Administrador;
@@ -8,20 +7,37 @@ import java.util.List;
 
 public class DelegateAdministrador {
 
-    public Administrador login(String identificador, String password) {
 
-        Administrador administrador = ServiceLocator
-                .getInstanceAdministradorDAO()
-                .buscarPorCorreoOUsuario(identificador);
 
-        if (administrador != null &&
-                administrador.getContrasenia() != null &&
-                administrador.getContrasenia().equals(password)) {
-            return administrador;
+        public Administrador login(String identificador, String password) {
+
+            System.out.println("=== LOGIN ADMINISTRADOR ===");
+
+            Administrador administrador = ServiceLocator
+                    .getInstanceAdministradorDAO()
+                    .buscarPorCorreoOUsuario(identificador);
+
+            System.out.println("¿Se encontró el administrador?: "
+                    + (administrador != null));
+
+            if (administrador != null) {
+                System.out.println("¿Tiene contraseña?: "
+                        + (administrador.getContrasenia() != null));
+
+                System.out.println("¿Coincide la contraseña?: "
+                        + (password != null &&
+                        password.equals(administrador.getContrasenia())));
+            }
+
+            if (administrador != null &&
+                    administrador.getContrasenia() != null &&
+                    password != null &&
+                    administrador.getContrasenia().equals(password)) {
+                return administrador;
+            }
+
+            return null;
         }
-
-        return null;
-    }
 
     public Administrador buscarPorCorreoOUsuario(String identificador) {
         return ServiceLocator.getInstanceAdministradorDAO()
