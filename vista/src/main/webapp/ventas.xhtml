@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="jakarta.faces.html"
+                xmlns:f="jakarta.faces.core"
+                xmlns:ui="jakarta.faces.facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/plantilla.xhtml">
+
+    <ui:define name="metadata">
+        <f:viewAction action="#{ventasUI.iniciar}"/>
+    </ui:define>
+
+    <ui:define name="contenido">
+        <div class="tarjeta">
+            <h2>Reportes de ventas</h2>
+
+            <p:dataTable value="#{ventasUI.ventas}" var="v"
+                         emptyMessage="No hay ventas registradas."
+                         paginator="true" rows="10" paginatorPosition="bottom">
+                <p:column headerText="Vehículo vendido">
+                    <h:outputText value="#{v.vehiculo}"/>
+                </p:column>
+                <p:column headerText="Fecha de venta" style="width:160px">
+                    <h:outputText value="#{v.fecha}"/>
+                </p:column>
+                <p:column headerText="Importe" style="width:160px; text-align:right">
+                    <h:outputText value="#{v.importe}" styleClass="importe">
+                        <f:convertNumber type="currency" currencySymbol="$"/>
+                    </h:outputText>
+                </p:column>
+            </p:dataTable>
+        </div>
+    </ui:define>
+</ui:composition>

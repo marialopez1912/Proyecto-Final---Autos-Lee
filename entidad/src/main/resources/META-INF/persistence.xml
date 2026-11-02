@@ -7,7 +7,16 @@
   <persistence-unit name="entity_prueba1PU" transaction-type="RESOURCE_LOCAL">
 
     <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-
+    <class>mx.desarrollo.entity.Administrador</class>
+    <class>mx.desarrollo.entity.Auto</class>
+    <class>mx.desarrollo.entity.AutoEquipamiento</class>
+    <class>mx.desarrollo.entity.AutoSeguridad</class>
+    <class>mx.desarrollo.entity.Cita</class>
+    <class>mx.desarrollo.entity.Compra</class>
+    <class>mx.desarrollo.entity.Defecto</class>
+    <class>mx.desarrollo.entity.Gasto</class>
+    <class>mx.desarrollo.entity.Usuario</class>
+    <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="hibernate.connection.driver_class"
                 value="com.mysql.cj.jdbc.Driver"/>

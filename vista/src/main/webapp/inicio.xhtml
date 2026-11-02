@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="jakarta.faces.html"
+                xmlns:f="jakarta.faces.core"
+                xmlns:ui="jakarta.faces.facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/plantilla.xhtml">
+
+    <ui:define name="metadata">
+        <f:viewAction action="#{inicioUI.iniciar}"/>
+    </ui:define>
+
+    <ui:define name="contenido">
+        <div class="tarjeta">
+            <h2>Información de autos</h2>
+
+            <h:form id="formAutos">
+                <p:growl id="msg" showDetail="true"/>
+
+                <h:panelGroup rendered="#{empty inicioUI.autos}" layout="block" styleClass="aviso">
+                    <i class="pi pi-car"></i>
+                    <span>No hay autos registrados.</span>
+                </h:panelGroup>
+
+                <div class="rejilla">
+                    <ui:repeat value="#{inicioUI.autos}" var="a">
+                        <div class="auto-card">
+                            <div class="auto-foto"><i class="pi pi-car"></i></div>
+                            <div class="auto-nombre">#{a.marca} #{a.modelo} #{a.anio}</div>
+                            <div class="auto-precio">
+                                Precio
+                                <strong>
+                                    <h:outputText value="#{a.precio}">
+                                        <f:convertNumber type="currency" currencySymbol="$"/>
+                                    </h:outputText> MXN
+                                </strong>
+                            </div>
+                            <p:commandButton value="Actualizar info" styleClass="btn-gris"
+                                             actionListener="#{inicioUI.seleccionar(a)}"
+                                             update=":formDialogo" oncomplete="PF('dlgEditar').show()"/>
+                        </div>
+                    </ui:repeat>
+                </div>
+            </h:form>
+
+            <p:dialog header="Actualizar información" widgetVar="dlgEditar" modal="true"
+                      resizable="false" width="380">
+                <h:form id="formDialogo">
+                    <h:panelGroup rendered="#{inicioUI.seleccionado != null}" layout="block">
+                        <p class="dialogo-auto">#{inicioUI.seleccionado.marca} #{inicioUI.seleccionado.modelo} #{inicioUI.seleccionado.anio}</p>
+                        <label for="precio">Precio de venta (MXN)</label>
+                        <p:inputText id="precio" value="#{inicioUI.nuevoPrecio}" styleClass="campo"/>
+                        <div class="dialogo-botones">
+                            <p:commandButton value="Guardar" styleClass="btn-rojo"
+                                             actionListener="#{inicioUI.guardar}"
+                                             update=":formAutos formDialogo"
+                                             oncomplete="if(!args.validationFailed) PF('dlgEditar').hide()"/>
+                            <p:commandButton value="Cancelar" styleClass="btn-gris" type="button"
+                                             onclick="PF('dlgEditar').hide()"/>
+                        </div>
+                    </h:panelGroup>
+                </h:form>
+            </p:dialog>
+        </div>
+    </ui:define>
+</ui:composition>
