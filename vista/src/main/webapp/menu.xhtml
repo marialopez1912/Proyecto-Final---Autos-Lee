@@ -2,17 +2,44 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="jakarta.faces.facelets"
                 xmlns:h="jakarta.faces.html">
+
     <aside class="menu">
+
         <h3>Información</h3>
-        <h:outputLink value="#">Información de Autos</h:outputLink>
+
+        <h:outputLink value="#">
+            Información de Autos
+        </h:outputLink>
 
         <span class="titulo-sub">Estadísticas</span>
-        <h:outputLink styleClass="sub" value="#{request.contextPath}/gastos.xhtml">Control de gastos</h:outputLink>
-        <h:outputLink styleClass="sub" value="#{request.contextPath}/ventas.xhtml">Reportes de ventas</h:outputLink>
+
+        <h:outputLink styleClass="sub"
+                      value="#{request.contextPath}/gastos.xhtml">
+            Control de gastos
+        </h:outputLink>
+
+        <h:panelGroup rendered="#{loginUI.administrador ne null}"
+                      layout="block">
+
+            <h:outputLink styleClass="sub"
+                          value="#{request.contextPath}/ventas.xhtml">
+                Reportes de ventas
+            </h:outputLink>
+
+        </h:panelGroup>
 
         <h:outputLink value="#">Agenda personal</h:outputLink>
         <h:outputLink value="#">Flujo de venta</h:outputLink>
         <h:outputLink value="#">Nuevos usuarios</h:outputLink>
         <h:outputLink value="#">Modificar datos personales</h:outputLink>
+
+        <hr/>
+
+        <h:form>
+            <h:commandButton value="Cerrar sesión"
+                             action="#{loginUI.cerrarSesion}"/>
+        </h:form>
+
     </aside>
+
 </ui:composition>

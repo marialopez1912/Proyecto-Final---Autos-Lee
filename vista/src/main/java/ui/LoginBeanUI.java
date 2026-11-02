@@ -51,6 +51,7 @@ public class LoginBeanUI implements Serializable {
         Usuario us = loginHelper.Login(identificador, password);
 
         if (us != null) {
+            administrador = null;
             usuario = us;
 
             FacesContext.getCurrentInstance().getExternalContext().redirect(
@@ -66,6 +67,49 @@ public class LoginBeanUI implements Serializable {
         }
     }    public Usuario getUsuario() {
         return usuario;
+    }
+
+    public String validarAdmin() {
+        if (administrador == null || administrador.getId() == null) {
+            return "/login.xhtml?faces-redirect=true";
+        }
+
+        return null;
+    }
+
+    public void cerrarSesion() throws IOException {
+
+        FacesContext context = FacesContext.getCurrentInstance();
+
+        String ruta = context.getExternalContext().getRequestContextPath();
+
+        context.getExternalContext().invalidateSession();
+
+        context.getExternalContext().redirect(ruta + "/login.xhtml");
+
+        context.responseComplete();
+    }
+    public void verificarAccesoAdmin() throws IOException {
+
+        if (administrador == null || administrador.getId() == null) {
+
+            FacesContext context = FacesContext.getCurrentInstance();
+
+            context.getExternalContext().redirect(
+                    context.getExternalContext().getRequestContextPath()
+                            + "/login.xhtml"
+            );
+
+            context.responseComplete();
+        }
+    }
+
+
+    public String validarSesion() {
+        if (usuario == null || usuario.getId() == null) {
+            return "/login.xhtml?faces-redirect=true";
+        }
+        return null;
     }
 
     public void setUsuario(Usuario usuario) {
