@@ -7,8 +7,25 @@
         <h:outputLink value="#">Información de Autos</h:outputLink>
 
         <span class="titulo-sub">Estadísticas</span>
-        <h:outputLink styleClass="sub" value="#{request.contextPath}/gastos.xhtml">Control de gastos</h:outputLink>
-        <h:outputLink styleClass="sub" value="#{request.contextPath}/ventas.xhtml">Reportes de ventas</h:outputLink>
+
+        <h:outputLink styleClass="sub"
+                      value="#{request.contextPath}/gastos.xhtml">
+            Control de gastos
+        </h:outputLink>
+
+        <h:panelGroup rendered="#{not empty loginUI.administrador}">
+            <span class="titulo-sub">Estadísticas</span>
+
+            <h:outputLink styleClass="sub"
+                          value="#{request.contextPath}/gastos.xhtml">
+                Control de gastos
+            </h:outputLink>
+
+            <h:outputLink styleClass="sub"
+                          value="#{request.contextPath}/ventas.xhtml">
+                Reportes de ventas
+            </h:outputLink>
+        </h:panelGroup>
 
         <h:outputLink value="#">Agenda personal</h:outputLink>
         <h:outputLink value="#">Flujo de venta</h:outputLink>
