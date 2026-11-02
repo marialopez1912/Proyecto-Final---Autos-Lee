@@ -4,6 +4,8 @@ package mx.desarrollo.autenticacion.facade;
 import mx.desarrollo.autenticacion.delegate.DelegateAdministrador;
 import mx.desarrollo.entity.Administrador;
 
+import java.util.List;
+
 public class FacadeAdministrador {
 
     private final DelegateAdministrador delegateAdministrador;
@@ -22,5 +24,9 @@ public class FacadeAdministrador {
 
     public Administrador buscarPorCorreoOUsuario(String identificador) {
         return delegateAdministrador.buscarPorCorreoOUsuario(identificador);
+    }
+
+    public List<Administrador> obtenerTodos() {
+        return delegateAdministrador.obtenerTodos();
     }
 }
