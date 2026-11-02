@@ -69,11 +69,40 @@ public class LoginBeanUI implements Serializable {
     }
 
     public String validarAdmin() {
-        if (administrador == null) {
+        if (administrador == null || administrador.getId() == null) {
             return "/login.xhtml?faces-redirect=true";
         }
+
         return null;
     }
+
+    public void cerrarSesion() throws IOException {
+
+        FacesContext context = FacesContext.getCurrentInstance();
+
+        String ruta = context.getExternalContext().getRequestContextPath();
+
+        context.getExternalContext().invalidateSession();
+
+        context.getExternalContext().redirect(ruta + "/login.xhtml");
+
+        context.responseComplete();
+    }
+    public void verificarAccesoAdmin() throws IOException {
+
+        if (administrador == null || administrador.getId() == null) {
+
+            FacesContext context = FacesContext.getCurrentInstance();
+
+            context.getExternalContext().redirect(
+                    context.getExternalContext().getRequestContextPath()
+                            + "/login.xhtml"
+            );
+
+            context.responseComplete();
+        }
+    }
+
 
     public String validarSesion() {
         if (usuario == null || usuario.getId() == null) {
