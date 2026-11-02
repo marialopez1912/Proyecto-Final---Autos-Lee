@@ -1,48 +1,87 @@
 * { box-sizing: border-box; }
-body { margin: 0; background: #8c8c8c; font-family: Georgia, "Times New Roman", serif;
-    color: #222; font-size: 17px; }
-.ui-widget, .ui-widget .ui-widget { font-family: inherit; font-size: 17px; }
+body { margin: 0; background: #8c8c8c; color: #222; font-size: 15px;
+    font-family: "Segoe UI", Arial, sans-serif; }
+.ui-widget, .ui-widget .ui-widget, .ui-widget input, .ui-widget button {
+    font-family: "Segoe UI", Arial, sans-serif !important; font-size: 15px !important; }
 
-.barra-superior { background: #d9d9d9; padding: 14px 28px; display: flex;
+/* Encabezado */
+.barra-superior { background: #d9d9d9; padding: 12px 28px; display: flex;
     justify-content: space-between; align-items: center; border-bottom: 2px solid #777; }
-.logo { font-size: 30px; }
-.iconos i { color: #c00000; font-size: 30px; margin-left: 20px; }
+.logo { font-family: Georgia, serif; font-size: 26px; color: #222 !important; text-decoration: none !important; }
+.iconos a { color: #c00000 !important; text-decoration: none !important; }
+.iconos i { font-size: 26px; margin-left: 22px; }
+.iconos a:hover i { opacity: .7; }
 
+/* Estructura */
 .layout { display: flex; align-items: flex-start; gap: 20px; padding: 20px; }
 .contenido { flex: 1; min-width: 0; }
 .tarjeta { background: #fff; padding: 24px; border-radius: 4px; }
-.tarjeta h2 { margin: 0 0 20px; font-size: 30px; color: #c00000; }
+.tarjeta h2 { margin: 0 0 18px; font-size: 22px; font-weight: 600; color: #c00000; }
 
-.menu { width: 280px; background: #d9d9d9; padding: 18px 20px; border-radius: 4px; }
-.menu h3 { margin: 0 0 12px; font-size: 26px; }
+/* Menú */
+.menu { width: 270px; background: #d9d9d9; padding: 16px 18px; border-radius: 4px; }
+.menu h3 { margin: 0 0 10px; font-size: 20px; font-weight: 600; }
 .menu .item { display: flex; justify-content: space-between; align-items: center;
-    padding: 14px 6px; color: #222 !important; text-decoration: none !important;
-    cursor: pointer; font-size: 17px; border-bottom: 1px solid #bbb; }
+    padding: 12px 6px; color: #222 !important; text-decoration: none !important;
+    cursor: pointer; font-size: 15px; border-bottom: 1px solid #bbb; }
 .menu .item:hover, .menu a.sub:hover { background: #c4c4c4; }
 .menu summary { list-style: none; }
 .menu summary::-webkit-details-marker { display: none; }
 .menu details[open] summary .pi { transform: rotate(90deg); }
-.menu a.sub { display: block; padding: 12px 6px 12px 24px; color: #c00000 !important;
-    text-decoration: none !important; font-size: 16px; font-weight: bold; }
+.menu a.sub { display: block; padding: 10px 6px 10px 22px; color: #c00000 !important;
+    text-decoration: none !important; font-size: 14px; }
 
-.ui-selectonebutton { margin-bottom: 20px; }
-.ui-selectonebutton .ui-button { background: #fff !important; color: #222 !important;
-    border: 1px solid #c00000 !important; padding: 10px 18px !important; }
+/* Botones (quita el verde del tema) */
+.ui-button, .ui-button.ui-state-default { background: #fff !important; color: #222 !important;
+    border: 1px solid #999 !important; box-shadow: none !important; text-shadow: none !important; }
+.ui-button .ui-button-text { color: inherit !important; font-weight: 500; }
+.ui-button:hover { background: #eee !important; }
+.btn-rojo.ui-button { background: #c00000 !important; color: #fff !important; border-color: #c00000 !important; }
+.btn-rojo.ui-button:hover { background: #990000 !important; }
+.btn-gris.ui-button { background: #d9d9d9 !important; }
 .ui-selectonebutton .ui-button.ui-state-active { background: #c00000 !important;
-    color: #fff !important; }
+    color: #fff !important; border-color: #c00000 !important; }
+.ui-selectonebutton { margin-bottom: 18px; }
 
-
-.barra-fila { display: flex; align-items: center; gap: 14px; margin: 14px 0; }
-.barra-etiqueta { width: 170px; font-size: 18px; }
-.barra-fondo { flex: 1; background: #eee; height: 30px; }
-.barra { background: #c00000; height: 100%; }
-.barra-monto { width: 140px; text-align: right; font-size: 18px; }
-.total-general { margin-top: 20px; padding-top: 14px; border-top: 2px solid #d9d9d9;
-    font-size: 22px; font-weight: bold; }
-.aviso { background: #f5f5f5; border-left: 6px solid #c00000; padding: 16px; }
-
+/* Tabla */
 .ui-datatable thead th { background: #d9d9d9 !important; color: #222 !important;
-    border-color: #bbb !important; font-size: 17px; }
-.ui-datatable td { padding: 12px !important; font-size: 17px; }
+    border-color: #bbb !important; font-weight: 600; text-shadow: none !important; }
+.ui-datatable td { padding: 11px !important; }
 .ui-datatable tbody tr:nth-child(even) { background: #f6f6f6; }
-.importe { font-weight: bold; }
+.ui-datatable-empty-message td { text-align: center !important; padding: 50px 20px !important;
+    color: #666; background: #f5f5f5 !important; }
+.ui-paginator { background: #f0f0f0 !important; border-color: #ddd !important; }
+.ui-paginator .ui-paginator-element { background: #d9d9d9 !important; color: #222 !important;
+    border-color: #bbb !important; }
+.importe { font-weight: 600; }
+
+/* Barras */
+.barra-fila { display: flex; align-items: center; gap: 14px; margin: 14px 0; }
+.barra-etiqueta { width: 170px; }
+.barra-etiqueta small { color: #777; }
+.barra-fondo { flex: 1; background: #eee; height: 26px; }
+.barra { background: #c00000; height: 100%; }
+.barra-monto { width: 140px; text-align: right; font-weight: 600; }
+.total-general { margin-top: 18px; padding-top: 12px; border-top: 2px solid #d9d9d9;
+    font-size: 17px; font-weight: 600; }
+
+/* Estado vacío */
+.aviso { display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 10px; padding: 60px 20px; background: #f5f5f5; border: 1px dashed #bbb;
+    color: #666; font-size: 16px; text-align: center; margin-top: 10px; }
+.aviso i { font-size: 44px; color: #c00000; opacity: .6; }
+
+/* Tarjetas de autos */
+.rejilla { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 18px; }
+.auto-card { border: 1px solid #ddd; padding: 14px; background: #fff; display: flex;
+    flex-direction: column; gap: 8px; }
+.auto-foto { height: 120px; background: #eee; display: flex; align-items: center; justify-content: center; }
+.auto-foto i { font-size: 54px; color: #888; }
+.auto-nombre { font-size: 16px; font-weight: 600; }
+.auto-precio { color: #c00000; }
+.auto-precio strong { display: block; font-weight: 600; }
+
+/* Ventana de edición */
+.dialogo-auto { font-weight: 600; margin-top: 0; }
+.campo { width: 100%; margin: 6px 0 16px; }
+.dialogo-botones { display: flex; gap: 10px; justify-content: flex-end; }

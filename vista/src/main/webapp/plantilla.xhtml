@@ -14,11 +14,13 @@
 <h:body>
     <div class="barra-superior">
         <span class="logo">Autos Lee</span>
-        <span class="iconos">
-            <i class="pi pi-shopping-cart"></i>
-            <i class="pi pi-users"></i>
-            <i class="pi pi-chart-pie"></i>
-        </span>
+        <ui:fragment rendered="#{loginUI.admin}">
+            <span class="iconos">
+                <a href="#{request.contextPath}/estadisticas.xhtml" title="Estadísticas generales">
+                    <i class="pi pi-chart-pie"></i>
+                </a>
+            </span>
+        </ui:fragment>
     </div>
     <div class="layout">
         <div class="contenido">
