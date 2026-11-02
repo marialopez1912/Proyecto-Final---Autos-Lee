@@ -1,0 +1,168 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title>Autos Lee - Panel principal</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #eeeeee;
+            font-family: Arial, sans-serif;
+        }
+
+        .barra {
+            background-color: white;
+            padding: 15px 25px;
+            border-bottom: 2px solid #bdbdbd;
+        }
+
+        .logo {
+            font-family: Georgia;
+            font-size: 25px;
+            color: #222222;
+        }
+
+        .contenido {
+            margin: 35px;
+            padding: 30px;
+            background-color: white;
+            border-radius: 5px;
+            min-height: 350px;
+        }
+
+        .bienvenida {
+            font-family: Georgia;
+            font-size: 26px;
+            color: #333333;
+        }
+
+        .descripcion {
+            color: #666666;
+            font-size: 15px;
+        }
+
+        .tarjeta {
+            background-color: #eeeeee;
+            padding: 25px;
+            border-radius: 5px;
+            text-align: center;
+            min-height: 120px;
+        }
+
+        .tarjeta i {
+            font-size: 35px;
+            color: #9c2921;
+        }
+
+        .tarjeta h3 {
+            color: #333333;
+        }
+
+        .menuPrincipal {
+            border: none !important;
+            background-color: #dedede !important;
+        }
+    </style>
+
+</h:head>
+
+<h:body>
+
+    <h:form id="formPrincipal">
+
+        <!-- Barra superior -->
+        <div class="barra">
+            <span class="logo">Autos Lee</span>
+        </div>
+
+        <!-- Menú desplegable -->
+        <p:menubar styleClass="menuPrincipal">
+
+            <p:menuitem value="Inicio"
+                        icon="pi pi-home"
+                        outcome="administrador.xhtml" />
+
+            <p:submenu label="Administradores"
+                       icon="pi pi-users">
+
+                <p:menuitem value="Consultar administradores"
+                            icon="pi pi-list"
+                            outcome="administradores.xhtml" />
+
+                <p:menuitem value="Registrar administrador"
+                            icon="pi pi-user-plus"
+                            outcome="registroAdministrador.xhtml"
+                            rendered="#{loginUI.administrador.esPrincipal}" />
+
+            </p:submenu>
+
+            <p:submenu label="Usuarios"
+                       icon="pi pi-user">
+
+                <p:menuitem value="Consultar usuarios"
+                            icon="pi pi-list"
+                            disabled="true" />
+
+                <p:menuitem value="Administrar usuarios"
+                            icon="pi pi-cog"
+                            disabled="true" />
+
+            </p:submenu>
+
+        </p:menubar>
+
+        <!-- Contenido principal -->
+        <div class="contenido">
+
+            <h2 class="bienvenida">
+                Bienvenido, #{loginUI.administrador.nombre}
+            </h2>
+
+            <p class="descripcion">
+                Panel de administración de Autos Lee.
+                Selecciona una opción del menú para comenzar.
+            </p>
+
+            <br />
+
+            <p:separator />
+
+            <h2>Administración del sistema</h2>
+
+            <br />
+
+            <p:panelGrid columns="2"
+                         layout="grid"
+                         styleClass="ui-fluid"
+                         columnClasses="ui-g-6,ui-g-6">
+
+                <div class="tarjeta">
+                    <i class="pi pi-users"></i>
+                    <h3>Administradores</h3>
+                    <p>Consulta las cuentas registradas.</p>
+                    <p:button value="Consultar"
+                              outcome="administradores.xhtml" />
+                </div>
+
+                <div class="tarjeta">
+                    <i class="pi pi-user-plus"></i>
+                    <h3>Registro</h3>
+                    <p>Registra nuevos administradores.</p>
+                    <p:button value="Registrar"
+                              outcome="registroAdministrador.xhtml"
+                              rendered="#{loginUI.administrador.esPrincipal}" />
+                </div>
+
+            </p:panelGrid>
+
+        </div>
+
+    </h:form>
+
+</h:body>
+</html>

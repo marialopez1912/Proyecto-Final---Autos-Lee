@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "compra", schema = "autos_lee")
+@Table(name = "compra")
 public class Compra {
     @EmbeddedId
     private CompraId id;
@@ -22,6 +22,11 @@ public class Compra {
                     nullable = false)})
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     private Auto auto;
+
+    @MapsId("usuarioIdUsuario")
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "Usuario_Id_Usuario", nullable = false)
+    private Usuario usuarioIdUsuario;
 
     @NotNull
     @Column(name = "Fecha", nullable = false)
@@ -45,6 +50,14 @@ public class Compra {
 
     public void setAuto(Auto auto) {
         this.auto = auto;
+    }
+
+    public Usuario getUsuarioIdUsuario() {
+        return usuarioIdUsuario;
+    }
+
+    public void setUsuarioIdUsuario(Usuario usuarioIdUsuario) {
+        this.usuarioIdUsuario = usuarioIdUsuario;
     }
 
     public LocalDate getFecha() {
