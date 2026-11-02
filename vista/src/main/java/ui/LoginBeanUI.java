@@ -50,6 +50,7 @@ public class LoginBeanUI implements Serializable {
         Usuario us = loginHelper.Login(identificador, password);
 
         if (us != null) {
+            administrador = null;
             usuario = us;
 
             FacesContext.getCurrentInstance().getExternalContext().redirect(

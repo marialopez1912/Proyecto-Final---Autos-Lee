@@ -31,4 +31,49 @@
             </p:dataTable>
         </div>
     </ui:define>
+
+    <ui:define name="menu">
+
+        <aside class="menu">
+
+            <h3>Administración</h3>
+
+            <h:link outcome="panel.xhtml" value="Inicio"/>
+
+            <span class="titulo-sub">Administradores</span>
+
+            <h:link styleClass="sub"
+                    outcome="administradores.xhtml"
+                    value="Consultar administradores"/>
+
+            <h:panelGroup rendered="#{loginUI.administrador.esPrincipal}">
+                <h:link styleClass="sub"
+                        outcome="registroAdministrador.xhtml"
+                        value="Registrar administrador"/>
+            </h:panelGroup>
+
+            <span class="titulo-sub">Usuarios</span>
+
+            <h:outputText styleClass="sub" value="Consultar usuarios"/>
+            <h:outputText styleClass="sub" value="Administrar usuarios"/>
+
+            <span class="titulo-sub">Estadísticas</span>
+
+            <h:link styleClass="sub"
+                    outcome="gastos.xhtml"
+                    value="Control de gastos"/>
+
+            <h:link styleClass="sub"
+                    outcome="ventas.xhtml"
+                    value="Reportes de ventas"/>
+
+            <span class="titulo-sub">Cuenta</span>
+
+            <h:outputText styleClass="sub"
+                          value="#{loginUI.administrador.nombre}"/>
+
+        </aside>
+
+    </ui:define>
+
 </ui:composition>

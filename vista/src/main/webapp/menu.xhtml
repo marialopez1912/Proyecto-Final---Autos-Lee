@@ -13,7 +13,9 @@
             Control de gastos
         </h:outputLink>
 
-        <h:panelGroup rendered="#{not empty loginUI.administrador}">
+        <h:panelGroup rendered="#{loginUI.administrador ne null}"
+                      layout="block">
+
             <span class="titulo-sub">Estadísticas</span>
 
             <h:outputLink styleClass="sub"
@@ -25,6 +27,7 @@
                           value="#{request.contextPath}/ventas.xhtml">
                 Reportes de ventas
             </h:outputLink>
+
         </h:panelGroup>
 
         <h:outputLink value="#">Agenda personal</h:outputLink>
