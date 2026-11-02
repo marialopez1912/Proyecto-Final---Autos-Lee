@@ -9,7 +9,10 @@
 </f:metadata>
 <h:head>
     <title>Autos Lee</title>
-    <h:outputStylesheet name="estadisticas.css"/>
+
+    <h:outputStylesheet library="css"
+                        name="estilos.css"/>
+
 </h:head>
 <h:body>
     <header class="barra-superior">
@@ -24,7 +27,9 @@
         <main class="contenido">
             <ui:insert name="contenido"/>
         </main>
-        <ui:include src="/menu.xhtml"/>
+        <ui:insert name="menu">
+            <ui:include src="/menu.xhtml"/>
+        </ui:insert>
     </div>
 </h:body>
 </html>
