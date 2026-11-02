@@ -1,87 +1,87 @@
 <?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="jakarta.faces.facelets"
+                xmlns:h="jakarta.faces.html"
+                xmlns:f="jakarta.faces.core"
+                xmlns:p="http://primefaces.org/ui"
+                template="/panel.xhtml">
 
-<h:head>
-    <title>Registrar administrador - Autos Lee</title>
-</h:head>
+    <ui:define name="contenidoAdmin">
 
-<h:body>
+        <h1>Registrar administrador</h1>
 
-    <h:form id="formRegistro">
+        <p>Completa los datos para crear una nueva cuenta administrativa.</p>
 
-        <p:messages id="messages"
-                    showDetail="true"
-                    closable="true" />
+        <h:form id="formRegistro">
 
-        <p:panel header="Registro de administrador"
-                 style="width: 550px; margin: 40px auto;">
+            <p:messages id="messages"
+                        showDetail="true"
+                        closable="true"/>
 
-            <p:panelGrid columns="2"
-                         layout="grid"
-                         styleClass="ui-fluid">
+            <p:panel header="Datos del administrador">
 
-                <p:outputLabel value="Nombre:" />
-                <p:inputText value="#{registroAdminUI.administrador.nombre}"
-                             required="true"
-                             requiredMessage="Ingresa el nombre." />
+                <p:panelGrid columns="2"
+                             layout="grid"
+                             styleClass="ui-fluid">
 
-                <p:outputLabel value="Apellido paterno:" />
-                <p:inputText value="#{registroAdminUI.administrador.apellidoPaterno}"
-                             required="true"
-                             requiredMessage="Ingresa el apellido paterno." />
+                    <p:outputLabel value="Nombre:"/>
+                    <p:inputText value="#{registroAdminUI.administrador.nombre}"
+                                 required="true"
+                                 requiredMessage="Ingresa el nombre."/>
 
-                <p:outputLabel value="Apellido materno:" />
-                <p:inputText value="#{registroAdminUI.administrador.apellidoMaterno}" />
+                    <p:outputLabel value="Apellido paterno:"/>
+                    <p:inputText value="#{registroAdminUI.administrador.apellidoPaterno}"
+                                 required="true"
+                                 requiredMessage="Ingresa el apellido paterno."/>
 
-                <p:outputLabel value="Correo electrónico:" />
-                <p:inputText value="#{registroAdminUI.administrador.correoElectronico}"
-                             required="true"
-                             requiredMessage="Ingresa el correo electrónico." />
+                    <p:outputLabel value="Apellido materno:"/>
+                    <p:inputText value="#{registroAdminUI.administrador.apellidoMaterno}"/>
 
-                <p:outputLabel value="Número telefónico:" />
-                <p:inputText value="#{registroAdminUI.administrador.numeroTelefonico}"
-                             required="true"
-                             requiredMessage="Ingresa el teléfono." />
+                    <p:outputLabel value="Correo electrónico:"/>
+                    <p:inputText value="#{registroAdminUI.administrador.correoElectronico}"
+                                 required="true"
+                                 requiredMessage="Ingresa el correo electrónico."/>
 
-                <p:outputLabel value="Usuario:" />
-                <p:inputText value="#{registroAdminUI.administrador.usuario}"
-                             required="true"
-                             requiredMessage="Ingresa el nombre de usuario." />
+                    <p:outputLabel value="Número telefónico:"/>
+                    <p:inputText value="#{registroAdminUI.administrador.numeroTelefonico}"
+                                 required="true"
+                                 requiredMessage="Ingresa el teléfono."/>
 
-                <p:outputLabel value="Contraseña:" />
-                <p:password value="#{registroAdminUI.administrador.contrasenia}"
-                            required="true"
-                            requiredMessage="Ingresa una contraseña." />
+                    <p:outputLabel value="Usuario:"/>
+                    <p:inputText value="#{registroAdminUI.administrador.usuario}"
+                                 required="true"
+                                 requiredMessage="Ingresa el nombre de usuario."/>
 
-                <p:outputLabel value="Confirmar contraseña:" />
-                <p:password value="#{registroAdminUI.confirmarContrasenia}"
-                            required="true"
-                            requiredMessage="Confirma la contraseña." />
+                    <p:outputLabel value="Contraseña:"/>
+                    <p:password value="#{registroAdminUI.administrador.contrasenia}"
+                                required="true"
+                                requiredMessage="Ingresa una contraseña."/>
 
-            </p:panelGrid>
+                    <p:outputLabel value="Confirmar contraseña:"/>
+                    <p:password value="#{registroAdminUI.confirmarContrasenia}"
+                                required="true"
+                                requiredMessage="Confirma la contraseña."/>
 
-            <br />
+                </p:panelGrid>
 
-            <div style="text-align:center;">
+                <div style="text-align:center; margin-top:20px;">
 
-                <p:commandButton value="Registrar"
-                                 icon="pi pi-save"
-                                 action="#{registroAdminUI.registrar}"
-                                 update="@form" />
+                    <p:commandButton value="Registrar"
+                                     icon="pi pi-save"
+                                     action="#{registroAdminUI.registrar}"
+                                     update="@form"/>
 
-                <p:button value="Regresar"
-                          outcome="panel.xhtml"
-                          icon="pi pi-arrow-left" />
+                    <p:button value="Cancelar"
+                              outcome="panel.xhtml"
+                              icon="pi pi-times"
+                              styleClass="ui-button-secondary"/>
 
-            </div>
+                </div>
 
-        </p:panel>
+            </p:panel>
 
-    </h:form>
+        </h:form>
 
-</h:body>
-</html>
+    </ui:define>
+
+</ui:composition>

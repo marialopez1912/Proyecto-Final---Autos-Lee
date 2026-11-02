@@ -2,50 +2,67 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="jakarta.faces.facelets"
                 xmlns:h="jakarta.faces.html"
+                xmlns:f="jakarta.faces.core"
                 template="/plantilla.xhtml">
+
+    <f:metadata>
+        <f:viewAction action="#{loginUI.verificarAccesoAdmin}"
+                      onPostback="true"/>
+    </f:metadata>
 
     <ui:define name="contenido">
 
-        <h1>Bienvenido, #{loginUI.administrador.nombre}</h1>
+        <ui:insert name="contenidoAdmin">
 
-        <p>Panel de administración de Autos Lee.</p>
+            <h1>Bienvenido, #{loginUI.administrador.nombre}</h1>
 
-        <hr/>
+            <p>Panel de administración de Autos Lee.</p>
 
-        <h2>Administración del sistema</h2>
+            <hr/>
 
-        <div class="tarjetas">
+            <h2>Administración del sistema</h2>
 
-            <div class="tarjeta">
-                <i class="pi pi-users"></i>
-                <h3>Administradores</h3>
-                <p>Consulta las cuentas de administradores.</p>
+            <div class="tarjetas">
 
-                <h:link outcome="administradores.xhtml"
-                        value="Consultar"/>
+                <div class="tarjeta">
+                    <i class="pi pi-users"></i>
+                    <h3>Administradores</h3>
+                    <p>Consulta las cuentas de administradores.</p>
+
+                    <h:link outcome="administradores.xhtml"
+                            value="Consultar"/>
+                </div>
+
+                <h:panelGroup layout="block"
+                              styleClass="tarjeta"
+                              rendered="#{loginUI.administrador.esPrincipal}">
+
+                    <i class="pi pi-user-plus"></i>
+                    <h3>Registrar administrador</h3>
+                    <p>Registra nuevas cuentas administrativas.</p>
+
+                    <h:link outcome="registroAdministrador.xhtml"
+                            value="Registrar"/>
+
+                </h:panelGroup>
+
+                <div class="tarjeta">
+                    <i class="pi pi-user"></i>
+                    <h3>Usuarios</h3>
+                    <p>Consulta y administra las cuentas de usuarios.</p>
+                    <h:link outcome="usuarios.xhtml"
+                            value="Consultar usuarios"/>
+                </div>
+
+                <span class="titulo-sub">Autos</span>
+
+                <h:link styleClass="sub"
+                        outcome="registroAuto.xhtml"
+                        value="Registrar autos"/>
+
             </div>
 
-            <h:panelGroup layout="block"
-                          styleClass="tarjeta"
-                          rendered="#{loginUI.administrador.esPrincipal}">
-
-                <i class="pi pi-user-plus"></i>
-                <h3>Registrar administrador</h3>
-                <p>Registra nuevas cuentas administrativas.</p>
-
-                <h:link outcome="registroAdministrador.xhtml"
-                        value="Registrar"/>
-
-            </h:panelGroup>
-
-            <div class="tarjeta">
-                <i class="pi pi-user"></i>
-                <h3>Usuarios</h3>
-                <p>Consulta y administra las cuentas de usuarios.</p>
-                <h:outputText value="Próximamente"/>
-            </div>
-
-        </div>
+        </ui:insert>
 
     </ui:define>
 
@@ -70,10 +87,14 @@
                         value="Registrar administrador"/>
             </h:panelGroup>
 
+            <h:link outcome="registroAuto.xhtml"
+                    value="Registrar auto"/>
+
             <span class="titulo-sub">Usuarios</span>
 
-            <h:outputText styleClass="sub"
-                          value="Consultar usuarios"/>
+            <h:link styleClass="sub"
+                    outcome="usuarios.xhtml"
+                    value="Consultar usuarios"/>
 
             <h:outputText styleClass="sub"
                           value="Administrar usuarios"/>
@@ -88,10 +109,19 @@
                     outcome="ventas.xhtml"
                     value="Reportes de ventas"/>
 
+
+
             <span class="titulo-sub">Cuenta</span>
 
             <h:outputText styleClass="sub"
                           value="#{loginUI.administrador.nombre}"/>
+
+            <hr/>
+
+            <h:form>
+                <h:commandButton value="Cerrar sesión"
+                                 action="#{loginUI.cerrarSesion}"/>
+            </h:form>
 
         </aside>
 
