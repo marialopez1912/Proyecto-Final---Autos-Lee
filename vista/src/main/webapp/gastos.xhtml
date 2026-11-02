@@ -1,58 +1,50 @@
 <?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="jakarta.faces.html"
-      xmlns:f="jakarta.faces.core"
-      xmlns:ui="jakarta.faces.facelets"
-      xmlns:p="http://primefaces.org/ui">
-<f:metadata>
-    <f:viewAction action="#{gastosUI.iniciar}"/>
-</f:metadata>
-<h:head>
-    <title>Control de gastos</title>
-    <h:outputStylesheet name="estadisticas.css"/>
-</h:head>
-<h:body>
-    <header>Autos Lee</header>
-    <div class="layout">
-        <main>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="jakarta.faces.html"
+                xmlns:f="jakarta.faces.core"
+                xmlns:ui="jakarta.faces.facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/plantilla.xhtml">
+
+    <ui:define name="metadata">
+        <f:viewAction action="#{gastosUI.iniciar}"/>
+    </ui:define>
+
+    <ui:define name="contenido">
+        <div class="tarjeta">
             <h2>Control de gastos</h2>
+
             <h:form id="formGastos">
-                <p:selectOneMenu value="#{gastosUI.tipo}">
+                <p:selectOneButton value="#{gastosUI.tipo}">
                     <f:selectItem itemLabel="Por tipo de gasto" itemValue="tipo"/>
                     <f:selectItem itemLabel="Por marca" itemValue="marca"/>
-                    <p:ajax listener="#{gastosUI.cargar}" update="panel"/>
-                </p:selectOneMenu>
+                    <p:ajax listener="#{gastosUI.cargar}" update="formGastos"/>
+                </p:selectOneButton>
 
-                <h:panelGroup id="panel" layout="block">
-                    <h:outputText styleClass="aviso" value="No hay gastos registrados."
-                                  rendered="#{empty gastosUI.filas}"/>
+                <h:panelGroup rendered="#{empty gastosUI.filas}" layout="block" styleClass="aviso">
+                    No hay gastos registrados.
+                </h:panelGroup>
 
-                    <p:chart type="bar" model="#{gastosUI.modelo}"
-                             style="width:600px;height:320px"
-                             rendered="#{not empty gastosUI.filas}"/>
-
-                    <p:dataTable value="#{gastosUI.filas}" var="f"
-                                 rendered="#{not empty gastosUI.filas}">
-                        <p:column headerText="Categoría">
-                            <h:outputText value="#{f.etiqueta}"/>
-                        </p:column>
-                        <p:column headerText="Total">
+                <ui:repeat value="#{gastosUI.filas}" var="f">
+                    <div class="barra-fila">
+                        <span class="barra-etiqueta">#{f.etiqueta}</span>
+                        <div class="barra-fondo">
+                            <div class="barra" style="width: #{gastosUI.porcentaje(f)}%"></div>
+                        </div>
+                        <span class="barra-monto">
                             <h:outputText value="#{f.total}">
                                 <f:convertNumber type="currency" currencySymbol="$"/>
                             </h:outputText>
-                        </p:column>
-                    </p:dataTable>
+                        </span>
+                    </div>
+                </ui:repeat>
 
-                    <p><strong>Total general: </strong>
-                        <h:outputText value="#{gastosUI.totalGeneral}">
-                            <f:convertNumber type="currency" currencySymbol="$"/>
-                        </h:outputText>
-                    </p>
-                </h:panelGroup>
+                <p class="total-general">Total:
+                    <h:outputText value="#{gastosUI.totalGeneral}">
+                        <f:convertNumber type="currency" currencySymbol="$"/>
+                    </h:outputText>
+                </p>
             </h:form>
-        </main>
-        <ui:include src="menu.xhtml"/>
-    </div>
-</h:body>
-</html>
+        </div>
+    </ui:define>
+</ui:composition>

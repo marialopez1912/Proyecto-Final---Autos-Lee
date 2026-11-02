@@ -1,35 +1,48 @@
 * { box-sizing: border-box; }
-body { margin: 0; background: #8c8c8c; font-family: Georgia, "Times New Roman", serif; color: #222; }
-.ui-widget, .ui-widget .ui-widget { font-family: inherit; }
+body { margin: 0; background: #8c8c8c; font-family: Georgia, "Times New Roman", serif;
+    color: #222; font-size: 17px; }
+.ui-widget, .ui-widget .ui-widget { font-family: inherit; font-size: 17px; }
 
-/* Encabezado */
-.barra-superior { background: #d9d9d9; padding: 12px 24px; display: flex;
+.barra-superior { background: #d9d9d9; padding: 14px 28px; display: flex;
     justify-content: space-between; align-items: center; border-bottom: 2px solid #777; }
-.logo { font-size: 28px; }
-.iconos i { color: #c00000; font-size: 28px; margin-left: 18px; }
+.logo { font-size: 30px; }
+.iconos i { color: #c00000; font-size: 30px; margin-left: 20px; }
 
-/* Estructura */
-.layout { display: flex; align-items: stretch; min-height: calc(100vh - 62px); }
-.contenido { flex: 1; padding: 24px; }
-.tarjeta { background: #fff; padding: 20px; border-radius: 4px; }
-.tarjeta h2 { margin-top: 0; }
+.layout { display: flex; align-items: flex-start; gap: 20px; padding: 20px; }
+.contenido { flex: 1; min-width: 0; }
+.tarjeta { background: #fff; padding: 24px; border-radius: 4px; }
+.tarjeta h2 { margin: 0 0 20px; font-size: 30px; color: #c00000; }
 
-/* Menú lateral */
-.menu { width: 270px; background: #d9d9d9; padding: 16px 20px; }
-.menu h3 { margin: 0 0 12px; font-size: 24px; }
+.menu { width: 280px; background: #d9d9d9; padding: 18px 20px; border-radius: 4px; }
+.menu h3 { margin: 0 0 12px; font-size: 26px; }
 .menu .item { display: flex; justify-content: space-between; align-items: center;
-    padding: 12px 4px; color: #222; text-decoration: none; cursor: pointer; font-size: 15px; }
+    padding: 14px 6px; color: #222 !important; text-decoration: none !important;
+    cursor: pointer; font-size: 17px; border-bottom: 1px solid #bbb; }
 .menu .item:hover, .menu a.sub:hover { background: #c4c4c4; }
 .menu summary { list-style: none; }
 .menu summary::-webkit-details-marker { display: none; }
 .menu details[open] summary .pi { transform: rotate(90deg); }
-.menu a.sub { display: block; padding: 8px 4px 8px 22px; color: #c00000;
-    text-decoration: none; font-size: 14px; }
+.menu a.sub { display: block; padding: 12px 6px 12px 24px; color: #c00000 !important;
+    text-decoration: none !important; font-size: 16px; font-weight: bold; }
 
-/* Barras de gastos */
-.barra-fila { display: flex; align-items: center; gap: 12px; margin: 10px 0; }
-.barra-etiqueta { width: 150px; }
-.barra-fondo { flex: 1; background: #eee; height: 24px; }
+.ui-selectonebutton { margin-bottom: 20px; }
+.ui-selectonebutton .ui-button { background: #fff !important; color: #222 !important;
+    border: 1px solid #c00000 !important; padding: 10px 18px !important; }
+.ui-selectonebutton .ui-button.ui-state-active { background: #c00000 !important;
+    color: #fff !important; }
+
+
+.barra-fila { display: flex; align-items: center; gap: 14px; margin: 14px 0; }
+.barra-etiqueta { width: 170px; font-size: 18px; }
+.barra-fondo { flex: 1; background: #eee; height: 30px; }
 .barra { background: #c00000; height: 100%; }
-.barra-monto { width: 120px; text-align: right; }
-.total-general { margin-top: 16px; font-size: 18px; font-weight: bold; }
+.barra-monto { width: 140px; text-align: right; font-size: 18px; }
+.total-general { margin-top: 20px; padding-top: 14px; border-top: 2px solid #d9d9d9;
+    font-size: 22px; font-weight: bold; }
+.aviso { background: #f5f5f5; border-left: 6px solid #c00000; padding: 16px; }
+
+.ui-datatable thead th { background: #d9d9d9 !important; color: #222 !important;
+    border-color: #bbb !important; font-size: 17px; }
+.ui-datatable td { padding: 12px !important; font-size: 17px; }
+.ui-datatable tbody tr:nth-child(even) { background: #f6f6f6; }
+.importe { font-weight: bold; }
