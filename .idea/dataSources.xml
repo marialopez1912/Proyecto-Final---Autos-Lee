@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="Autos_Lee_Nube" uuid="ed3f66eb-e5cd-402c-9141-09427fa871cc">
+    <data-source source="LOCAL" name="entity_prueba1PU/Hibernate" uuid="ed3f66eb-e5cd-402c-9141-09427fa871cc">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <imported>true</imported>
@@ -13,6 +13,12 @@
         <property name="com.intellij.clouds.kubernetes.db.enabled" value="false" />
         <property name="com.intellij.clouds.kubernetes.db.container.port" />
       </jdbc-additional-properties>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+    <data-source source="LOCAL" name="mysql.9" uuid="9b9b3ef2-d289-4204-ac77-8dc1c29f761e">
+      <driver-ref>mysql.9</driver-ref>
+      <synchronize>true</synchronize>
+      <configured-by-url>true</configured-by-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>

@@ -1,8 +1,8 @@
 package helper;
 
 import mx.desarrollo.autenticacion.integration.ServiceFacadeLocator;
-import mx.desarrollo.entity.Usuario;
 import mx.desarrollo.entity.Administrador;
+import mx.desarrollo.entity.Usuario;
 
 import java.io.Serializable;
 
