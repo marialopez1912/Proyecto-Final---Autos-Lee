@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:jsf="jakarta.faces">
+<head jsf:id="head">
+    <meta charset="UTF-8" />
+    <title>Autos Lee - Registro de Usuario</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #d6d6d6;
+            color: #333;
+            padding: 15px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            background-color: #e6e6e6;
+            border-bottom: 2px solid #b5b5b5;
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-title {
+            font-size: 22px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Georgia', serif;
+        }
+
+        .header-icons {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .icon-red {
+            fill: #b82525;
+            width: 24px;
+            height: 24px;
+        }
+
+        .main-layout {
+            display: flex;
+            gap: 20px;
+            margin-top: 15px;
+            flex: 1;
+            align-items: flex-start;
+        }
+
+        .content-area {
+            flex: 3;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .modal-card {
+            background-color: #ffffff;
+            border: 1px solid #b0b0b0;
+            border-radius: 8px;
+            padding: 24px 28px;
+            width: 100%;
+            max-width: 580px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+        }
+
+        .modal-title {
+            color: #0066cc;
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 18px;
+        }
+
+        .modal-gray-box {
+            background-color: #f5f5f5;
+            border: 1px solid #dcdcdc;
+            border-radius: 6px;
+            padding: 22px;
+        }
+
+        .form-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 14px;
+        }
+
+        .modal-label {
+            width: 150px;
+            color: #4a5568;
+            font-size: 14px;
+            font-weight: 500;
+            flex-shrink: 0;
+        }
+
+        .modal-input {
+            flex: 1;
+            width: 100%;
+            padding: 9px 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            background-color: #ffffff;
+            font-size: 14px;
+            outline: none;
+            box-sizing: border-box;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .modal-input:focus {
+            border-color: #0066cc;
+            box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.15);
+        }
+
+        .messages-area {
+            margin-bottom: 14px;
+            font-size: 13px;
+        }
+
+        .btn-container {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 20px;
+        }
+
+        .btn-registrar {
+            background: linear-gradient(to bottom, #1e88e5, #0d72c7);
+            color: #ffffff;
+            border: none;
+            padding: 9px 26px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 6px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .btn-registrar:hover {
+            background: linear-gradient(to bottom, #1976d2, #0a5ca3);
+        }
+
+        .sidebar {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            min-width: 240px;
+            max-width: 300px;
+        }
+
+        .sidebar-box {
+            background-color: #c8c8c8;
+            border: 1px solid #9e9e9e;
+            border-radius: 8px;
+            padding: 16px;
+        }
+
+        .sidebar-title {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 12px;
+            font-family: 'Georgia', serif;
+        }
+
+        .sidebar-menu {
+            list-style: none;
+        }
+
+        .sidebar-menu li {
+            padding: 8px 0;
+            font-size: 13px;
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid #b3b3b3;
+            cursor: pointer;
+        }
+
+        .sidebar-menu li:last-child {
+            border-bottom: none;
+        }
+
+        .sidebar-menu li.active {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body jsf:id="body">
+
+<div class="header">
+    <div class="header-title">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 20h9"/>
+            <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
+        </svg>
+        <span>Autos Lee</span>
+    </div>
+    <div class="header-icons">
+        <svg class="icon-red" viewBox="0 0 24 24">
+            <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/>
+        </svg>
+        <svg class="icon-red" viewBox="0 0 24 24">
+            <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
+        </svg>
+        <svg class="icon-red" viewBox="0 0 24 24">
+            <path d="M11 2v20c5.52 0 10-4.48 10-10S16.52 2 11 2zm-2 0C4.48 2 1 5.52 1 11s3.48 9 8 9V2z"/>
+        </svg>
+    </div>
+</div>
+
+<div class="main-layout">
+
+    <div class="content-area">
+
+        <div class="modal-card">
+            <div class="modal-title">Registro de usuario nuevo</div>
+
+            <div class="modal-gray-box">
+                <form jsf:id="formRegistro">
+                    <div class="messages-area">
+                        <h:messages globalOnly="true" style="color: #b82525; list-style: none;" />
+                    </div>
+
+                    <div class="form-row">
+                        <label class="modal-label" for="nombre">Nombre</label>
+                        <input type="text" id="nombre" jsf:id="nombre" jsf:value="#{registroUsuario.nombre}" class="modal-input" />
+                    </div>
+
+                    <div class="form-row">
+                        <label class="modal-label" for="apellidoPaterno">Apellido Paterno</label>
+                        <input type="text" id="apellidoPaterno" jsf:id="apellidoPaterno" jsf:value="#{registroUsuario.apellidoPaterno}" class="modal-input" />
+                    </div>
+
+                    <div class="form-row">
+                        <label class="modal-label" for="apellidoMaterno">Apellido Materno</label>
+                        <input type="text" id="apellidoMaterno" jsf:id="apellidoMaterno" jsf:value="#{registroUsuario.apellidoMaterno}" class="modal-input" />
+                    </div>
+
+                    <div class="form-row">
+                        <label class="modal-label" for="usuario">Usuario</label>
+                        <input type="text" id="usuario" jsf:id="usuario" jsf:value="#{registroUsuario.usuario}" class="modal-input" />
+                    </div>
+
+                    <div class="form-row">
+                        <label class="modal-label" for="correo">E-mail</label>
+                        <input type="text" id="correo" jsf:id="correo" jsf:value="#{registroUsuario.correoElectronico}" class="modal-input" />
+                    </div>
+
+                    <div class="form-row">
+                        <label class="modal-label" for="contrasenia">Contraseña</label>
+                        <input type="password" id="contrasenia" jsf:id="contrasenia" jsf:value="#{registroUsuario.contrasenia}" class="modal-input" />
+                    </div>
+
+                    <div class="btn-container">
+                        <button type="submit" jsf:id="btnReg" jsf:action="#{registroUsuario.registrar}" class="btn-registrar">Registrar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+    <ul class="sidebar-menu">
+        <li>
+            <a href="informacion.xhtml" style="color: inherit; text-decoration: none; display: flex; justify-content: space-between; width: 100%;">
+                <span>Información de Autos</span> <span>&gt;</span>
+            </a>
+        </li>
+        <li>
+            <a href="estadisticas.xhtml" style="color: inherit; text-decoration: none; display: flex; justify-content: space-between; width: 100%;">
+                <span>Estadísticas</span> <span>&gt;</span>
+            </a>
+        </li>
+        <li>
+            <a href="agenda.xhtml" style="color: inherit; text-decoration: none; display: flex; justify-content: space-between; width: 100%;">
+                <span>Agenda personal</span> <span>&gt;</span>
+            </a>
+        </li>
+        <li>
+            <a href="flujo.xhtml" style="color: inherit; text-decoration: none; display: flex; justify-content: space-between; width: 100%;">
+                <span>Flujo de venta</span> <span>&gt;</span>
+            </a>
+        </li>
+        <li class="active">
+            <a href="registroUS.xhtml" style="color: inherit; text-decoration: none; display: flex; justify-content: space-between; width: 100%;">
+                <span>Nuevos usuarios</span> <span>&gt;</span>
+            </a>
+        </li>
+        <li>
+            <a href="modificar.xhtml" style="color: inherit; text-decoration: none; display: flex; justify-content: space-between; width: 100%;">
+                <span>Modificar datos personales</span> <span>&gt;</span>
+            </a>
+        </li>
+    </ul>
+
+</div>
+
+</body>
+</html>
