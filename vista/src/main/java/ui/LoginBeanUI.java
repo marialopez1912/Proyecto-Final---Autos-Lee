@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ui;
 
 import helper.LoginHelper;
@@ -12,49 +7,63 @@ import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.inject.Named;
 import mx.desarrollo.entity.Usuario;
+import mx.desarrollo.entity.Administrador;
 
 import java.io.IOException;
 import java.io.Serializable;
 
 @Named("loginUI")
 @SessionScoped
-public class LoginBeanUI implements Serializable{
+public class LoginBeanUI implements Serializable {
+
     private LoginHelper loginHelper;
     private Usuario usuario;
+    private Administrador administrador;
 
     public LoginBeanUI() {
         loginHelper = new LoginHelper();
     }
 
-    /**
-     * Metodo postconstructor todo lo que este dentro de este metodo
-     * sera la primero que haga cuando cargue la pagina
-     */
     @PostConstruct
-    public void init(){
-        usuario= new Usuario();
+    public void init() {
+        usuario = new Usuario();
+        administrador = null;
     }
 
-    public void login() throws IOException{
-        String appURL = "/index.xhtml";
-        // los atributos de usuario vienen del xhtml 
-        Usuario us= new Usuario();
-        us.setId(0);
-        us = loginHelper.Login(usuario.getCorreoElectronico(), usuario.getContrasenia());
-        if(us != null && us.getId()!=null){
-            // asigno el usuario encontrado al usuario de esta clase para que 
-            // se muestre correctamente en la pagina de informacion
-            usuario=us;
-            FacesContext.getCurrentInstance().getExternalContext().redirect(FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath() + appURL);
-        }else{
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Usuario o contraseña incorrecta:", "Intente de nuevo"));
+    public void login() throws IOException {
+
+        String identificador = usuario.getCorreoElectronico();
+        String password = usuario.getContrasenia();
+
+        Administrador admin = loginHelper.loginAdministrador(
+                identificador, password);
+
+        if (admin != null) {
+            administrador = admin;
+
+            FacesContext.getCurrentInstance().getExternalContext().redirect(
+                    FacesContext.getCurrentInstance().getExternalContext()
+                            .getRequestContextPath() + "/panel.xhtml");
+
+            return;
         }
-    }
+        Usuario us = loginHelper.Login(identificador, password);
 
+        if (us != null) {
+            usuario = us;
 
-    /* getters y setters*/
+            FacesContext.getCurrentInstance().getExternalContext().redirect(
+                    FacesContext.getCurrentInstance().getExternalContext()
+                            .getRequestContextPath() + "/index.xhtml");
 
-    public Usuario getUsuario() {
+        } else {
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(
+                            FacesMessage.SEVERITY_WARN,
+                            "Usuario o contraseña incorrecta",
+                            "Intente de nuevo"));
+        }
+    }    public Usuario getUsuario() {
         return usuario;
     }
 
@@ -62,15 +71,11 @@ public class LoginBeanUI implements Serializable{
         this.usuario = usuario;
     }
 
+    public Administrador getAdministrador() {
+        return administrador;
+    }
 
-
-
-
-
-
-
-
-
-
-
+    public void setAdministrador(Administrador administrador) {
+        this.administrador = administrador;
+    }
 }

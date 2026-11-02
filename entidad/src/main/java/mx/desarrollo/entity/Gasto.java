@@ -9,7 +9,7 @@ import org.hibernate.annotations.OnDeleteAction;
 import java.math.BigDecimal;
 
 @Entity
-@Table(name = "gasto", schema = "autos_lee")
+@Table(name = "gasto")
 public class Gasto {
     @EmbeddedId
     private GastoId id;

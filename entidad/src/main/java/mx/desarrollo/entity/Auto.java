@@ -7,7 +7,7 @@ import jakarta.validation.constraints.Size;
 import java.math.BigDecimal;
 
 @Entity
-@Table(name = "auto", schema = "autos_lee")
+@Table(name = "auto")
 public class Auto {
     @EmbeddedId
     private AutoId id;
