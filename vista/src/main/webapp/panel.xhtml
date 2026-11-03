@@ -24,9 +24,8 @@
 
             <div class="tarjetas">
 
-                <!-- Administradores -->
                 <div class="tarjeta">
-                    <i class="pi pi-users"></i>
+                    <i class="pi pi-users"/>
                     <h3>Administradores</h3>
                     <p>Consulta las cuentas de administradores.</p>
 
@@ -34,12 +33,11 @@
                             value="Consultar"/>
                 </div>
 
-                <!-- Registrar administrador -->
                 <h:panelGroup layout="block"
                               styleClass="tarjeta"
                               rendered="#{loginUI.administrador.esPrincipal}">
 
-                    <i class="pi pi-user-plus"></i>
+                    <i class="pi pi-user-plus"/>
                     <h3>Registrar administrador</h3>
                     <p>Registra nuevas cuentas administrativas.</p>
 
@@ -47,9 +45,8 @@
                             value="Registrar"/>
                 </h:panelGroup>
 
-                <!-- Consultar autos -->
                 <div class="tarjeta">
-                    <i class="pi pi-car"></i>
+                    <i class="pi pi-car"/>
                     <h3>Autos</h3>
                     <p>Consulta los vehículos registrados en el sistema.</p>
 
@@ -57,9 +54,8 @@
                             value="Consultar autos"/>
                 </div>
 
-                <!-- Registrar auto -->
                 <div class="tarjeta">
-                    <i class="pi pi-plus-circle"></i>
+                    <i class="pi pi-plus-circle"/>
                     <h3>Registrar auto</h3>
                     <p>Registra nuevos vehículos en el sistema.</p>
 
@@ -67,9 +63,8 @@
                             value="Registrar"/>
                 </div>
 
-                <!-- Usuarios -->
                 <div class="tarjeta">
-                    <i class="pi pi-user"></i>
+                    <i class="pi pi-user"/>
                     <h3>Usuarios</h3>
                     <p>Consulta y administra las cuentas de usuarios.</p>
 
@@ -132,6 +127,12 @@
             <h:link styleClass="sub"
                     outcome="ventas.xhtml"
                     value="Reportes de ventas"/>
+
+            <span class="titulo-sub">Citas</span>
+
+            <h:link styleClass="sub"
+                    outcome="citas_administrador.xhtml"
+                    value="Asignar citas"/>
 
             <span class="titulo-sub">Cuenta</span>
 
