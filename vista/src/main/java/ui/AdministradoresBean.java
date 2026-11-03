@@ -18,7 +18,7 @@ public class AdministradoresBean {
     @PostConstruct
     public void init() {
         administradores = ServiceFacadeLocator
-                .getInstanceFacadeAdministrador()
+                .getInstancefacadeAdministrador()
                 .obtenerTodos();
     }
 

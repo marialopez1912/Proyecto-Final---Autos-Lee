@@ -27,7 +27,7 @@ public class RegistroAdministradorBean {
         FacesContext context = FacesContext.getCurrentInstance();
 
         Administrador existenteUsuario = ServiceFacadeLocator
-                .getInstanceFacadeAdministrador()
+                .getInstancefacadeAdministrador()
                 .buscarPorCorreoOUsuario(administrador.getUsuario());
 
         if (existenteUsuario != null) {
@@ -40,7 +40,7 @@ public class RegistroAdministradorBean {
         }
 
         Administrador existenteCorreo = ServiceFacadeLocator
-                .getInstanceFacadeAdministrador()
+                .getInstancefacadeAdministrador()
                 .buscarPorCorreoOUsuario(administrador.getCorreoElectronico());
 
         if (existenteCorreo != null) {
@@ -56,7 +56,7 @@ public class RegistroAdministradorBean {
 
         try {
             ServiceFacadeLocator
-                    .getInstanceFacadeAdministrador()
+                    .getInstancefacadeAdministrador()
                     .guardarAdministrador(administrador);
 
             context.addMessage(null,
