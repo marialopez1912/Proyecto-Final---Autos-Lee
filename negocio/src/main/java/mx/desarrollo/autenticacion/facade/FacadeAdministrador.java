@@ -1,4 +1,3 @@
-
 package mx.desarrollo.autenticacion.facade;
 
 import mx.desarrollo.autenticacion.delegate.DelegateAdministrador;

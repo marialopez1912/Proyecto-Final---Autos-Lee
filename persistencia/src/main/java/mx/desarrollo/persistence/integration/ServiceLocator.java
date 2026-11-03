@@ -1,4 +1,3 @@
-
 package mx.desarrollo.persistence.integration;
 
 import jakarta.persistence.EntityManager;

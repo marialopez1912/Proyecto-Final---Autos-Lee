@@ -10,9 +10,20 @@ public class DelegateUsuario {
 
     public Usuario login(String password, String identificador) {
 
+        System.out.println("=== PRUEBA LOGIN USUARIO ===");
+        System.out.println("Identificador recibido: " + identificador);
+
         Usuario usuario = ServiceLocator
                 .getInstanceUsuarioDAO()
                 .buscarPorCorreoOUsuario(identificador);
+
+        System.out.println("¿Usuario encontrado?: " + (usuario != null));
+
+        if (usuario != null) {
+            System.out.println("ID encontrado: " + usuario.getId());
+            System.out.println("¿Contraseña coincide?: " +
+                    usuario.getContrasenia().equals(password));
+        }
 
         if (usuario != null &&
                 usuario.getContrasenia() != null &&

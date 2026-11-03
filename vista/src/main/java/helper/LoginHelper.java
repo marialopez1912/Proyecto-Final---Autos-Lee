@@ -14,7 +14,7 @@ public class LoginHelper implements Serializable {
     }
 
     public Administrador loginAdministrador(String identificador, String password) {
-        return ServiceFacadeLocator.getInstanceFacadeAdministrador()
+        return ServiceFacadeLocator.getInstancefacadeAdministrador()
                 .login(identificador, password);
     }
 }
