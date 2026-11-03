@@ -1,4 +1,4 @@
-
+<?xml version='1.0' encoding='UTF-8' ?>
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="jakarta.faces.facelets"
                 xmlns:h="jakarta.faces.html"
@@ -6,26 +6,35 @@
                 xmlns:p="http://primefaces.org/ui"
                 template="/panel.xhtml">
 
+
     <ui:define name="contenidoAdmin">
+
 
         <h1>Gestión de citas</h1>
         <p>Revisa solicitudes, asigna citas y consulta los datos de tus clientes.</p>
 
+
         <h:form id="formCitas">
+
 
             <p:messages id="messages"
                         showDetail="true"
                         closable="true"/>
 
+
             <p:panel header="Asignar cita a un cliente">
+
 
                 <p>Solo el administrador puede asignar citas. El cliente podrá aceptarla o rechazarla.</p>
 
+
                 <div style="display:grid; grid-template-columns: 1fr 1fr; gap:25px;">
+
 
                     <p:panelGrid columns="2"
                                  layout="grid"
                                  styleClass="ui-fluid">
+
 
                         <p:outputLabel value="Cliente:"/>
                         <p:selectOneMenu>
@@ -39,6 +48,7 @@
                                           itemValue="3"/>
                         </p:selectOneMenu>
 
+
                         <p:outputLabel value="Automóvil:"/>
                         <p:selectOneMenu>
                             <f:selectItem itemLabel="Selecciona un automóvil"
@@ -51,9 +61,11 @@
                                           itemValue="3"/>
                         </p:selectOneMenu>
 
+
                         <p:outputLabel value="Fecha:"/>
                         <p:datePicker pattern="dd/MM/yyyy"
                                       placeholder="Selecciona una fecha"/>
+
 
                         <p:outputLabel value="Horario:"/>
                         <p:selectOneMenu>
@@ -65,81 +77,108 @@
                             <f:selectItem itemLabel="17:00" itemValue="17:00"/>
                         </p:selectOneMenu>
 
+
                         <p:outputLabel value="Nota para el cliente:"/>
                         <p:inputTextarea rows="2"
                                          placeholder="Ej. Trae una identificación oficial"/>
 
+
                     </p:panelGrid>
 
+
                     <div>
+
 
                         <h3>Horarios disponibles</h3>
                         <p>Martes 10 de noviembre</p>
 
-                        <p:dataTable value="#{null}"
-                                     var="horario"
-                                     rendered="false"/>
 
                         <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:10px;">
+
 
                             <p:tag value="09:00 - Libre"
                                    severity="success"/>
 
+
                             <p:tag value="10:00 - Libre"
                                    severity="success"/>
+
 
                             <p:tag value="11:00 - Ocupado"
                                    severity="secondary"/>
 
+
                             <p:tag value="12:00 - Libre"
                                    severity="success"/>
+
 
                             <p:tag value="16:00 - Ocupado"
                                    severity="secondary"/>
 
+
                             <p:tag value="17:00 - Libre"
                                    severity="success"/>
 
+
                         </div>
+
 
                         <p style="margin-top:20px;">
                             Verde: horario libre. Gris: horario ocupado.
                             No puede haber dos citas en el mismo día y horario.
                         </p>
 
-                        <p:message severity="info"
-                                   text="El cliente podrá consultar los datos del vehículo y del administrador."/>
 
+                        <h:panelGroup layout="block"
+                                      style="margin-top:20px;">
+
+
+                            <h:outputText value="El cliente podrá consultar los datos del vehículo y del administrador."/>
+
+
+                        </h:panelGroup>
                     </div>
+
 
                 </div>
 
+
                 <div style="text-align:center; margin-top:20px;">
+
 
                     <p:commandButton value="Asignar cita"
                                      icon="pi pi-calendar-plus"
                                      type="button"/>
+
 
                     <p:commandButton value="Limpiar"
                                      icon="pi pi-times"
                                      type="reset"
                                      styleClass="ui-button-secondary"/>
 
+
                 </div>
+
 
             </p:panel>
 
+
             <br/>
+
 
             <p:panel header="Solicitudes de clientes">
 
+
                 <p>Citas solicitadas por los clientes que esperan confirmación.</p>
+
 
                 <p:dataTable value="#{null}"
                              var="solicitud"
                              rendered="false"/>
 
+
                 <table style="width:100%; border-collapse:collapse;">
+
 
                     <thead>
                     <tr>
@@ -152,7 +191,9 @@
                     </tr>
                     </thead>
 
+
                     <tbody>
+
 
                     <tr>
                         <td>María Fernández</td>
@@ -166,12 +207,14 @@
                                              type="button"
                                              styleClass="ui-button-sm"/>
 
+
                             <p:commandButton icon="pi pi-calendar"
                                              title="Reprogramar"
                                              type="button"
                                              styleClass="ui-button-secondary ui-button-sm"/>
                         </td>
                     </tr>
+
 
                     <tr>
                         <td>Jorge Ramírez</td>
@@ -185,6 +228,7 @@
                                              type="button"
                                              styleClass="ui-button-sm"/>
 
+
                             <p:commandButton icon="pi pi-calendar"
                                              title="Reprogramar"
                                              type="button"
@@ -192,19 +236,27 @@
                         </td>
                     </tr>
 
+
                     </tbody>
+
 
                 </table>
 
+
             </p:panel>
+
 
             <br/>
 
+
             <p:panel header="Agenda de citas">
+
 
                 <p>Todas las citas registradas, ordenadas por fecha.</p>
 
+
                 <table style="width:100%; border-collapse:collapse;">
+
 
                     <thead>
                     <tr>
@@ -218,7 +270,9 @@
                     </tr>
                     </thead>
 
+
                     <tbody>
+
 
                     <tr>
                         <td>10 nov</td>
@@ -233,12 +287,14 @@
                                              type="button"
                                              styleClass="ui-button-secondary ui-button-sm"/>
 
+
                             <p:commandButton icon="pi pi-trash"
                                              title="Cancelar"
                                              type="button"
                                              styleClass="ui-button-danger ui-button-sm"/>
                         </td>
                     </tr>
+
 
                     <tr>
                         <td>12 nov</td>
@@ -253,12 +309,14 @@
                                              type="button"
                                              styleClass="ui-button-secondary ui-button-sm"/>
 
+
                             <p:commandButton icon="pi pi-trash"
                                              title="Cancelar"
                                              type="button"
                                              styleClass="ui-button-danger ui-button-sm"/>
                         </td>
                     </tr>
+
 
                     <tr>
                         <td>9 nov</td>
@@ -275,30 +333,42 @@
                         </td>
                     </tr>
 
+
                     </tbody>
+
 
                 </table>
 
+
             </p:panel>
+
 
             <br/>
 
+
             <p:panel header="Clientes registrados">
+
 
                 <p>Consulta los datos de los clientes registrados para coordinar sus citas.</p>
 
+
                 <div style="display:flex; gap:10px; margin-bottom:20px;">
+
 
                     <p:inputText placeholder="Buscar por nombre, correo o teléfono"
                                  style="width:300px;"/>
+
 
                     <p:commandButton value="Buscar"
                                      icon="pi pi-search"
                                      type="button"/>
 
+
                 </div>
 
+
                 <table style="width:100%; border-collapse:collapse;">
+
 
                     <thead>
                     <tr>
@@ -312,7 +382,9 @@
                     </tr>
                     </thead>
 
+
                     <tbody>
+
 
                     <tr>
                         <td>1</td>
@@ -329,6 +401,7 @@
                         </td>
                     </tr>
 
+
                     <tr>
                         <td>2</td>
                         <td>Jorge</td>
@@ -343,6 +416,7 @@
                                              styleClass="ui-button-secondary ui-button-sm"/>
                         </td>
                     </tr>
+
 
                     <tr>
                         <td>3</td>
@@ -359,54 +433,75 @@
                         </td>
                     </tr>
 
+
                     </tbody>
+
 
                 </table>
 
+
             </p:panel>
+
 
             <br/>
 
+
             <p:panel header="Perfil del cliente">
 
+
                 <h3>María Fernández López</h3>
+
 
                 <p:panelGrid columns="2"
                              layout="grid"
                              styleClass="ui-fluid">
 
+
                     <h:outputText value="Correo electrónico:"/>
                     <h:outputText value="maria@correo.com"/>
+
 
                     <h:outputText value="Teléfono:"/>
                     <h:outputText value="686 111 2233"/>
 
+
                     <h:outputText value="Contacto preferido:"/>
                     <h:outputText value="WhatsApp"/>
+
 
                     <h:outputText value="Fecha de registro:"/>
                     <h:outputText value="3 de octubre de 2026"/>
 
+
                     <h:outputText value="Automóvil de interés:"/>
                     <h:outputText value="Toyota Corolla 2022"/>
+
 
                     <h:outputText value="Historial de citas:"/>
                     <h:outputText value="1 confirmada, 1 pendiente"/>
 
+
                 </p:panelGrid>
 
+
                 <div style="text-align:center; margin-top:20px;">
+
 
                     <p:commandButton value="Asignar cita a este cliente"
                                      icon="pi pi-calendar-plus"
                                      type="button"/>
 
+
                 </div>
+
 
             </p:panel>
 
+
         </h:form>
 
+
     </ui:define>
+
 
 </ui:composition>
