@@ -32,7 +32,7 @@ public class RegistroUsuario implements Serializable {
     public String registrar() {
         FacesContext context = FacesContext.getCurrentInstance();
 
-        // 1. Validaciones
+
         if (esVacio(nombre) || esVacio(apellidoPaterno) || esVacio(usuario) ||
                 esVacio(correoElectronico) || esVacio(contrasenia)) {
 

@@ -1,245 +1,113 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="jakarta.faces.html"
-      xmlns:jsf="jakarta.faces">
-<head jsf:id="head">
-    <meta charset="UTF-8" />
-    <title>Autos Lee - Registro de Usuario</title>
+      xmlns:f="jakarta.faces.core">
+
+<h:head>
+    <title>Autos Lee - Registro de usuarios</title>
     <style>
-        * {
-            box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: Arial, sans-serif; }
+        body { background-color: #ededed; color: #333; }
 
-        body {
-            background-color: #f2f2f2;
-            color: #1a1a1a;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
+        .navbar { display: flex; align-items: center; background: #fff; padding: 15px 30px; border-bottom: 1px solid #ddd; }
+        .logo { font-size: 24px; font-weight: bold; font-family: serif; }
 
-        .header {
-            background-color: #ffffff;
-            border-bottom: 1px solid #e5e5e5;
-            padding: 16px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+        .main-container { max-width: 800px; margin: 40px auto; padding: 0 20px; }
 
-        .header-title {
-            font-family: 'Georgia', serif;
-            font-size: 24px;
-            color: #1a1a1a;
-            text-decoration: none;
-        }
+        .back-link { display: inline-block; margin-bottom: 15px; color: #333; text-decoration: none; font-size: 14px; font-weight: bold; }
+        .back-link:hover { text-decoration: underline; color: #55a00b; }
 
-        .header-icons {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
+        .page-header { margin-bottom: 20px; }
+        .page-header h1 { font-size: 28px; font-weight: bold; margin-bottom: 6px; color: #000; }
+        .page-header p { font-size: 14px; color: #555; }
 
-        .icon-btn {
-            color: #8b2525;
-            width: 22px;
-            height: 22px;
-            cursor: pointer;
-        }
+        .card-panel { background: #fdfdfd; border: 1px solid #d4d4c8; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        .card-header { background: #f6f6eb; padding: 14px 20px; font-weight: bold; font-size: 15px; border-bottom: 1px solid #e2e2d5; color: #222; }
+        .card-body { padding: 30px; }
 
-        .main-container {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 40px 20px;
-            width: 100%;
-        }
+        .form-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px 20px; }
+        .form-group { display: flex; flex-direction: column; gap: 6px; }
 
-        .content-wrapper {
-            width: 100%;
-            max-width: 650px;
-        }
+        .form-group label { font-size: 13px; font-weight: bold; color: #333; }
+        .form-group input { padding: 9px 12px; border: 1px solid #ccc; border-radius: 4px; font-size: 14px; background: #fff; }
+        .form-group input:focus { outline: none; border-color: #55a00b; box-shadow: 0 0 4px rgba(85, 160, 11, 0.4); }
 
-        .back-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            color: #555555;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
-            margin-bottom: 20px;
-            transition: color 0.2s;
-        }
+        .btn-green { background-color: #55a00b; color: white; border: 1px solid #488a09; padding: 11px 24px; font-size: 14px; font-weight: bold; border-radius: 6px; cursor: pointer; display: inline-block; margin-top: 20px; }
+        .btn-green:hover { background-color: #488a09; }
 
-        .back-btn:hover {
-            color: #8b2525;
-        }
-
-        .page-title {
-            font-size: 28px;
-            font-weight: 700;
-            color: #111111;
-            margin-bottom: 6px;
-        }
-
-        .page-subtitle {
-            font-size: 15px;
-            color: #555555;
-            margin-bottom: 20px;
-        }
-
-        .divider {
-            height: 1px;
-            background-color: #dcdcdc;
-            margin-bottom: 30px;
-            width: 100%;
-        }
-
-        .form-card {
-            background-color: #ffffff;
-            border: 1px solid #e2e8f0;
-            border-radius: 8px;
-            padding: 32px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-        }
-
-        .form-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 16px;
-        }
-
-        .form-group-full {
-            grid-column: span 2;
-        }
-
-        .form-group {
-            margin-bottom: 16px;
-        }
-
-        .form-label {
-            display: block;
-            font-size: 14px;
-            font-weight: 600;
-            color: #333333;
-            margin-bottom: 6px;
-        }
-
-        .form-input {
-            width: 100%;
-            padding: 10px 12px;
-            border: 1px solid #cccccc;
-            border-radius: 6px;
-            font-size: 14px;
-            outline: none;
-            background-color: #ffffff;
-            transition: border-color 0.2s;
-        }
-
-        .form-input:focus {
-            border-color: #8b2525;
-        }
-
-        .messages-area {
-            margin-bottom: 16px;
-            font-size: 14px;
-        }
-
-        .btn-container {
-            display: flex;
-            justify-content: flex-start;
-            margin-top: 10px;
-        }
-
-        .btn-submit {
-            background-color: #8b2525;
-            color: #ffffff;
-            border: none;
-            padding: 10px 24px;
-            font-size: 14px;
-            font-weight: 600;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: background-color 0.2s;
-        }
-
-        .btn-submit:hover {
-            background-color: #6e1d1d;
-        }
+        .messages-container { margin-bottom: 15px; list-style: none; padding: 0; }
+        .info-msg { color: #155724; font-size: 14px; font-weight: bold; margin-bottom: 10px; }
+        .error-msg { color: #b30000; font-size: 14px; font-weight: bold; margin-bottom: 10px; }
     </style>
-</head>
-<body jsf:id="body">
+</h:head>
 
-<div class="header">
-    <a href="login.xhtml" class="header-title">Autos Lee</a>
+<h:body>
 
-</div>
+    <header class="navbar">
+        <div class="logo">Autos Lee</div>
+    </header>
 
-<div class="main-container">
-    <div class="content-wrapper">
-        <a href="login.xhtml" class="back-btn">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <line x1="19" y1="12" x2="5" y2="12"></line>
-                <polyline points="12 19 5 12 12 5"></polyline>
-            </svg>
-            <span>Regresar al inicio de sesión</span>
-        </a>
+    <div class="main-container">
 
-        <h1 class="page-title">Registro de usuarios</h1>
-        <p class="page-subtitle">Crea tu cuenta para ingresar a Autos Lee.</p>
-        <div class="divider"></div>
+        <h:link outcome="login" value="&#8592; Regresar al inicio de sesión" styleClass="back-link" />
 
-        <div class="form-card">
-            <form jsf:id="formRegistro">
-                <div class="messages-area">
-                    <h:messages globalOnly="true" style="color: #8b2525; list-style: none;" />
-                </div>
-
-                <div class="form-grid">
-                    <div class="form-group">
-                        <label class="form-label" for="nombre">Nombre *</label>
-                        <input type="text" id="nombre" jsf:id="nombre" jsf:value="#{registroUsuario.nombre}" class="form-input" required="required" />
-                    </div>
-
-                    <div class="form-group">
-                        <label class="form-label" for="apellidoPaterno">Apellido Paterno *</label>
-                        <input type="text" id="apellidoPaterno" jsf:id="apellidoPaterno" jsf:value="#{registroUsuario.apellidoPaterno}" class="form-input" required="required" />
-                    </div>
-
-                    <div class="form-group">
-                        <label class="form-label" for="apellidoMaterno">Apellido Materno</label>
-                        <input type="text" id="apellidoMaterno" jsf:id="apellidoMaterno" jsf:value="#{registroUsuario.apellidoMaterno}" class="form-input" />
-                    </div>
-
-                    <div class="form-group">
-                        <label class="form-label" for="usuario">Usuario *</label>
-                        <input type="text" id="usuario" jsf:id="usuario" jsf:value="#{registroUsuario.usuario}" class="form-input" required="required" />
-                    </div>
-
-                    <div class="form-group-full form-group">
-                        <label class="form-label" for="correo">E-mail *</label>
-                        <input type="email" id="correo" jsf:id="correo" jsf:value="#{registroUsuario.correoElectronico}" class="form-input" required="required" />
-                    </div>
-
-                    <div class="form-group-full form-group">
-                        <label class="form-label" for="contrasenia">Contraseña *</label>
-                        <input type="password" id="contrasenia" jsf:id="contrasenia" jsf:value="#{registroUsuario.contrasenia}" class="form-input" required="required" minlength="6" />
-                    </div>
-                </div>
-
-                <div class="btn-container">
-                    <button type="submit" jsf:id="btnReg" jsf:action="#{registroUsuario.registrar}" class="btn-submit">Registrar usuario</button>
-                </div>
-            </form>
+        <div class="page-header">
+            <h1>Registro de usuarios</h1>
+            <p>Crea tu cuenta para ingresar a Autos Lee.</p>
         </div>
-    </div>
-</div>
 
-</body>
+        <div class="card-panel">
+            <div class="card-header">
+                Datos del usuario
+            </div>
+            <div class="card-body">
+
+                <h:messages globalOnly="true" styleClass="messages-container" infoClass="info-msg" errorClass="error-msg" />
+
+                <h:form id="formRegistro">
+                    <div class="form-grid">
+
+                        <div class="form-group">
+                            <label for="nombre">Nombre *</label>
+                            <h:inputText id="nombre" value="#{registroUsuario.nombre}" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="apellidoPaterno">Apellido Paterno *</label>
+                            <h:inputText id="apellidoPaterno" value="#{registroUsuario.apellidoPaterno}" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="apellidoMaterno">Apellido Materno</label>
+                            <h:inputText id="apellidoMaterno" value="#{registroUsuario.apellidoMaterno}" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="usuario">Usuario *</label>
+                            <h:inputText id="usuario" value="#{registroUsuario.usuario}" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="correo">E-mail *</label>
+                            <h:inputText id="correo" value="#{registroUsuario.correoElectronico}" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contrasenia">Contraseña *</label>
+                            <h:inputSecret id="contrasenia" value="#{registroUsuario.contrasenia}" />
+                        </div>
+
+                    </div>
+
+                    <div>
+                        <h:commandButton value="Registrar usuario" action="#{registroUsuario.registrar}" styleClass="btn-green" />
+                    </div>
+                </h:form>
+
+            </div>
+        </div>
+
+    </div>
+
+</h:body>
 </html>
