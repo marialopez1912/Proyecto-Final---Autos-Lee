@@ -16,6 +16,8 @@ import mx.desarrollo.entity.Auto;
 import jakarta.inject.Inject;
 import mx.desarrollo.entity.Administrador;
 import mx.desarrollo.entity.AutoId;
+import java.util.List;
+import mx.desarrollo.entity.Auto;
 
 import java.io.Serializable;
 
@@ -27,6 +29,7 @@ private LoginBeanUI loginUI;
 
     private LoginHelper loginHelper;
     private Auto auto;
+    private List<Auto> listaAutos;
 
     public AutoBeanUI() {
         loginHelper = new LoginHelper();
@@ -57,15 +60,12 @@ private LoginBeanUI loginUI;
                 return;
             }
 
-            // Obtener el ID del administrador que inició sesión
             Integer administradorId = administrador.getId();
 
-            // Asegurar que el auto tenga su llave compuesta
             if (auto.getId() == null) {
                 auto.setId(new AutoId());
             }
 
-            // Guardar mediante AutoHelper, enviando ambos argumentos
             AutoHelper.saveAuto(auto, administradorId);
 
             FacesContext.getCurrentInstance().addMessage(null,
@@ -90,8 +90,38 @@ private LoginBeanUI loginUI;
         }
     }
 
-    /* getters y setters*/
+    public void consultarAutos() {
+        try {
+            listaAutos = AutoHelper.obtenerTodos();
 
+            if (listaAutos.isEmpty()) {
+                FacesContext.getCurrentInstance().addMessage(null,
+                        new FacesMessage(
+                                FacesMessage.SEVERITY_INFO,
+                                "Consulta",
+                                "No hay autos registrados"
+                        ));
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(
+                            FacesMessage.SEVERITY_ERROR,
+                            "Error",
+                            "No se pudieron consultar los autos"
+                    ));
+        }
+    }
+
+
+
+
+
+    public List<Auto> getListaAutos() {
+        return listaAutos;
+    }
     public Auto getAuto() { return auto; }
 
     public void setAuto(Auto auto) {
