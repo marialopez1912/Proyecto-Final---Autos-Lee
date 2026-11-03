@@ -13,12 +13,18 @@ import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.inject.Named;
 import mx.desarrollo.entity.Auto;
+import jakarta.inject.Inject;
+import mx.desarrollo.entity.Administrador;
+import mx.desarrollo.entity.AutoId;
 
 import java.io.Serializable;
 
 @Named("AutoBeanUI")
 @SessionScoped
 public class AutoBeanUI implements Serializable{
+    @Inject
+private LoginBeanUI loginUI;
+
     private LoginHelper loginHelper;
     private Auto auto;
 
@@ -30,18 +36,57 @@ public class AutoBeanUI implements Serializable{
      * Metodo postconstructor todo lo que este dentro de este metodo
      * sera la primero que haga cuando cargue la pagina
      */
-    @PostConstruct
-    public void init(){ auto= new Auto(); }
 
-    public void guardar(){
-        try{
-            AutoHelper.saveAuto(auto);
+    @PostConstruct
+    public void init() {
+        auto = new Auto();
+        auto.setId(new AutoId());
+    }
+
+    public void guardar() {
+        try {
+            Administrador administrador = loginUI.getAdministrador();
+
+            if (administrador == null) {
+                FacesContext.getCurrentInstance().addMessage(null,
+                        new FacesMessage(
+                                FacesMessage.SEVERITY_ERROR,
+                                "Error",
+                                "No se encontró el administrador que inició sesión"
+                        ));
+                return;
+            }
+
+            // Obtener el ID del administrador que inició sesión
+            Integer administradorId = administrador.getId();
+
+            // Asegurar que el auto tenga su llave compuesta
+            if (auto.getId() == null) {
+                auto.setId(new AutoId());
+            }
+
+            // Guardar mediante AutoHelper, enviando ambos argumentos
+            AutoHelper.saveAuto(auto, administradorId);
+
             FacesContext.getCurrentInstance().addMessage(null,
-                    new FacesMessage(FacesMessage.SEVERITY_INFO, "Auto registrado", "Se guardo correctamente"));
+                    new FacesMessage(
+                            FacesMessage.SEVERITY_INFO,
+                            "Auto registrado",
+                            "Se guardó correctamente"
+                    ));
+
             auto = new Auto();
-        }catch(Exception e){
+            auto.setId(new AutoId());
+
+        } catch (Exception e) {
             e.printStackTrace();
 
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(
+                            FacesMessage.SEVERITY_ERROR,
+                            "Error",
+                            "No se pudo registrar el auto"
+                    ));
         }
     }
 

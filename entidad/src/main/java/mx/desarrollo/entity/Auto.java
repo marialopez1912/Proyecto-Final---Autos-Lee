@@ -14,7 +14,10 @@ public class Auto {
 
     @MapsId("administradorIdAdministrador")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "Administrador_Id_Administrador", nullable = false)
+    @JoinColumn(
+            name = "Administrador_Id_Administrador",
+            nullable = false
+    )
     private Administrador administradorIdAdministrador;
 
     @Size(max = 60)

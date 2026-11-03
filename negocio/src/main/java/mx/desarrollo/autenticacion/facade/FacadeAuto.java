@@ -11,5 +11,7 @@ public class FacadeAuto {
         this.delegateAuto = new DelegateAuto();
     }
 
-    public void saveAuto(Auto auto){ delegateAuto.saveAuto(auto); }
+    public void saveAuto(Auto auto, Integer administradorId) {
+        delegateAuto.saveAuto(auto, administradorId);
+    }
 }
