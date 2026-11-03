@@ -65,7 +65,7 @@ public class RegistroUsuario implements Serializable {
 
             context.addMessage(null, new FacesMessage(
                     FacesMessage.SEVERITY_INFO,
-                    "¡Registro exitoso!",
+                    "Registro exitoso  ",
                     "Tu cuenta ha sido creada correctamente."
             ));
             context.getExternalContext().getFlash().setKeepMessages(true);
