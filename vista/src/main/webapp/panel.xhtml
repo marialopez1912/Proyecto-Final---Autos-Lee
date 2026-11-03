@@ -24,6 +24,7 @@
 
             <div class="tarjetas">
 
+                <!-- Administradores -->
                 <div class="tarjeta">
                     <i class="pi pi-users"></i>
                     <h3>Administradores</h3>
@@ -33,6 +34,7 @@
                             value="Consultar"/>
                 </div>
 
+                <!-- Registrar administrador -->
                 <h:panelGroup layout="block"
                               styleClass="tarjeta"
                               rendered="#{loginUI.administrador.esPrincipal}">
@@ -43,22 +45,37 @@
 
                     <h:link outcome="registroAdministrador.xhtml"
                             value="Registrar"/>
-
                 </h:panelGroup>
 
+                <!-- Consultar autos -->
+                <div class="tarjeta">
+                    <i class="pi pi-car"></i>
+                    <h3>Autos</h3>
+                    <p>Consulta los vehículos registrados en el sistema.</p>
+
+                    <h:link outcome="consultarAutos.xhtml"
+                            value="Consultar autos"/>
+                </div>
+
+                <!-- Registrar auto -->
+                <div class="tarjeta">
+                    <i class="pi pi-plus-circle"></i>
+                    <h3>Registrar auto</h3>
+                    <p>Registra nuevos vehículos en el sistema.</p>
+
+                    <h:link outcome="registrar.xhtml"
+                            value="Registrar"/>
+                </div>
+
+                <!-- Usuarios -->
                 <div class="tarjeta">
                     <i class="pi pi-user"></i>
                     <h3>Usuarios</h3>
                     <p>Consulta y administra las cuentas de usuarios.</p>
+
                     <h:link outcome="usuarios.xhtml"
                             value="Consultar usuarios"/>
                 </div>
-
-                <span class="titulo-sub">Autos</span>
-
-                <h:link styleClass="sub"
-                        outcome="registrar.xhtml"
-                        value="Registrar autos"/>
 
             </div>
 
@@ -87,8 +104,15 @@
                         value="Registrar administrador"/>
             </h:panelGroup>
 
-            <h:link outcome="registrar.xhtml"
+            <span class="titulo-sub">Autos</span>
+
+            <h:link styleClass="sub"
+                    outcome="registrar.xhtml"
                     value="Registrar auto"/>
+
+            <h:link styleClass="sub"
+                    outcome="consultarAutos.xhtml"
+                    value="Consultar autos"/>
 
             <span class="titulo-sub">Usuarios</span>
 
@@ -108,8 +132,6 @@
             <h:link styleClass="sub"
                     outcome="ventas.xhtml"
                     value="Reportes de ventas"/>
-
-
 
             <span class="titulo-sub">Cuenta</span>
 

@@ -1,0 +1,82 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="jakarta.faces.facelets"
+                xmlns:h="jakarta.faces.html"
+                xmlns:f="jakarta.faces.core"
+                xmlns:p="http://primefaces.org/ui"
+                template="/panel.xhtml">
+
+    <ui:define name="contenidoAdmin">
+
+        <h1>Autos registrados</h1>
+
+        <p>Consulta los vehículos registrados en el sistema.</p>
+
+        <h:form id="formAutos">
+
+            <p:messages id="messages"
+                        showDetail="true"
+                        closable="true"/>
+
+            <p:panel header="Autos registrados">
+
+                <p:commandButton value="Consultar autos"
+                                 icon="pi pi-search"
+                                 action="#{AutoBeanUI.consultarAutos}"
+                                 update="tablaAutos messages"
+                                 style="margin-bottom: 15px;"/>
+
+                <p:dataTable id="tablaAutos"
+                             value="#{AutoBeanUI.listaAutos}"
+                             var="auto"
+                             paginator="true"
+                             rows="5"
+                             emptyMessage="No hay autos registrados."
+                             responsiveLayout="scroll"
+                             paginatorPosition="bottom">
+
+                    <p:column headerText="ID">
+                        <h:outputText value="#{auto.id.idAutoSistema}"/>
+                    </p:column>
+
+                    <p:column headerText="Marca">
+                        <h:outputText value="#{auto.marca}"/>
+                    </p:column>
+
+                    <p:column headerText="Modelo">
+                        <h:outputText value="#{auto.modelo}"/>
+                    </p:column>
+
+                    <p:column headerText="Versión">
+                        <h:outputText value="#{auto.version}"/>
+                    </p:column>
+
+                    <p:column headerText="Año">
+                        <h:outputText value="#{auto.anio}"/>
+                    </p:column>
+
+                    <p:column headerText="VIN">
+                        <h:outputText value="#{auto.vin}"/>
+                    </p:column>
+
+                    <p:column headerText="Placa">
+                        <h:outputText value="#{auto.placa}"/>
+                    </p:column>
+
+                    <p:column headerText="Precio de venta">
+                        <h:outputText value="#{auto.precioVenta}">
+                            <f:convertNumber type="currency"
+                                             currencySymbol="$"
+                                             locale="es_MX"/>
+                        </h:outputText>
+                    </p:column>
+
+                </p:dataTable>
+
+            </p:panel>
+
+        </h:form>
+
+    </ui:define>
+
+</ui:composition>
