@@ -1,7 +1,156 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<ui:composition xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:ui="jakarta.faces.facelets"
-                template="/plantilla.xhtml">
-    <ui:define name="contenido">
-    </ui:define>
-</ui:composition>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="jakarta.faces.core"
+      xmlns:ui="jakarta.faces.facelets">
+
+<h:head>
+    <title>Autos Lee - Venta de autos usados en Mexicali</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: Arial, sans-serif; }
+        body { background-color: #f4f4f4; color: #333; }
+
+        .navbar { display: flex; justify-content: space-between; align-items: center; background: #fff; padding: 15px 30px; border-bottom: 1px solid #ddd; }
+        .logo { font-size: 24px; font-weight: bold; font-family: serif; }
+        .user-nav { display: flex; gap: 15px; align-items: center; }
+
+        .main-container { display: flex; max-width: 1300px; margin: 20px auto; gap: 20px; padding: 0 15px; }
+        .content-area { flex: 3; display: flex; flex-direction: column; gap: 25px; }
+        .sidebar { flex: 1; background: #e0e0e0; padding: 20px; border-radius: 8px; height: fit-content; }
+
+        .hero-banner { display: flex; background: #d0d0d0; padding: 20px; border-radius: 8px; align-items: center; gap: 20px; }
+        .hero-img { width: 45%; border-radius: 6px; object-fit: cover; }
+        .hero-info { width: 55%; text-align: center; }
+        .hero-info h2 { font-size: 22px; margin-bottom: 15px; text-decoration: underline; }
+        .features { display: flex; justify-content: space-around; margin: 15px 0; font-size: 13px; font-weight: bold; }
+        .slogan { font-size: 18px; font-weight: bold; color: #0044cc; margin-top: 15px; }
+
+        .catalog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
+        .car-card { background: #fff; padding: 15px; border-radius: 6px; border: 1px solid #ccc; display: flex; flex-direction: column; justify-content: space-between; }
+        .car-card img { width: 100%; height: 160px; object-fit: cover; border-radius: 4px; margin-bottom: 10px; }
+        .car-title { font-size: 14px; font-weight: bold; margin-bottom: 8px; height: 38px; }
+        .price-label { color: #666; font-size: 12px; }
+        .price-value { color: #b30000; font-weight: bold; font-size: 14px; margin-bottom: 5px; }
+        .rating { color: #333; margin-bottom: 15px; font-size: 12px; }
+        .btn-info { background: #d9d9d9; border: 1px solid #999; padding: 6px 12px; border-radius: 4px; cursor: pointer; align-self: flex-end; width: 100%; }
+
+        .sidebar-section { margin-bottom: 25px; }
+        .sidebar-title { font-size: 18px; font-weight: bold; margin-bottom: 12px; }
+        .menu-list { list-style: none; }
+        .menu-list li { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #ccc; cursor: pointer; }
+        .filter-group { margin-bottom: 12px; }
+        .filter-group label { display: block; font-size: 13px; margin-bottom: 4px; }
+        .filter-group select { width: 100%; padding: 6px; border-radius: 4px; border: 1px solid #aaa; }
+    </style>
+</h:head>
+
+<h:body>
+
+    <header class="navbar">
+        <div class="logo">Autos Lee</div>
+        <div class="user-nav">
+            <h:outputText value="Hola, #{loginUI.usuario.nombre}" rendered="#{not empty loginUI.usuario.nombre}" />
+            <h:link outcome="login" value="Regístrate / Iniciar sesión" rendered="#{empty loginUI.usuario.nombre}" />
+            <span>Carrito</span>
+            <span>Buscar</span>
+            <span>Menú</span>
+        </div>
+    </header>
+
+    <div class="main-container">
+
+        <main class="content-area">
+
+            <section class="hero-banner">
+                <img src="resources/images/autobanner.png" alt="Auto Destacado" class="hero-img" />
+                <div class="hero-info">
+                    <h2>Bienvenido</h2>
+                    <h2>Venta de autos usados en Mexicali</h2>
+                    <div class="features">
+                        <div>Transacción Segura</div>
+                        <div>Documentación Verificada</div>
+                        <div>Seguro en el auto</div>
+                    </div>
+                    <div class="slogan">El auto que buscas, con el respaldo que mereces</div>
+                </div>
+            </section>
+
+            <section class="catalog-grid">
+
+                <div class="car-card">
+                    <img src="resources/images/nissan.png" alt="Nissan Pathfinder" />
+                    <div class="car-title">Nissan Pathfinder (generación R52, 2013-2016)</div>
+                    <div class="price-label">Precio</div>
+                    <div class="price-value">$180,000 - $280,000 MXN</div>
+                    <div class="rating">Calificación: 3/5</div>
+                    <button class="btn-info">Más info...</button>
+                </div>
+
+                <div class="car-card">
+                    <img src="resources/images/porche.png" alt="Porsche Cayenne" />
+                    <div class="car-title">Porsche Cayenne (2019-2023)</div>
+                    <div class="price-label">Precio</div>
+                    <div class="price-value">$1,100,000 - $1,500,000 MXN</div>
+                    <div class="rating">Calificación: 3/5</div>
+                    <button class="btn-info">Más info...</button>
+                </div>
+
+                <div class="car-card">
+                    <img src="resources/images/bmw.png" alt="BMW Serie 3" />
+                    <div class="car-title">BMW Serie 3 E30 (1982-1994)</div>
+                    <div class="price-label">Precio</div>
+                    <div class="price-value">$120,000 - $350,000 MXN</div>
+                    <div class="rating">Calificación: 3/5</div>
+                    <button class="btn-info">Más info...</button>
+                </div>
+
+            </section>
+        </main>
+
+        <aside class="sidebar">
+
+            <div class="sidebar-section">
+                <div class="sidebar-title">Menú</div>
+                <ul class="menu-list">
+                    <li>Autos seminuevos <span>&gt;</span></li>
+                    <li>Autos usados <span>&gt;</span></li>
+                    <li>Vende tu auto <span>&gt;</span></li>
+                    <li>Sucursales <span>&gt;</span></li>
+                    <li>Guía de precio <span>&gt;</span></li>
+                    <li>Crédito <span>&gt;</span></li>
+                    <li>Promociones <span>&gt;</span></li>
+                </ul>
+            </div>
+
+            <div class="sidebar-section">
+                <div class="sidebar-title">Filtros</div>
+                <h:form>
+                    <div class="filter-group">
+                        <label>Seleccionar marca</label>
+                        <h:selectOneMenu>
+                            <f:selectItem itemLabel="Seleccionar..." itemValue="" />
+                            <f:selectItem itemLabel="Nissan" itemValue="nissan" />
+                            <f:selectItem itemLabel="Porsche" itemValue="porsche" />
+                            <f:selectItem itemLabel="BMW" itemValue="bmw" />
+                        </h:selectOneMenu>
+                    </div>
+
+                    <div class="filter-group">
+                        <label>Seleccionar modelo</label>
+                        <h:selectOneMenu>
+                            <f:selectItem itemLabel="Seleccionar..." itemValue="" />
+                        </h:selectOneMenu>
+                    </div>
+
+                    <div class="filter-group">
+                        <label>Precio ($0 - $1,500,000+)</label>
+                        <input type="range" min="0" max="1500000" style="width: 100%;" />
+                    </div>
+                </h:form>
+            </div>
+
+        </aside>
+    </div>
+
+</h:body>
+</html>
