@@ -13,6 +13,8 @@
         .navbar { display: flex; justify-content: space-between; align-items: center; background: #fff; padding: 15px 30px; border-bottom: 1px solid #ddd; }
         .logo { font-size: 24px; font-weight: bold; font-family: serif; }
         .user-nav { display: flex; gap: 15px; align-items: center; }
+        .btn-logout { background-color: #d9534f; color: white; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-size: 13px; font-weight: bold; }
+        .btn-logout:hover { background-color: #c9302c; }
 
         .main-container { display: flex; max-width: 1300px; margin: 20px auto; gap: 20px; padding: 0 15px; }
         .content-area { flex: 3; display: flex; flex-direction: column; gap: 25px; }
@@ -32,8 +34,7 @@
         .price-label { color: #666; font-size: 12px; }
         .price-value { color: #b30000; font-weight: bold; font-size: 14px; margin-bottom: 5px; }
         .rating { color: #333; margin-bottom: 15px; font-size: 12px; }
-        .btn-info { background: #d9d9d9; border: 1px solid #999; padding: 6px 12px; border-radius: 4px; cursor: pointer; align-self: flex-end; width: 100%; }
-
+        .btn-info { background: #d9d9d9; border: 1px solid #999; padding: 6px 12px; border-radius: 4px; cursor: pointer; align-self: flex-end; width: 100%; display: block; text-align: center; text-decoration: none; color: #333; font-size: 13px; }
         .sidebar-section { margin-bottom: 25px; }
         .sidebar-title { font-size: 18px; font-weight: bold; margin-bottom: 12px; }
         .menu-list { list-style: none; }
@@ -54,6 +55,9 @@
             <span>Carrito</span>
             <span>Buscar</span>
             <span>Menú</span>
+            <h:form rendered="#{not empty loginUI.usuario.nombre}" style="display: inline;">
+                <h:commandButton value="Cerrar sesión" action="#{loginUI.cerrarSesion}" styleClass="btn-logout" />
+            </h:form>
         </div>
     </header>
 
@@ -83,7 +87,9 @@
                     <div class="price-label">Precio</div>
                     <div class="price-value">$180,000 - $280,000 MXN</div>
                     <div class="rating">Calificación: 3/5</div>
-                    <button class="btn-info">Más info...</button>
+                    <h:link outcome="detallesAuto" value="Más info..." styleClass="btn-info">
+                        <f:param name="id" value="nissan" />
+                    </h:link>
                 </div>
 
                 <div class="car-card">
@@ -92,7 +98,9 @@
                     <div class="price-label">Precio</div>
                     <div class="price-value">$1,100,000 - $1,500,000 MXN</div>
                     <div class="rating">Calificación: 3/5</div>
-                    <button class="btn-info">Más info...</button>
+                    <h:link outcome="detallesAuto" value="Más info..." styleClass="btn-info">
+                        <f:param name="id" value="porsche" />
+                    </h:link>
                 </div>
 
                 <div class="car-card">
@@ -101,7 +109,9 @@
                     <div class="price-label">Precio</div>
                     <div class="price-value">$120,000 - $350,000 MXN</div>
                     <div class="rating">Calificación: 3/5</div>
-                    <button class="btn-info">Más info...</button>
+                    <h:link outcome="detallesAuto" value="Más info..." styleClass="btn-info">
+                        <f:param name="id" value="bmw" />
+                    </h:link>
                 </div>
 
             </section>
