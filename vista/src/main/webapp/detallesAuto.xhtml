@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="jakarta.faces.core"
+      xmlns:ui="jakarta.faces.facelets">
+
+<h:head>
+    <title>Autos Lee-Detalle del Vehículo</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: Arial, sans-serif; }
+        body { background-color: #ffffff; color: #222; }
+
+        .navbar { display: flex; justify-content: space-between; align-items: center; background: #fff; padding: 15px 30px; border-bottom: 1px solid #ddd; }
+        .nav-left { display: flex; align-items: center; gap: 20px; }
+        .logo { font-size: 24px; font-weight: bold; font-family: serif; text-decoration: none; color: #000; }
+        .btn-back { background-color: #f0f0f0; color: #222; border: 1px solid #ccc; padding: 8px 14px; border-radius: 5px; text-decoration: none; font-size: 13px; font-weight: bold; }
+        .btn-back:hover { background-color: #e2e2e2; }
+
+        .user-nav { display: flex; gap: 15px; align-items: center; }
+        .btn-logout { background-color: #d9534f; color: white; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-size: 13px; font-weight: bold; }
+        .btn-logout:hover { background-color: #c9302c; }
+
+        .detail-wrapper { max-width: 1300px; margin: 30px auto; padding: 0 20px; }
+
+        .product-main { display: flex; gap: 35px; align-items: flex-start; margin-bottom: 50px; }
+        .photo-grid { flex: 1.4; display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+        .photo-grid img { width: 100%; height: 380px; object-fit: cover; border-radius: 4px; border: 1px solid #e0e0e0; background: #f4f4f4; }
+
+        .product-info { flex: 1; display: flex; flex-direction: column; gap: 16px; }
+        .car-heading { font-size: 28px; font-weight: bold; color: #111; line-height: 1.2; }
+        .car-price { font-size: 24px; font-weight: bold; color: #111; }
+        .promo-badge { background-color: #e6f4ea; color: #137333; padding: 8px 12px; border-radius: 4px; font-size: 14px; font-weight: bold; width: fit-content; }
+        .sub-note { font-size: 12px; color: #666; }
+
+        .branch-row { display: flex; justify-content: space-between; align-items: center; padding: 14px 0; border-top: 1px solid #eee; border-bottom: 1px solid #eee; font-size: 14px; }
+        .branch-name { font-weight: bold; color: #222; }
+        .status-available { color: #1e8e3e; font-weight: bold; }
+
+        .specs-box { font-size: 14px; color: #444; line-height: 1.7; background: #f9f9f9; padding: 12px 15px; border-radius: 6px; border: 1px solid #ececec; }
+
+        .btn-financing { background-color: #0b7dda; color: #fff; border: none; padding: 14px; border-radius: 6px; font-size: 15px; font-weight: bold; cursor: pointer; width: 100%; text-align: center; }
+        .btn-financing:hover { background-color: #0966b3; }
+        .btn-buy { background-color: #2b2b2b; color: #fff; border: none; padding: 14px; border-radius: 6px; font-size: 15px; font-weight: bold; cursor: pointer; width: 100%; text-align: center; }
+        .btn-buy:hover { background-color: #111111; }
+
+        .related-section { border-top: 1px solid #e5e5e5; padding-top: 35px; margin-bottom: 40px; }
+        .related-title { font-size: 22px; font-weight: bold; margin-bottom: 20px; color: #111; }
+        .related-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 25px; max-width: 850px; }
+        .related-card { text-decoration: none; color: inherit; display: flex; flex-direction: column; gap: 10px; border: 1px solid #e2e2e2; border-radius: 6px; padding: 12px; transition: box-shadow 0.2s; }
+        .related-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        .related-card img { width: 100%; height: 220px; object-fit: cover; border-radius: 4px; }
+        .related-btn { display: block; background: #e8e8e8; text-align: center; padding: 10px; border-radius: 4px; font-size: 13px; font-weight: bold; color: #222; text-decoration: none; cursor: pointer; border: 1px solid #ccc; }
+        .related-btn:hover { background: #dcdcdc; }
+        .related-name { font-size: 15px; font-weight: bold; color: #111; }
+        .related-price { font-size: 14px; color: #555; font-weight: bold; }
+    </style>
+</h:head>
+
+<h:body>
+
+    <header class="navbar">
+        <div class="nav-left">
+            <h:link outcome="/index.xhtml" value="Autos Lee" styleClass="logo" />
+            <h:link outcome="/index.xhtml" value="Regresar al menú principal" styleClass="btn-back" />
+        </div>
+        <div class="user-nav">
+            <h:outputText value="Hola, #{loginUI.usuario.nombre}" rendered="#{not empty loginUI.usuario.nombre}" />
+            <h:link outcome="/login.xhtml" value="Regístrate / Iniciar sesión" rendered="#{empty loginUI.usuario.nombre}" />
+            <span>Carrito</span>
+            <span>Buscar</span>
+            <span>Menú</span>
+            <h:form rendered="#{not empty loginUI.usuario.nombre}" style="display: inline;">
+                <h:commandButton value="Cerrar sesión" action="#{loginUI.cerrarSesion}" styleClass="btn-logout" />
+            </h:form>
+        </div>
+    </header>
+
+    <div class="detail-wrapper">
+
+        <ui:fragment rendered="#{param.id eq 'nissan' or empty param.id}">
+            <div class="product-main">
+                <div class="photo-grid">
+                    <h:graphicImage library="images" name="nissan1.jpeg" alt="Nissan interior 1" />
+                    <h:graphicImage library="images" name="nissan2.jpeg" alt="Nissan interior 2" />
+                </div>
+
+                <div class="product-info">
+                    <h1 class="car-heading">Nissan Pathfinder (generación R52, 2013-2016)</h1>
+                    <div class="car-price">$230,000.00 MXN</div>
+                    <div class="promo-badge">¡Estrenalo con solo $57,500 de enganche!</div>
+                    <div class="sub-note">Precio de financiamiento aproximado* (Rango: $180,000 - $280,000 MXN)</div>
+
+                    <div class="branch-row">
+                        <span class="branch-name">Suc. Mexicali Centro</span>
+                        <span class="status-available">&#9679; Disponible para recoger</span>
+                    </div>
+
+                    <div class="specs-box">
+                        <div><strong>Año:</strong> 2015</div>
+                        <div><strong>Transmisión:</strong> Automática CVT</div>
+                        <div><strong>Motor:</strong> V6 3.5L</div>
+                        <div><strong>Documentación:</strong> Verificada y lista para entrega</div>
+                    </div>
+
+                    <h:form style="display: flex; flex-direction: column; gap: 10px;">
+                        <h:commandButton value="Solicitar Financiamiento" styleClass="btn-financing" />
+                        <h:commandButton value="Comprar ahora" styleClass="btn-buy" />
+                    </h:form>
+                </div>
+            </div>
+        </ui:fragment>
+
+        <ui:fragment rendered="#{param.id eq 'porsche'}">
+            <div class="product-main">
+                <div class="photo-grid">
+                    <h:graphicImage library="images" name="porche1.jpeg" alt="Porsche Cayenne interior 1" />
+                    <h:graphicImage library="images" name="porche4.png" alt="Porsche Cayenne interior 2" />
+                </div>
+
+                <div class="product-info">
+                    <h1 class="car-heading">Porsche Cayenne (2019-2023)</h1>
+                    <div class="car-price">$1,280,000.00 MXN</div>
+                    <div class="promo-badge">¡Estrenalo con solo $320,000 de enganche!</div>
+                    <div class="sub-note">Precio de financiamiento aproximado* (Rango: $1,100,000 - $1,500,000 MXN)</div>
+
+                    <div class="branch-row">
+                        <span class="branch-name">Suc. Mexicali Zona Dorada</span>
+                        <span class="status-available">&#9679; Disponible para recoger</span>
+                    </div>
+
+                    <div class="specs-box">
+                        <div><strong>Año:</strong> 2021</div>
+                        <div><strong>Transmisión:</strong> Automática Tiptronic S</div>
+                        <div><strong>Motor:</strong> V6 Turbo 3.0L</div>
+                        <div><strong>Documentación:</strong> Verificada y lista para entrega</div>
+                    </div>
+
+                    <h:form style="display: flex; flex-direction: column; gap: 10px;">
+                        <h:commandButton value="Solicitar Financiamiento" styleClass="btn-financing" />
+                        <h:commandButton value="Comprar ahora" styleClass="btn-buy" />
+                    </h:form>
+                </div>
+            </div>
+        </ui:fragment>
+
+        <ui:fragment rendered="#{param.id eq 'bmw'}">
+            <div class="product-main">
+                <div class="photo-grid">
+                    <h:graphicImage library="images" name="bmw1.jpeg" alt="BMW interior 1" />
+                    <h:graphicImage library="images" name="bmw2.jpeg" alt="BMW interior 2" />
+                </div>
+
+                <div class="product-info">
+                    <h1 class="car-heading">BMW Serie 3 E30 (1982-1994)</h1>
+                    <div class="car-price">$240,000.00 MXN</div>
+                    <div class="promo-badge">¡Estrenalo con solo $60,000 de enganche!</div>
+                    <div class="sub-note">Precio de financiamiento aproximado* (Rango: $120,000 - $350,000 MXN)</div>
+
+                    <div class="branch-row">
+                        <span class="branch-name">Suc. Mexicali Centro</span>
+                        <span class="status-available">&#9679; Disponible para recoger</span>
+                    </div>
+
+                    <div class="specs-box">
+                        <div><strong>Año:</strong> 1990</div>
+                        <div><strong>Transmisión:</strong> Manual 5 velocidades</div>
+                        <div><strong>Motor:</strong> 6 cilindros en línea 2.5L</div>
+                        <div><strong>Documentación:</strong> Verificada y lista para entrega</div>
+                    </div>
+
+                    <h:form style="display: flex; flex-direction: column; gap: 10px;">
+                        <h:commandButton value="Solicitar Financiamiento" styleClass="btn-financing" />
+                        <h:commandButton value="Comprar ahora" styleClass="btn-buy" />
+                    </h:form>
+                </div>
+            </div>
+        </ui:fragment>
+
+        <section class="related-section">
+            <h2 class="related-title">Tambien te puede interesar</h2>
+            <div class="related-grid">
+
+                <ui:fragment rendered="#{param.id ne 'nissan' and not empty param.id}">
+                    <div class="related-card">
+                        <h:graphicImage library="images" name="nissan.png" alt="Nissan Pathfinder" />
+                        <h:link outcome="/detallesAuto.xhtml" value="Ver detalles del auto" styleClass="related-btn">
+                            <f:param name="id" value="nissan" />
+                        </h:link>
+                        <div class="related-name">Nissan Pathfinder (generación R52, 2013-2016)</div>
+                        <div class="related-price">$180,000 - $280,000 MXN</div>
+                    </div>
+                </ui:fragment>
+
+                <ui:fragment rendered="#{param.id ne 'porsche'}">
+                    <div class="related-card">
+                        <h:graphicImage library="images" name="porche.png" alt="Porsche Cayenne" />
+                        <h:link outcome="/detallesAuto.xhtml" value="Ver detalles del auto" styleClass="related-btn">
+                            <f:param name="id" value="porsche" />
+                        </h:link>
+                        <div class="related-name">Porsche Cayenne (2019-2023)</div>
+                        <div class="related-price">$1,100,000 - $1,500,000 MXN</div>
+                    </div>
+                </ui:fragment>
+
+                <ui:fragment rendered="#{param.id ne 'bmw'}">
+                    <div class="related-card">
+                        <h:graphicImage library="images" name="bmw.png" alt="BMW Serie 3" />
+                        <h:link outcome="/detallesAuto.xhtml" value="Ver detalles del auto" styleClass="related-btn">
+                            <f:param name="id" value="bmw" />
+                        </h:link>
+                        <div class="related-name">BMW Serie 3 E30 (1982-1994)</div>
+                        <div class="related-price">$120,000 - $350,000 MXN</div>
+                    </div>
+                </ui:fragment>
+
+            </div>
+        </section>
+
+    </div>
+
+</h:body>
+</html>
