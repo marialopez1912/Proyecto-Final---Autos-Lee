@@ -5,16 +5,27 @@
       xmlns:ui="jakarta.faces.facelets">
 
 <h:head>
-    <title>Autos Lee - Venta de autos usados en Mexicali</title>
+    <title>Autos Lee-Venta de autos usados en Mexicali</title>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: Arial, sans-serif; }
         body { background-color: #f4f4f4; color: #333; }
 
-        .navbar { display: flex; justify-content: space-between; align-items: center; background: #fff; padding: 15px 30px; border-bottom: 1px solid #ddd; }
+        .navbar { display: flex; justify-content: space-between; align-items: center; background: #fff; padding: 15px 30px; border-bottom: 1px solid #ddd; position: relative; }
         .logo { font-size: 24px; font-weight: bold; font-family: serif; }
         .user-nav { display: flex; gap: 15px; align-items: center; }
         .btn-logout { background-color: #d9534f; color: white; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-size: 13px; font-weight: bold; }
         .btn-logout:hover { background-color: #c9302c; }
+
+        .menu-dropdown { position: relative; display: inline-block; }
+        .menu-btn { background: transparent; border: 1px solid #ccc; border-radius: 5px; padding: 7px 9px; cursor: pointer; display: flex; flex-direction: column; gap: 4px; justify-content: center; align-items: center; }
+        .menu-btn:hover { background-color: #f0f0f0; }
+        .menu-btn span { display: block; width: 20px; height: 2px; background-color: #333; border-radius: 2px; }
+
+        .dropdown-content { display: none; position: absolute; right: 0; top: 100%; margin-top: 8px; background-color: #fff; min-width: 220px; box-shadow: 0 6px 16px rgba(0,0,0,0.15); border: 1px solid #ddd; border-radius: 6px; z-index: 1000; overflow: hidden; }
+        .dropdown-content.show { display: block; }
+        .dropdown-content a { display: flex; justify-content: space-between; align-items: center; padding: 11px 16px; text-decoration: none; color: #333; font-size: 14px; border-bottom: 1px solid #f0f0f0; }
+        .dropdown-content a:last-child { border-bottom: none; }
+        .dropdown-content a:hover { background-color: #f5f5f5; color: #000; font-weight: bold; }
 
         .main-container { display: flex; max-width: 1300px; margin: 20px auto; gap: 20px; padding: 0 15px; }
         .content-area { flex: 3; display: flex; flex-direction: column; gap: 25px; }
@@ -35,10 +46,9 @@
         .price-value { color: #b30000; font-weight: bold; font-size: 14px; margin-bottom: 5px; }
         .rating { color: #333; margin-bottom: 15px; font-size: 12px; }
         .btn-info { background: #d9d9d9; border: 1px solid #999; padding: 6px 12px; border-radius: 4px; cursor: pointer; align-self: flex-end; width: 100%; display: block; text-align: center; text-decoration: none; color: #333; font-size: 13px; }
-        .sidebar-section { margin-bottom: 25px; }
+
+        .sidebar-section { margin-bottom: 10px; }
         .sidebar-title { font-size: 18px; font-weight: bold; margin-bottom: 12px; }
-        .menu-list { list-style: none; }
-        .menu-list li { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #ccc; cursor: pointer; }
         .filter-group { margin-bottom: 12px; }
         .filter-group label { display: block; font-size: 13px; margin-bottom: 4px; }
         .filter-group select { width: 100%; padding: 6px; border-radius: 4px; border: 1px solid #aaa; }
@@ -52,9 +62,23 @@
         <div class="user-nav">
             <h:outputText value="Hola, #{loginUI.usuario.nombre}" rendered="#{not empty loginUI.usuario.nombre}" />
             <h:link outcome="login" value="Regístrate / Iniciar sesión" rendered="#{empty loginUI.usuario.nombre}" />
-            <span>Carrito</span>
-            <span>Buscar</span>
-            <span>Menú</span>
+            <div class="menu-dropdown">
+                <button type="button" class="menu-btn" onclick="toggleMenu(event)" title="Menú">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <div id="navDropdown" class="dropdown-content">
+                    <a href="#">Autos seminuevos <span>&gt;</span></a>
+                    <a href="#">Autos usados <span>&gt;</span></a>
+                    <a href="#">Vende tu auto <span>&gt;</span></a>
+                    <a href="#">Sucursales <span>&gt;</span></a>
+                    <a href="#">Guía de precio <span>&gt;</span></a>
+                    <a href="#">Crédito <span>&gt;</span></a>
+                    <a href="#">Promociones <span>&gt;</span></a>
+                </div>
+            </div>
+
             <h:form rendered="#{not empty loginUI.usuario.nombre}" style="display: inline;">
                 <h:commandButton value="Cerrar sesión" action="#{loginUI.cerrarSesion}" styleClass="btn-logout" />
             </h:form>
@@ -120,19 +144,6 @@
         <aside class="sidebar">
 
             <div class="sidebar-section">
-                <div class="sidebar-title">Menú</div>
-                <ul class="menu-list">
-                    <li>Autos seminuevos <span>&gt;</span></li>
-                    <li>Autos usados <span>&gt;</span></li>
-                    <li>Vende tu auto <span>&gt;</span></li>
-                    <li>Sucursales <span>&gt;</span></li>
-                    <li>Guía de precio <span>&gt;</span></li>
-                    <li>Crédito <span>&gt;</span></li>
-                    <li>Promociones <span>&gt;</span></li>
-                </ul>
-            </div>
-
-            <div class="sidebar-section">
                 <div class="sidebar-title">Filtros</div>
                 <h:form>
                     <div class="filter-group">
@@ -161,6 +172,21 @@
 
         </aside>
     </div>
+
+    <script>
+        function toggleMenu(event) {
+            event.stopPropagation();
+            var dropdown = document.getElementById('navDropdown');
+            dropdown.classList.toggle('show');
+        }
+
+        window.onclick = function() {
+            var dropdown = document.getElementById('navDropdown');
+            if (dropdown.classList.contains('show')) {
+                dropdown.classList.remove('show');
+            }
+        };
+    </script>
 
 </h:body>
 </html>
