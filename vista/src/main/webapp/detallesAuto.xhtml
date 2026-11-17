@@ -6,20 +6,21 @@
 
 <h:head>
     <title>Autos Lee - Detalle del Vehículo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: Arial, sans-serif; }
         body { background-color: #ffffff; color: #222; }
+        img { max-width: 100%; }
 
         .navbar { display: flex; justify-content: space-between; align-items: center; background: #fff; padding: 15px 30px; border-bottom: 1px solid #ddd; position: relative; }
         .nav-left { display: flex; align-items: center; gap: 20px; }
-        .logo { font-size: 24px; font-weight: bold; font-family: serif; text-decoration: none; color: #000; }
+        .logo { font-size: 24px; font-weight: bold; font-family: serif; text-decoration: none; color: #000; white-space: nowrap; }
 
         .user-nav { display: flex; gap: 15px; align-items: center; }
         .nav-link { text-decoration: none; color: #333; font-size: 14px; }
         .nav-link:hover { text-decoration: underline; color: #000; }
         .btn-logout { background-color: #d9534f; color: white; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-size: 13px; font-weight: bold; }
         .btn-logout:hover { background-color: #c9302c; }
-
 
         .menu-dropdown { position: relative; display: inline-block; }
         .hamburger-btn { background: transparent; border: 1px solid #ccc; border-radius: 5px; padding: 7px 9px; cursor: pointer; display: flex; flex-direction: column; gap: 4px; justify-content: center; align-items: center; }
@@ -35,16 +36,16 @@
         .detail-wrapper { max-width: 1300px; margin: 30px auto; padding: 0 20px; }
 
         .product-main { display: flex; gap: 35px; align-items: flex-start; margin-bottom: 50px; }
-        .photo-grid { flex: 1.4; display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+        .photo-grid { flex: 1.4; min-width: 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
         .photo-grid img { width: 100%; height: 380px; object-fit: cover; border-radius: 4px; border: 1px solid #e0e0e0; background: #f4f4f4; }
 
-        .product-info { flex: 1; display: flex; flex-direction: column; gap: 16px; }
+        .product-info { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 16px; }
         .car-heading { font-size: 28px; font-weight: bold; color: #111; line-height: 1.2; }
         .car-price { font-size: 24px; font-weight: bold; color: #111; }
-        .promo-badge { background-color: #e6f4ea; color: #137333; padding: 8px 12px; border-radius: 4px; font-size: 14px; font-weight: bold; width: fit-content; }
+        .promo-badge { background-color: #e6f4ea; color: #137333; padding: 8px 12px; border-radius: 4px; font-size: 14px; font-weight: bold; width: fit-content; max-width: 100%; }
         .sub-note { font-size: 12px; color: #666; }
 
-        .branch-row { display: flex; justify-content: space-between; align-items: center; padding: 14px 0; border-top: 1px solid #eee; border-bottom: 1px solid #eee; font-size: 14px; }
+        .branch-row { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 14px 0; border-top: 1px solid #eee; border-bottom: 1px solid #eee; font-size: 14px; }
         .branch-name { font-weight: bold; color: #222; }
         .status-available { color: #1e8e3e; font-weight: bold; }
 
@@ -65,6 +66,29 @@
         .related-btn:hover { background: #dcdcdc; }
         .related-name { font-size: 15px; font-weight: bold; color: #111; }
         .related-price { font-size: 14px; color: #555; font-weight: bold; }
+
+        @media (max-width: 900px) {
+            .product-main { flex-direction: column; gap: 20px; }
+            .photo-grid, .product-info { flex: none; width: 100%; }
+            .photo-grid img { height: 300px; }
+        }
+
+        @media (max-width: 600px) {
+            .navbar { padding: 10px 12px; flex-wrap: wrap; gap: 8px; }
+            .logo { font-size: 20px; }
+            .user-nav { gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
+            .btn-logout { padding: 5px 8px; font-size: 12px; }
+
+            .detail-wrapper { padding: 0 12px; margin: 15px auto; }
+            .photo-grid { grid-template-columns: 1fr; }
+            .photo-grid img { height: 220px; }
+            .car-heading { font-size: 22px; }
+            .car-price { font-size: 20px; }
+            .branch-row { flex-direction: column; align-items: flex-start; gap: 6px; }
+
+            .related-grid { grid-template-columns: 1fr; }
+            .related-card img { height: 180px; }
+        }
     </style>
 </h:head>
 

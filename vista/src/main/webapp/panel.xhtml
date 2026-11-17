@@ -28,134 +28,49 @@
                     <i class="pi pi-users"/>
                     <h3>Administradores</h3>
                     <p>Consulta las cuentas de administradores.</p>
-
-                    <h:link outcome="administradores.xhtml"
-                            value="Consultar"/>
+                    <h:link outcome="administradores.xhtml" value="Consultar"/>
                 </div>
 
                 <h:panelGroup layout="block"
                               styleClass="tarjeta"
                               rendered="#{loginUI.administrador.esPrincipal}">
-
                     <i class="pi pi-user-plus"/>
                     <h3>Registrar administrador</h3>
                     <p>Registra nuevas cuentas administrativas.</p>
-
-                    <h:link outcome="registroAdministrador.xhtml"
-                            value="Registrar"/>
+                    <h:link outcome="registroAdministrador.xhtml" value="Registrar"/>
                 </h:panelGroup>
 
                 <div class="tarjeta">
                     <i class="pi pi-car"/>
                     <h3>Autos</h3>
                     <p>Consulta los vehículos registrados en el sistema.</p>
-
-                    <h:link outcome="consultarAutos.xhtml"
-                            value="Consultar autos"/>
+                    <h:link outcome="consultarAutos.xhtml" value="Consultar autos"/>
                 </div>
 
                 <div class="tarjeta">
                     <i class="pi pi-plus-circle"/>
                     <h3>Registrar auto</h3>
                     <p>Registra nuevos vehículos en el sistema.</p>
-
-                    <h:link outcome="registrar.xhtml"
-                            value="Registrar"/>
+                    <h:link outcome="registrar.xhtml" value="Registrar"/>
                 </div>
 
                 <div class="tarjeta">
                     <i class="pi pi-user"/>
                     <h3>Usuarios</h3>
                     <p>Consulta y administra las cuentas de usuarios.</p>
-
-                    <h:link outcome="usuarios.xhtml"
-                            value="Consultar usuarios"/>
+                    <h:link outcome="usuarios.xhtml" value="Consultar usuarios"/>
                 </div>
 
                 <div class="tarjeta">
                     <i class="pi pi-calendar"/>
                     <h3>Citas</h3>
                     <p>Consulta y asigna las citas de los clientes.</p>
-
-                    <h:link outcome="citas_administrador.xhtml"
-                            value="Asignar citas"/>
+                    <h:link outcome="citas_administrador.xhtml" value="Asignar citas"/>
                 </div>
 
             </div>
 
         </ui:insert>
-
-    </ui:define>
-
-    <ui:define name="menu">
-
-        <aside class="menu">
-
-            <h3>Administración</h3>
-
-            <h:link outcome="panel.xhtml"
-                    value="Inicio"/>
-
-            <span class="titulo-sub">Administradores</span>
-
-            <h:link styleClass="sub"
-                    outcome="administradores.xhtml"
-                    value="Consultar administradores"/>
-
-            <h:panelGroup rendered="#{loginUI.administrador.esPrincipal}">
-                <h:link styleClass="sub"
-                        outcome="registroAdministrador.xhtml"
-                        value="Registrar administrador"/>
-            </h:panelGroup>
-
-            <span class="titulo-sub">Autos</span>
-
-            <h:link styleClass="sub"
-                    outcome="registrar.xhtml"
-                    value="Registrar auto"/>
-
-            <h:link styleClass="sub"
-                    outcome="consultarAutos.xhtml"
-                    value="Consultar autos"/>
-
-            <span class="titulo-sub">Usuarios</span>
-
-            <h:link styleClass="sub"
-                    outcome="usuarios.xhtml"
-                    value="Consultar usuarios"/>
-
-            <h:outputText styleClass="sub"
-                          value="Administrar usuarios"/>
-
-            <span class="titulo-sub">Estadísticas</span>
-
-            <h:link styleClass="sub"
-                    outcome="gastos.xhtml"
-                    value="Control de gastos"/>
-
-            <h:link styleClass="sub"
-                    outcome="ventas.xhtml"
-                    value="Reportes de ventas"/>
-
-            <span class="titulo-sub">Citas</span>
-
-            <h:link styleClass="sub"
-                    outcome="citas_administrador.xhtml"
-                    value="Asignar citas"/>
-
-            <span class="titulo-sub">Cuenta</span>
-
-            <h:outputText styleClass="sub"
-                          value="#{loginUI.administrador.nombre}"/>
-
-            <hr/>
-
-            <h:form>
-                <h:commandButton value="Cerrar sesión"
-                                 action="#{loginUI.cerrarSesion}"/>
-            </h:form>
-
-        </aside>
 
     </ui:define>
 
