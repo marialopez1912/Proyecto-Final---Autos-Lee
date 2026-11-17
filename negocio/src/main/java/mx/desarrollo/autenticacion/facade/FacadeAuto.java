@@ -17,7 +17,17 @@ public class FacadeAuto {
         delegateAuto.saveAuto(auto, administradorId);
     }
 
+    public void deactivateAuto(String VIN){delegateAuto.deactivateAuto(VIN);}
+
+    public Auto lookForVIN(String VIN){return delegateAuto.lookForVIN(VIN);}
+
     public List<Auto> obtenerTodos() {
         return delegateAuto.obtenerTodos();
+    }
+
+    public List<Auto> obtenerDisponibles(){ return delegateAuto.obtenerDisponibles();}
+
+    public void guardarEquipamiento(String VIN, List<String> elementos){
+        delegateAuto.guardarEquipamiento(VIN, elementos);
     }
 }

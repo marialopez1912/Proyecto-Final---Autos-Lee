@@ -5,9 +5,8 @@ import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Named;
-
-import mx.desarrollo.entity.Administrador;
 import mx.desarrollo.autenticacion.integration.ServiceFacadeLocator;
+import mx.desarrollo.entity.Administrador;
 
 @Named("registroAdminUI")
 @RequestScoped

@@ -1,8 +1,12 @@
 package mx.desarrollo.entity;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.EmbeddedId;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import org.hibernate.annotations.ColumnDefault;
 
 import java.math.BigDecimal;
 
@@ -11,14 +15,6 @@ import java.math.BigDecimal;
 public class Auto {
     @EmbeddedId
     private AutoId id;
-
-    @MapsId("administradorIdAdministrador")
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(
-            name = "Administrador_Id_Administrador",
-            nullable = false
-    )
-    private Administrador administradorIdAdministrador;
 
     @Size(max = 60)
     @NotNull
@@ -100,20 +96,17 @@ public class Auto {
     @Column(name = "Tipo_Combustible", nullable = false, length = 60)
     private String tipoCombustible;
 
+    @NotNull
+    @ColumnDefault("true")
+    @Column(name = "Disponible", nullable = false)
+    private Boolean disponible = true;
+
     public AutoId getId() {
         return id;
     }
 
     public void setId(AutoId id) {
         this.id = id;
-    }
-
-    public Administrador getAdministradorIdAdministrador() {
-        return administradorIdAdministrador;
-    }
-
-    public void setAdministradorIdAdministrador(Administrador administradorIdAdministrador) {
-        this.administradorIdAdministrador = administradorIdAdministrador;
     }
 
     public String getMarca() {
@@ -252,4 +245,15 @@ public class Auto {
         this.tipoCombustible = tipoCombustible;
     }
 
+    public Boolean getDisponible() {
+        return disponible;
+    }
+
+    public void setDisponible(Boolean disponible) {
+        this.disponible = disponible;
+    }
+
+    public void setAdministradorIdAdministrador(Administrador admin) {
+        
+    }
 }

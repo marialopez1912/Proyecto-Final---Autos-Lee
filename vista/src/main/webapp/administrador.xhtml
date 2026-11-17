@@ -92,6 +92,10 @@
                             icon="pi pi-list"
                             outcome="administradores.xhtml" />
 
+                <p:menuItem value="Dar de baja autos"
+                            icon="pi pi-list"
+                            outcome="bajaAutos.xthml" />
+
                 <p:menuitem value="Registrar administrador"
                             icon="pi pi-user-plus"
                             outcome="registroAdministrador.xhtml"
@@ -112,6 +116,12 @@
 
             </p:submenu>
 
+            <p:submenu label="Baja de Autos"
+                        icon="pi pi-user">
+                <p:menuitem value="Dar de baja autos por VIN"
+                            icon="pi pi-list"
+                            outcome="bajaAutos.xhtml" />
+            </p:submenu>
         </p:menubar>
 
         <div class="contenido">
@@ -154,6 +164,7 @@
                               outcome="panel.xhtml"
                               rendered="#{loginUI.administrador.esPrincipal}" />
                 </div>
+
 
             </p:panelGrid>
 

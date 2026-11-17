@@ -11,6 +11,8 @@
     <class>mx.desarrollo.entity.Administrador</class>
     <class>mx.desarrollo.entity.Usuario</class>
     <class>mx.desarrollo.entity.Auto</class>
+    <class>mx.desarrollo.entity.AutoEquipamiento</class>
+    <class>mx.desarrollo.entity.AutoSeguridad</class>
     <class>mx.desarrollo.entity.Gasto</class>
     <class>mx.desarrollo.entity.Compra</class>
 

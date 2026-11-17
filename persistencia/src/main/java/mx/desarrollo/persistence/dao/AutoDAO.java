@@ -22,6 +22,12 @@ public class AutoDAO extends AbstractDAO<Auto> {
                 .getResultList();
     }
 
+    public List<Auto> obtenerDisponibles(){
+        return entityManager
+                .createQuery("SELECT a FROM Auto a WHERE a.disponible = true", Auto.class)
+                .getResultList();
+    }
+
     public void guardarAuto(Auto auto, Integer administradorId) {
 
         EntityTransaction transaction = entityManager.getTransaction();
@@ -56,6 +62,45 @@ public class AutoDAO extends AbstractDAO<Auto> {
             }
             throw e;
         }
+    }
+
+    public void darDeBajaAuto(String VIN){
+        EntityTransaction transaction = entityManager.getTransaction();
+
+        try {
+            transaction.begin();
+            Auto au = buscarPorVIN(VIN);
+
+            if(au == null){
+                throw new IllegalStateException("No se ha encontrado el auto");
+            }else{
+                if (au.getDisponible() == false) {
+                    throw new IllegalStateException("El auto esta dado de baja o se ha vendido");
+                }else{
+                    au.setDisponible(false);
+
+                }
+                transaction.commit();
+            }
+
+
+        } catch (Exception e) {
+            if (transaction.isActive()) {
+                transaction.rollback();
+            }
+            throw e;
+        }
+    }
+
+    public Auto buscarPorVIN(String VIN){
+        List<Auto> resultados = entityManager.createQuery(
+                        "SELECT a FROM Auto a " +
+                                "WHERE LOWER(a.vin) = LOWER(:dato) ",
+                        Auto.class)
+                .setParameter("dato", VIN)
+                .getResultList();
+
+        return resultados.isEmpty() ? null : resultados.get(0);
     }
 
     @Override

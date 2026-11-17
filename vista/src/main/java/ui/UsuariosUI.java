@@ -4,9 +4,8 @@ package ui;
 import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Named;
-
-import mx.desarrollo.entity.Usuario;
 import mx.desarrollo.autenticacion.integration.ServiceFacadeLocator;
+import mx.desarrollo.entity.Usuario;
 
 import java.util.List;
 

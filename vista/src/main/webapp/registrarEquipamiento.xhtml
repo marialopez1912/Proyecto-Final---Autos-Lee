@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+    <title>Equipamiento del auto</title>
+    <style>
+        .container{max-width: 700px; margin: 30px auto; padding: 0 16px;}
+    </style>
+</h:head>
+
+<h:body>
+    <div class="container">
+        <h2>Equipamiento del auto</h2>
+        <h:form id="formEquipamiento">
+            <p:messages id="messages" showDetail="true" closable="true" autoUpdate="true"/>
+            <p:panel header="Equipamiento">
+                <p:selectManyCheckbox value="#{AutoExtrasBeanUI.equipamientoSeleccionado}" layout="grid" columns="2">
+                    <f:selectItems value="#{AutoExtrasBeanUI.opcionesEquipamiento}"/>
+                </p:selectManyCheckbox>
+
+                <br/>
+                <p:outputLabel for="Adicionales" value="Escribe otros equipamientos:"/>
+                <br/>
+                <p:chips id="Adicionales" value="#{AutoExtrasBeanUI.equipamientoExtra}"/>
+
+            </p:panel>
+            <br/>
+            <p:commandButton value="Guardar equipamiento" actionListener="#{AutoExtrasBeanUI.guardarEquipamiento()}" update="@form"/>
+            <h:link outcome="panel.xhtml" value="Regresar al menu"/>
+        </h:form>
+    </div>
+</h:body>
+</html>

@@ -1,9 +1,7 @@
 package mx.desarrollo.persistence.integration;
 
 import jakarta.persistence.EntityManager;
-import mx.desarrollo.persistence.dao.UsuarioDAO;
-import mx.desarrollo.persistence.dao.AdministradorDAO;
-import mx.desarrollo.persistence.dao.AutoDAO;
+import mx.desarrollo.persistence.dao.*;
 import mx.desarrollo.persistence.persistence.HibernateUtil;
 
 public class ServiceLocator {
@@ -11,6 +9,8 @@ public class ServiceLocator {
     private static AdministradorDAO administradorDAO;
     private static UsuarioDAO usuarioDAO;
     private static AutoDAO autoDAO;
+    private static AutoEquipamientoDAO autoEquipamientoDAO;
+    private static AutoSeguridadDAO autoSeguridadDAO;
 
     private static EntityManager getEntityManager(){
         return HibernateUtil.getEntityManager();
@@ -36,4 +36,19 @@ public class ServiceLocator {
         }
         return autoDAO;
     }
+
+    public static AutoEquipamientoDAO getInstanceAutoEquipamientoDAO(){
+        if (autoEquipamientoDAO == null){
+            autoEquipamientoDAO = new AutoEquipamientoDAO(getEntityManager());
+
+        }
+        return autoEquipamientoDAO;
+    }
+/*
+    public static AutoSeguridadDAO getInst{
+        if(autoSeguridadDAO == null){
+            autoSeguridadDAO == new AutoSeguridadDAO((getEntityManager());
+        }
+        return autoSeguridadDAO;
+    }*/
 }
