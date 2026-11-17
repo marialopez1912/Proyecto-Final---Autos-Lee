@@ -1,0 +1,133 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui" xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<f:metadata>
+    <f:viewAction action="#{AutoBeanUI.nuevoRegistro()}"/>
+</f:metadata>
+
+    <h:head>
+        <title>Registrar Auto</title>
+        <style>
+            body{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+            }
+
+        </style>
+    </h:head>
+
+    <h:body>
+        <h:form id="formAuto">
+            <p:messages id="messages" showDetail="true" closable="true" autoUpdate="true"/>
+            <p:wizard flowListener="#{AutoBeanUI.onFlowProcess}">
+                <p:tab id="identificacion" title="Informacion de Identificacion">
+                    <p:panel header="Informacion de Identificacion">
+
+                        <h:panelGrid columns="2" columnClasses="label, value">
+                            <p:outputLabel for="marca" value="Marca:" required="true"/>
+                            <p:inputText id="marca" value="#{AutoBeanUI.auto.marca}" />
+
+
+                            <p:outputLabel for="modelo" value="Modelo:" required="true"/>
+                            <p:inputText id="modelo" value="#{AutoBeanUI.auto.modelo}" />
+
+
+                            <p:outputLabel for="version" value="Version:" required="true" />
+                            <p:inputText id="version" value="#{AutoBeanUI.auto.version}" />
+
+
+                            <p:outputLabel for="anio" value="Anio:" required="true"/>
+                            <p:inputText id="anio" value="#{AutoBeanUI.auto.anio}" />
+
+
+                            <h:outputLabel for="vin" value="VIN:" />
+                            <p:inputText id="vin" value="#{AutoBeanUI.auto.vin}" />
+
+
+                            <p:outputLabel for="placa" value="Placa:" required="true"/>
+                            <p:inputText id="placa" value="#{AutoBeanUI.auto.placa}" />
+
+
+                            <p:outputLabel for="carroceria" value="Carroceria:" required="true"/>
+                            <p:inputText id="carroceria" value="#{AutoBeanUI.auto.carroceria}" />
+                        </h:panelGrid>
+                    </p:panel>
+                </p:tab>
+
+                <p:tab id="mecanicos" title="Informacion mecanica">
+                    <p:panel header="Informacion Mecanica">
+
+                        <h:panelGrid columns="2" columnClasses="label, value">
+                            <p:outputLabel for="tipo_motor" value="Tipo de motor:" required="true"/>
+                            <p:inputText id="tipo_motor" value="#{AutoBeanUI.auto.tipoMotor}" />
+
+
+                            <p:outputLabel for="tipo_combustible" value="Combustible:" required="true" />
+                            <p:inputText id="tipo_combustible" value="#{AutoBeanUI.auto.tipoCombustible}" />
+
+
+                            <p:outputLabel for="cilindros" value="Cilindros:" required="true" />
+                            <p:inputText id="cilindros" value="#{AutoBeanUI.auto.cilindros}" />
+
+
+                            <p:outputLabel for="potencia_maxima" value="Potencia_Maxima:" required="true"/>
+                            <p:inputText id="potencia_maxima" value="#{AutoBeanUI.auto.potenciaMaxima}" />
+
+
+                            <p:outputLabel for="transmision" value="Transmision:" required="true"/>
+                            <p:inputText id="transmision" value="#{AutoBeanUI.auto.transmision}" />
+
+
+                            <p:outputLabel for="frenos" value="Frenos:" required="true"/>
+                            <p:inputText id="frenos" value="#{AutoBeanUI.auto.frenos}" />
+
+
+                            <p:outputLabel for="suspension" value="Suspension:" required="true"/>
+                            <p:inputText id="suspension" value="#{AutoBeanUI.auto.suspension}" />
+
+                        </h:panelGrid>
+                    </p:panel>
+                </p:tab>
+
+                <p:tab id="venta" title="Informacion de venta">
+                    <p:panel header="Informacion de Venta">
+
+                        <h:panelGrid columns="2" columnClasses="label, value">
+                            <p:outputLabel for="precio_compra" value="Precio de compra:" required="true"/>
+                            <p:inputText id="precio_compra" value="#{AutoBeanUI.auto.precioCompra}" />
+
+
+                            <p:outputLabel for="porcentaje_ganancia" value="Ganancia (decimales):" />
+                            <p:inputText id="porcentaje_ganancia" value="#{AutoBeanUI.auto.porcentajeGanancia}" />
+
+
+                            <p:outputLabel for="precio_venta" value="Precio de venta:" />
+                            <p:inputText id="precio_venta" value="#{AutoBeanUI.auto.precioVenta}" />
+
+                        </h:panelGrid>
+                    </p:panel>
+                </p:tab>
+
+                <p:tab id="confirmacion" title="Confirmar registro">
+                    <p:panel header="Confirmar registro">
+
+                        <h:panelGrid columns="2" columnClasses="label, value">
+                            <p:commandButton value="Guardar auto"
+                                             actionListener="#{AutoBeanUI.guardar()}" update="messages btnEquipamiento" />
+
+                            <p:button id="btnEquipamiento" value="Registrar Equipamientos" outcome="registrarEquipamiento.xhtml" disabled="#{!AutoBeanUI.autoGuardado}"/>
+
+                            <h:link outcome="panel.xhtml" value="Regresar al menu"/>
+                        </h:panelGrid>
+                    </p:panel>
+                </p:tab>
+
+            </p:wizard>
+        </h:form>
+    </h:body>
+</html>
