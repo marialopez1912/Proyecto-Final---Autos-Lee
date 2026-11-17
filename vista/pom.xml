@@ -122,7 +122,6 @@
             <scope>compile</scope>
         </dependency>
 
-
     </dependencies>
     <build>
         <finalName>web</finalName>

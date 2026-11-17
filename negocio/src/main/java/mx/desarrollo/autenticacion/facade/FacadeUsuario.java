@@ -19,7 +19,7 @@ public class FacadeUsuario {
         return delegateUsuario.login(password, correo);
     }
 
-    public void saveUsario(Usuario usuario){
+    public void saveUsuario(Usuario usuario){
 
         delegateUsuario.saveUsario(usuario);
     }
