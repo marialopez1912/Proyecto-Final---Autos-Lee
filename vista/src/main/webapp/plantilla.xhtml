@@ -9,27 +9,99 @@
 </f:metadata>
 <h:head>
     <title>Autos Lee</title>
+    <h:outputStylesheet library="css" name="estilos.css"/>
 
-    <h:outputStylesheet library="css"
-                        name="estilos.css"/>
+    <style>
+        .navbar { display: flex; justify-content: space-between; align-items: center; background: #fff; padding: 15px 30px; border-bottom: 1px solid #ddd; position: relative; font-family: Arial, sans-serif; }
+        .navbar .logo { font-size: 24px; font-weight: bold; font-family: serif; color: #333; }
+        .user-nav { display: flex; gap: 15px; align-items: center; font-size: 16px; color: #333; }
 
+        .btn-logout { background-color: #d9534f; color: white; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-size: 13px; font-weight: bold; }
+        .btn-logout:hover { background-color: #c9302c; }
+
+        .menu-dropdown { position: relative; display: inline-block; }
+        .menu-btn { background: transparent; border: 1px solid #ccc; border-radius: 5px; padding: 7px 9px; cursor: pointer; display: flex; flex-direction: column; gap: 4px; justify-content: center; align-items: center; }
+        .menu-btn:hover { background-color: #f0f0f0; }
+        .menu-btn span { display: block; width: 20px; height: 2px; background-color: #333; border-radius: 2px; }
+
+        .dropdown-content { display: none; position: absolute; right: 0; top: 100%; margin-top: 8px; background-color: #fff; min-width: 220px; box-shadow: 0 6px 16px rgba(0,0,0,0.15); border: 1px solid #ddd; border-radius: 6px; z-index: 1000; overflow: hidden; }
+        .dropdown-content.show { display: block; }
+        .dropdown-content a { display: block; padding: 11px 16px; text-decoration: none; color: #333; font-size: 14px; border-bottom: 1px solid #f0f0f0; }
+        .dropdown-content a:last-child { border-bottom: none; }
+        .dropdown-content a:hover { background-color: #f5f5f5; color: #000; font-weight: bold; }
+        .dropdown-content { display: none; position: absolute; right: 0; top: 100%; margin-top: 8px; background-color: #fff; min-width: 240px; max-height: 80vh; overflow-y: auto; box-shadow: 0 6px 16px rgba(0,0,0,0.15); border: 1px solid #ddd; border-radius: 6px; z-index: 1000; }
+
+        .dropdown-titulo { display: block; padding: 10px 16px 6px; font-size: 12px; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px; color: #922b24; background-color: #fafafa; border-bottom: 1px solid #f0f0f0; }
+    </style>
 </h:head>
 <h:body>
-    <header class="barra-superior">
-        <span class="logo">Autos Lee</span>
-        <span class="iconos">
-            <i class="pi pi-shopping-cart"/>
-            <i class="pi pi-users"/>
-            <i class="pi pi-chart-pie"/>
-        </span>
+
+    <header class="navbar">
+        <div class="logo">Autos Lee</div>
+        <div class="user-nav">
+            <h:outputText value="Hola, #{loginUI.administrador.nombre}"
+                          rendered="#{not empty loginUI.administrador.nombre}"/>
+
+            <div class="menu-dropdown">
+                <button type="button" class="menu-btn" onclick="toggleMenu(event)" title="Menú">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <div id="navDropdown" class="dropdown-content">
+
+                    <h:link outcome="panel.xhtml" value="Inicio"/>
+
+                    <span class="dropdown-titulo">Administradores</span>
+                    <h:link outcome="administradores.xhtml" value="Consultar administradores"/>
+                    <h:link outcome="registroAdministrador.xhtml"
+                            value="Registrar administrador"
+                            rendered="#{loginUI.administrador.esPrincipal}"/>
+
+                    <span class="dropdown-titulo">Autos</span>
+                    <h:link outcome="registrar.xhtml" value="Registrar auto"/>
+                    <h:link outcome="consultarAutos.xhtml" value="Consultar autos"/>
+
+                    <span class="dropdown-titulo">Usuarios</span>
+                    <h:link outcome="usuarios.xhtml" value="Consultar usuarios"/>
+
+                    <span class="dropdown-titulo">Estadísticas</span>
+                    <h:link outcome="gastos.xhtml" value="Control de gastos"/>
+                    <h:link outcome="ventas.xhtml" value="Reportes de ventas"/>
+
+                    <span class="dropdown-titulo">Citas</span>
+                    <h:link outcome="citas_administrador.xhtml" value="Asignar citas"/>
+
+                </div>
+            </div>
+
+            <h:form rendered="#{not empty loginUI.administrador.nombre}" style="display: inline;">
+                <h:commandButton value="Cerrar sesión"
+                                 action="#{loginUI.cerrarSesion}"
+                                 styleClass="btn-logout"/>
+            </h:form>
+        </div>
     </header>
+
     <div class="layout">
         <main class="contenido">
             <ui:insert name="contenido"/>
         </main>
-        <ui:insert name="menu">
-            <ui:include src="/menu.xhtml"/>
-        </ui:insert>
+
     </div>
+
+    <script>
+        function toggleMenu(event) {
+            event.stopPropagation();
+            document.getElementById('navDropdown').classList.toggle('show');
+        }
+        window.onclick = function () {
+            var d = document.getElementById('navDropdown');
+            if (d &amp;&amp; d.classList.contains('show')) {
+                d.classList.remove('show');
+            }
+        };
+    </script>
+
 </h:body>
 </html>
