@@ -30,4 +30,9 @@ public class FacadeAuto {
     public void guardarEquipamiento(String VIN, List<String> elementos){
         delegateAuto.guardarEquipamiento(VIN, elementos);
     }
+
+    public void guardarSeguridad(String VIN, List<String> elementos){
+
+        delegateAuto.guardarSeguridad(VIN, elementos);
+    }
 }

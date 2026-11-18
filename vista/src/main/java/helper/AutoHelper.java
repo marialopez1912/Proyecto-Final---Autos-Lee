@@ -29,4 +29,8 @@ public class AutoHelper {
     public static void guardarEquipamiento(String VIN, List<String> elementos){
         ServiceFacadeLocator.getInstanceFacadeAuto().guardarEquipamiento(VIN, elementos);
     }
+
+    public static void guardarSeguridad(String VIN, List<String> elementos){
+        ServiceFacadeLocator.getInstanceFacadeAuto().guardarSeguridad(VIN, elementos);
+    }
 }

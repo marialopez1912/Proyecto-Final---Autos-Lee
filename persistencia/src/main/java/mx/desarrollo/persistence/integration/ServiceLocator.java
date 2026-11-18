@@ -44,11 +44,11 @@ public class ServiceLocator {
         }
         return autoEquipamientoDAO;
     }
-/*
-    public static AutoSeguridadDAO getInst{
+
+    public static AutoSeguridadDAO getInstanceAutoSeguridadDAO(){
         if(autoSeguridadDAO == null){
-            autoSeguridadDAO == new AutoSeguridadDAO((getEntityManager());
+            autoSeguridadDAO = new AutoSeguridadDAO(getEntityManager());
         }
         return autoSeguridadDAO;
-    }*/
+    }
 }

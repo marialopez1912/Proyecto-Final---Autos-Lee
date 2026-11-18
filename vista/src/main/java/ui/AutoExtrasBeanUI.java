@@ -31,6 +31,10 @@ public class AutoExtrasBeanUI implements Serializable {
     private List<String> equipamientoSeleccionado;
     private List<String> equipamientoExtra;
 
+    private List<String> opcionesSeguridad;
+    private List<String> seguridadSeleccionado;
+    private List<String> seguridadExtra;
+
     /**
      * Metodo postconstructor todo lo que este dentro de este metodo
      * sera la primero que haga cuando cargue la pagina
@@ -39,10 +43,20 @@ public class AutoExtrasBeanUI implements Serializable {
     @PostConstruct
     public void init() {
         opcionesEquipamiento = new ArrayList<>(List.of(
-                "Aire Acondicionado", "Vidrios electricos"));
+                "Aire Acondicionado", "Vidrios electricos", "Bluetooth",
+                "Controles al volante", "Freno de emergencia", "Camara de reversa",
+                "Pantallas tactiles"));
 
         equipamientoSeleccionado = new ArrayList<>();
         equipamientoExtra = new ArrayList<>();
+
+        opcionesSeguridad = new ArrayList<>(List.of(
+                "Bolsas de aire", "Sistema de frenos", "Iluminacion",
+                "Asistencia de conduccion", "Seguro para niños"
+        ));
+
+        seguridadSeleccionado = new ArrayList<>();
+        seguridadExtra = new ArrayList<>();
     }
 
     public void guardarEquipamiento(){
@@ -83,10 +97,75 @@ public class AutoExtrasBeanUI implements Serializable {
                             new FacesMessage(
                                     FacesMessage.SEVERITY_INFO,
                                     "Exito",
-                                    "Elementos registrados"
+                                    "Elementos tecnologicos registrados"
                             ));
                     equipamientoExtra = new ArrayList<>();
                     equipamientoSeleccionado = new ArrayList<>();
+                }
+            }
+        }catch (IllegalStateException e){
+            e.printStackTrace();
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(
+                            FacesMessage.SEVERITY_WARN,
+                            "Aviso",
+                            "Error al registrar los datos"
+                    ));
+
+        }catch(Exception e){
+            e.printStackTrace();
+
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(
+                            FacesMessage.SEVERITY_ERROR,
+                            "Error",
+                            "No se pudo realizar el registro de elementos"
+                    ));
+        }
+    }
+
+    public void guardarSeguridad(){
+
+        try{
+            String vin = autoBeanUI.getVinRegistrado();
+            if(autoBeanUI.getVinRegistrado() == null || vin.trim().isEmpty()) {
+                FacesContext.getCurrentInstance().addMessage(null,
+                        new FacesMessage(
+                                FacesMessage.SEVERITY_WARN,
+                                "Aviso",
+                                "No se ha encontrado el auto"
+                        ));
+                return;
+
+
+            }else{
+                List<String> listaSeguridad = new ArrayList<>();
+                if(seguridadSeleccionado != null){
+                    listaSeguridad.addAll(seguridadSeleccionado);
+                }
+                if(seguridadExtra != null){
+                    listaSeguridad.addAll(seguridadExtra);
+                }
+
+                if(listaSeguridad.isEmpty()){
+
+                    FacesContext.getCurrentInstance().addMessage(null,
+                            new FacesMessage(
+                                    FacesMessage.SEVERITY_WARN,
+                                    "Aviso",
+                                    "No hay elementos seleccionados"
+                            ));
+                    return;
+                }else{
+                    AutoHelper.guardarSeguridad(vin, listaSeguridad);
+                    FacesContext.getCurrentInstance().addMessage(null,
+                            new FacesMessage(
+                                    FacesMessage.SEVERITY_INFO,
+                                    "Exito",
+                                    "Elementos de seguridad registrados"
+                            ));
+                    seguridadExtra = new ArrayList<>();
+                    seguridadSeleccionado = new ArrayList<>();
                 }
             }
         }catch (IllegalStateException e){
@@ -132,5 +211,29 @@ public class AutoExtrasBeanUI implements Serializable {
 
     public void setEquipamientoExtra(List<String> equipamientoExtra) {
         this.equipamientoExtra = equipamientoExtra;
+    }
+
+    public List<String> getOpcionesSeguridad() {
+        return opcionesSeguridad;
+    }
+
+    public void setOpcionesSeguridad(List<String> opcionesSeguridad) {
+        this.opcionesSeguridad = opcionesSeguridad;
+    }
+
+    public List<String> getSeguridadSeleccionado() {
+        return seguridadSeleccionado;
+    }
+
+    public void setSeguridadSeleccionado(List<String> seguridadSeleccionado) {
+        this.seguridadSeleccionado = seguridadSeleccionado;
+    }
+
+    public List<String> getSeguridadExtra() {
+        return seguridadExtra;
+    }
+
+    public void setSeguridadExtra(List<String> seguridadExtra) {
+        this.seguridadExtra = seguridadExtra;
     }
 }

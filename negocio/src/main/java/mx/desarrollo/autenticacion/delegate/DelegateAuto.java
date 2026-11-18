@@ -84,7 +84,7 @@ public class DelegateAuto {
         if(elementos == null || elementos.isEmpty()) {
             return;
         }
-        List<AutoEquipamiento> existentes = ServiceLocator.getInstanceAutoEquipamientoDAO().obtenerPorAuto(idAuto);
+        List<AutoSeguridad> existentes = ServiceLocator.getInstanceAutoSeguridadDAO().obtenerPorAuto(idAuto);
         List<String> listaNueva = new ArrayList<>();
 
         for(String texto : elementos){
@@ -99,7 +99,7 @@ public class DelegateAuto {
 
             boolean repetido = listaNueva.stream().anyMatch(t -> t.equalsIgnoreCase(textoLimpio));
 
-            boolean yaExiste = existentes.stream().anyMatch(x -> x.getId().getEquipamiento().equalsIgnoreCase(textoLimpio));
+            boolean yaExiste = existentes.stream().anyMatch(x -> x.getId().getSistemaSeguridad().equalsIgnoreCase(textoLimpio));
 
             if(repetido || yaExiste){
                 continue;
@@ -110,7 +110,7 @@ public class DelegateAuto {
 
         }
         if(!listaNueva.isEmpty()){
-            ServiceLocator.getInstanceAutoEquipamientoDAO().guardar(idAuto, listaNueva);
+            ServiceLocator.getInstanceAutoSeguridadDAO().guardar(idAuto, listaNueva);
         }
     }
 }
