@@ -24,15 +24,6 @@
 
             <div class="tarjetas">
 
-                <div class="tarjeta">
-                    <i class="pi pi-users"/>
-                    <h3>Administradores</h3>
-                    <p>Consulta las cuentas de administradores.</p>
-
-                    <h:link outcome="administradores.xhtml"
-                            value="Consultar"/>
-                </div>
-
                 <h:panelGroup layout="block"
                               styleClass="tarjeta"
                               rendered="#{loginUI.administrador.esPrincipal}">
@@ -46,13 +37,14 @@
                 </h:panelGroup>
 
                 <div class="tarjeta">
-                    <i class="pi pi-car"/>
-                    <h3>Autos</h3>
-                    <p>Consulta los vehículos registrados en el sistema.</p>
+                    <i class="pi pi-users"/>
+                    <h3>Administradores</h3>
+                    <p>Consulta las cuentas de administradores.</p>
 
-                    <h:link outcome="consultarAutos.xhtml"
-                            value="Consultar autos"/>
+                    <h:link outcome="administradores.xhtml"
+                            value="Consultar"/>
                 </div>
+
 
                 <div class="tarjeta">
                     <i class="pi pi-plus-circle"/>
@@ -64,12 +56,39 @@
                 </div>
 
                 <div class="tarjeta">
+                    <i class="pi pi-car"/>
+                    <h3>Autos</h3>
+                    <p>Consulta los vehículos registrados en el sistema.</p>
+
+                    <h:link outcome="consultarAutos.xhtml"
+                            value="Consultar autos"/>
+                </div>
+
+
+                <div class="tarjeta">
                     <i class="pi pi-user"/>
                     <h3>Usuarios</h3>
                     <p>Consulta y administra las cuentas de usuarios.</p>
 
                     <h:link outcome="usuarios.xhtml"
                             value="Consultar usuarios"/>
+                </div>
+                <div class="tarjeta">
+                    <i class="pi pi-user"/>
+                    <h3>Bajas</h3>
+                    <p>Da de baja autos por VIN</p>
+
+                    <h:link outcome="bajaAutos.xhtml"
+                            value="Dar de baja"/>
+                </div>
+
+                <div class="tarjeta">
+                    <i class="pi pi-calendar"/>
+                    <h3>Citas</h3>
+                    <p>Consulta y asigna las citas de los clientes.</p>
+
+                    <h:link outcome="citas_administrador.xhtml"
+                            value="Asignar citas"/>
                 </div>
 
             </div>
@@ -82,7 +101,6 @@
 
         <aside class="menu">
 
-            <h3>Administración</h3>
 
             <h:link outcome="panel.xhtml"
                     value="Inicio"/>
@@ -102,7 +120,7 @@
             <span class="titulo-sub">Autos</span>
 
             <h:link styleClass="sub"
-                    outcome="registrar.xhtml"
+                    outcome="registrarAuto.xhtml"
                     value="Registrar auto"/>
 
             <h:link styleClass="sub"
