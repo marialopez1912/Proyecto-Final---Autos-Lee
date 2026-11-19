@@ -1,0 +1,392 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="jakarta.faces.core"
+      xmlns:ui="jakarta.faces.facelets"
+      lang="es">
+
+<head>
+    <meta charset="UTF-8"/>
+    <title>Solicitar cita - Autos Lee</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #eeeeee;
+            font-family: Arial, sans-serif;
+            color: #333333;
+        }
+
+        .barra {
+            background-color: white;
+            padding: 15px 25px;
+            border-bottom: 2px solid #bdbdbd;
+        }
+
+        .logo {
+            font-family: Georgia;
+            font-size: 25px;
+            color: #222222;
+        }
+
+        .barra a {
+            color: #222222;
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 14px;
+        }
+
+        .contenido {
+            margin: 35px;
+            padding: 30px;
+            background-color: white;
+            border-radius: 5px;
+        }
+
+        .titulo {
+            font-family: Georgia;
+            font-size: 26px;
+            color: #333333;
+        }
+
+        .descripcion {
+            color: #666666;
+            font-size: 15px;
+        }
+
+        .aviso {
+            background-color: #fff7e0;
+            border: 1px solid #e6c766;
+            border-radius: 5px;
+            padding: 10px 15px;
+            font-size: 14px;
+        }
+
+        .lista-autos {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 15px;
+        }
+
+        .auto {
+            background-color: #eeeeee;
+            border-radius: 5px;
+            padding: 15px;
+            border: 2px solid transparent;
+        }
+
+        .auto-seleccionado {
+            border: 2px solid #9c2921;
+        }
+
+        .foto {
+            height: 100px;
+            background-color: #bdbdbd;
+            border-radius: 3px;
+            text-align: center;
+            line-height: 100px;
+            color: #777777;
+            font-size: 13px;
+        }
+
+        .auto h3 {
+            margin: 10px 0 5px 0;
+            font-size: 16px;
+        }
+
+        .auto p {
+            margin: 3px 0;
+            font-size: 13px;
+            color: #666666;
+        }
+
+        .precio {
+            color: #9c2921 !important;
+            font-weight: bold;
+            font-size: 15px !important;
+        }
+
+        .formulario {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 15px;
+        }
+
+        .formulario label {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        .campo {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 8px;
+            border: 1px solid #999999;
+            border-radius: 3px;
+            font-size: 14px;
+        }
+
+        .contacto {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .caja {
+            background-color: #eeeeee;
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        .caja h3 {
+            margin-top: 0;
+        }
+
+        .cita {
+            border: 1px solid #bdbdbd;
+            border-left: 5px solid #9c2921;
+            border-radius: 5px;
+            padding: 15px;
+            margin-top: 15px;
+        }
+
+        .cita h3 {
+            margin: 8px 0 5px 0;
+            font-size: 16px;
+        }
+
+        .cita p {
+            margin: 3px 0;
+            font-size: 14px;
+            color: #666666;
+        }
+
+        /* ===== Etiquetas de estado ===== */
+        .estado {
+            font-size: 12px;
+            padding: 3px 10px;
+            border-radius: 10px;
+        }
+
+        .estado-disponible {
+            background-color: #dff0d8;
+            color: #2d6a2d;
+        }
+
+        .estado-apartado {
+            background-color: #dddddd;
+            color: #777777;
+        }
+
+        .estado-pendiente {
+            background-color: #fff3cd;
+            color: #7a5b00;
+        }
+
+        /* ===== Botones ===== */
+        .boton {
+            background-color: #9c2921;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            padding: 8px 18px;
+            font-size: 14px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .boton-gris {
+            background-color: #D9D9D9;
+            color: black;
+            border: 1px solid #999999;
+        }
+
+        .nota {
+            font-size: 13px;
+            color: #666666;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="barra">
+    <span class="logo">Autos Lee</span>
+    <a href="#">Autos disponibles</a>
+    <a href="#">Mis citas</a>
+    <a href="#">Cerrar sesión</a>
+</div>
+
+<div class="contenido">
+    <h2 class="titulo">Agenda una cita para conocer tu auto</h2>
+    <p class="descripcion">
+        Elige el vehículo que quieres ver, llena tus datos y coordina la visita con el administrador.
+    </p>
+    <div class="aviso">Necesitas conexión a internet para solicitar y coordinar tu cita.</div>
+</div>
+
+<div class="contenido">
+    <h2 class="titulo">1. Automóviles disponibles</h2>
+    <p class="descripcion">Selecciona el automóvil que deseas ver.</p>
+
+    <div class="lista-autos">
+
+        <div class="auto auto-seleccionado">
+            <div class="foto">Foto del auto</div>
+            <h3>Toyota Corolla 2022</h3>
+            <p>Sedán · Automático · 28,000 km</p>
+            <p>Color: Blanco</p>
+            <p class="precio">$289,000 MXN</p>
+            <span class="estado estado-disponible">Disponible</span>
+            <br/><br/>
+            <button class="boton">Seleccionado</button>
+        </div>
+
+        <div class="auto">
+            <div class="foto">Foto del auto</div>
+            <h3>Nissan Versa 2021</h3>
+            <p>Sedán · Manual · 41,500 km</p>
+            <p>Color: Gris</p>
+            <p class="precio">$215,000 MXN</p>
+            <span class="estado estado-disponible">Disponible</span>
+            <br/><br/>
+            <button class="boton boton-gris">Seleccionar</button>
+        </div>
+
+        <div class="auto">
+            <div class="foto">Foto del auto</div>
+            <h3>Honda CR-V 2020</h3>
+            <p>SUV · Automático · 52,300 km</p>
+            <p>Color: Rojo</p>
+            <p class="precio">$349,000 MXN</p>
+            <span class="estado estado-disponible">Disponible</span>
+            <br/><br/>
+            <button class="boton boton-gris">Seleccionar</button>
+        </div>
+
+        <div class="auto">
+            <div class="foto">Foto del auto</div>
+            <h3>Mazda 3 2023</h3>
+            <p>Hatchback · Automático · 12,000 km</p>
+            <p>Color: Negro</p>
+            <p class="precio">$365,000 MXN</p>
+            <span class="estado estado-apartado">Apartado</span>
+            <br/><br/>
+            <button class="boton boton-gris" disabled="disabled">No disponible</button>
+        </div>
+
+    </div>
+</div>
+
+<div class="contenido">
+    <h2 class="titulo">2. Datos para coordinar la cita</h2>
+    <p class="descripcion">
+        Auto elegido: <strong>Toyota Corolla 2022</strong> - $289,000 MXN
+    </p>
+
+    <div class="formulario">
+        <div>
+            <label>Nombre completo:</label>
+            <input type="text" class="campo" placeholder="Escribe tu nombre"/>
+        </div>
+        <div>
+            <label>Teléfono:</label>
+            <input type="tel" class="campo" placeholder="Ej. 686 123 4567"/>
+        </div>
+        <div>
+            <label>Correo electrónico:</label>
+            <input type="email" class="campo" placeholder="correo@ejemplo.com"/>
+        </div>
+        <div>
+            <label>Medio de contacto preferido:</label>
+            <select class="campo">
+                <option>WhatsApp</option>
+                <option>Llamada</option>
+                <option>Correo</option>
+            </select>
+        </div>
+        <div>
+            <label>Fecha preferida:</label>
+            <input type="date" class="campo"/>
+        </div>
+        <div>
+            <label>Horario preferido:</label>
+            <select class="campo">
+                <option>09:00</option>
+                <option>10:00</option>
+                <option>11:00</option>
+                <option>12:00</option>
+                <option>16:00</option>
+                <option>17:00</option>
+            </select>
+        </div>
+    </div>
+
+    <br/>
+    <label>Comentarios (opcional):</label>
+    <textarea class="campo" rows="3" placeholder="¿Algo que debamos saber antes de la visita?"></textarea>
+
+    <p class="nota">
+        La fecha es una propuesta. El administrador confirmará la disponibilidad,
+        porque no puede haber dos citas en el mismo día y horario.
+    </p>
+
+    <button class="boton">Enviar solicitud</button>
+    <button class="boton boton-gris">Cancelar</button>
+</div>
+
+<div class="contenido">
+    <h2 class="titulo">3. Continúa la coordinación</h2>
+    <p class="descripcion">Tu solicitud fue enviada. Contacta al administrador para confirmar.</p>
+
+    <div class="contacto">
+
+        <div class="caja">
+            <h3>Contacto del administrador</h3>
+            <p><strong>Nombre:</strong> Carlos Lee</p>
+            <p><strong>Teléfono:</strong> 686 555 0123</p>
+            <p><strong>Correo:</strong> contacto@autoslee.com</p>
+            <p><strong>Horario:</strong> Lun a Sáb, 9:00 a 18:00</p>
+        </div>
+
+        <div class="caja">
+            <h3>Aplicación externa</h3>
+            <p>Abre WhatsApp con tu solicitud para agilizar la confirmación.</p>
+            <a href="#" class="boton">Continuar en WhatsApp</a>
+            <p class="nota">Requiere conexión a internet.</p>
+        </div>
+
+    </div>
+</div>
+
+<div class="contenido">
+    <h2 class="titulo">Mis citas</h2>
+    <p class="descripcion">Aquí verás tus solicitudes y las citas que el administrador te asigne.</p>
+
+    <div class="cita">
+        <span class="estado estado-pendiente">Asignada por el administrador</span>
+        <h3>Honda CR-V 2020 - SUV - Rojo</h3>
+        <p>Fecha: Martes 10 de noviembre, 11:00</p>
+        <p>Atiende: Carlos Lee - 686 555 0123</p>
+        <p>Si esta cita es un error, puedes rechazarla.</p>
+        <br/>
+        <button class="boton">Aceptar cita</button>
+        <button class="boton boton-gris">Rechazar cita</button>
+    </div>
+
+    <div class="cita">
+        <span class="estado estado-disponible">Confirmada</span>
+        <h3>Toyota Corolla 2022 - Sedán - Blanco</h3>
+        <p>Fecha: Jueves 12 de noviembre, 10:00</p>
+        <p>Atiende: Carlos Lee - 686 555 0123</p>
+        <br/>
+        <button class="boton boton-gris">Cancelar cita</button>
+    </div>
+</div>
+
+</body>
+</html>
