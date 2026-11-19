@@ -17,33 +17,39 @@
         <h2>Equipamiento del auto</h2>
         <h:form id="formEquipamiento">
             <p:messages id="messages" showDetail="true" closable="true" autoUpdate="true"/>
-            <p:panel header="Equipamiento Tecnologico">
-                <p:selectManyCheckbox value="#{AutoExtrasBeanUI.equipamientoSeleccionado}" layout="grid" columns="2">
-                    <f:selectItems value="#{AutoExtrasBeanUI.opcionesEquipamiento}"/>
-                </p:selectManyCheckbox>
+            <p:tabView>
 
 
-                <p:outputLabel for="AdicionalesTecnologico" value="Escribe otros elementos tecnologicos:"/>
+                <p:tab title ="Equipamiento Tecnologico">
+                    <p:outputPanel id="panelTecnologico">
+                        <p:selectManyCheckbox value="#{AutoExtrasBeanUI.equipamientoSeleccionado}" layout="grid" columns="2">
+                            <f:selectItems value="#{AutoExtrasBeanUI.opcionesEquipamiento}"/>
+                        </p:selectManyCheckbox>
 
-                <p:chips id="AdicionalesTecnologico" value="#{AutoExtrasBeanUI.equipamientoExtra}"/>
+                        <p:outputLabel for="AdicionalesTecnologico" value="Escribe otros elementos tecnologicos:"/>
 
-                <p:commandButton value="Guardar equipamiento tecnologico" actionListener="#{AutoExtrasBeanUI.guardarEquipamiento()}" update="@form"/>
-            </p:panel>
+                        <p:chips id="AdicionalesTecnologico" value="#{AutoExtrasBeanUI.equipamientoExtra}"/>
 
-
-            <p:panel header="Equipamiento de Seguridad">
-                <p:selectManyCheckbox value="#{AutoExtrasBeanUI.seguridadSeleccionado}" layout="grid" columns="2">
-                    <f:selectItems value="#{AutoExtrasBeanUI.opcionesSeguridad}"/>
-                </p:selectManyCheckbox>
+                        <p:commandButton value="Guardar equipamiento tecnologico" actionListener="#{AutoExtrasBeanUI.guardarEquipamiento()}" update="@form"/>
+                    </p:outputPanel>
+                </p:tab>
 
 
-                <p:outputLabel for="AdicionalesSeguridad" value="Escribe otros elementos de seguridad:"/>
+                <p:tab title="Equipamiento de Seguridad">
+                    <p:outputPanel id="panelSeguridad">
+                        <p:selectManyCheckbox value="#{AutoExtrasBeanUI.seguridadSeleccionado}" layout="grid" columns="2">
+                            <f:selectItems value="#{AutoExtrasBeanUI.opcionesSeguridad}"/>
+                        </p:selectManyCheckbox>
 
-                <p:chips id="AdicionalesSeguridad" value="#{AutoExtrasBeanUI.seguridadExtra}"/>
+                        <p:outputLabel for="AdicionalesSeguridad" value="Escribe otros elementos de seguridad:"/>
 
-                <p:commandButton value="Guardar equipamiento de seguridad" actionListener="#{AutoExtrasBeanUI.guardarSeguridad()}" update="@form"/>
-            </p:panel>
-            <br/>
+                        <p:chips id="AdicionalesSeguridad" value="#{AutoExtrasBeanUI.seguridadExtra}"/>
+
+                        <p:commandButton value="Guardar equipamiento de seguridad" actionListener="#{AutoExtrasBeanUI.guardarSeguridad()}" update="@form"/>
+                    </p:outputPanel>
+                </p:tab>
+
+            </p:tabView>
             <h:link outcome="panel.xhtml" value="Regresar al menu"/>
         </h:form>
     </div>
