@@ -5,12 +5,13 @@
 
 <h:head>
     <title>Autos Lee - Registro de usuarios</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: Arial, sans-serif; }
         body { background-color: #ededed; color: #333; }
 
         .navbar { display: flex; align-items: center; background: #fff; padding: 15px 30px; border-bottom: 1px solid #ddd; }
-        .logo { font-size: 24px; font-weight: bold; font-family: serif; }
+        .logo { font-size: 24px; font-weight: bold; font-family: serif; white-space: nowrap; }
 
         .main-container { max-width: 800px; margin: 40px auto; padding: 0 20px; }
 
@@ -25,11 +26,11 @@
         .card-header { background: #f6f6eb; padding: 14px 20px; font-weight: bold; font-size: 15px; border-bottom: 1px solid #e2e2d5; color: #222; }
         .card-body { padding: 30px; }
 
-        .form-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px 20px; }
-        .form-group { display: flex; flex-direction: column; gap: 6px; }
+        .form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px 20px; }
+        .form-group { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
 
         .form-group label { font-size: 13px; font-weight: bold; color: #333; }
-        .form-group input { padding: 9px 12px; border: 1px solid #ccc; border-radius: 4px; font-size: 14px; background: #fff; }
+        .form-group input { width: 100%; padding: 9px 12px; border: 1px solid #ccc; border-radius: 4px; font-size: 14px; background: #fff; }
         .form-group input:focus { outline: none; border-color: #55a00b; box-shadow: 0 0 4px rgba(85, 160, 11, 0.4); }
 
         .btn-green { background-color: #55a00b; color: white; border: 1px solid #488a09; padding: 11px 24px; font-size: 14px; font-weight: bold; border-radius: 6px; cursor: pointer; display: inline-block; margin-top: 20px; }
@@ -38,6 +39,17 @@
         .messages-container { margin-bottom: 15px; list-style: none; padding: 0; }
         .info-msg { color: #155724; font-size: 14px; font-weight: bold; margin-bottom: 10px; }
         .error-msg { color: #b30000; font-size: 14px; font-weight: bold; margin-bottom: 10px; }
+
+        /* Tablet y celular */
+        @media (max-width: 700px) {
+            .navbar { padding: 10px 12px; }
+            .logo { font-size: 20px; }
+            .main-container { margin: 20px auto; padding: 0 12px; }
+            .page-header h1 { font-size: 24px; }
+            .card-body { padding: 18px; }
+            .form-grid { grid-template-columns: minmax(0, 1fr); }
+            .btn-green { width: 100%; padding: 13px; }
+        }
     </style>
 </h:head>
 

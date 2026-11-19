@@ -1,3 +1,4 @@
+<?xml version='1.0' encoding='UTF-8' ?>
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="jakarta.faces.facelets"
                 xmlns:h="jakarta.faces.html"
@@ -18,36 +19,37 @@
         <h:form>
             <p:panel header="Usuarios registrados">
 
-                <p:dataTable value="#{usuariosUI.usuarios}"
-                             var="usuario"
-                             emptyMessage="No hay usuarios registrados."
-                             responsiveLayout="scroll">
+                <div class="tabla-responsive">
+                    <p:dataTable value="#{usuariosUI.usuarios}"
+                                 var="usuario"
+                                 emptyMessage="No hay usuarios registrados.">
 
-                    <p:column headerText="ID">
-                        <h:outputText value="#{usuario.id}"/>
-                    </p:column>
+                        <p:column headerText="ID">
+                            <h:outputText value="#{usuario.id}"/>
+                        </p:column>
 
-                    <p:column headerText="Nombre">
-                        <h:outputText value="#{usuario.nombre}"/>
-                    </p:column>
+                        <p:column headerText="Nombre">
+                            <h:outputText value="#{usuario.nombre}"/>
+                        </p:column>
 
-                    <p:column headerText="Apellido paterno">
-                        <h:outputText value="#{usuario.apellidoPaterno}"/>
-                    </p:column>
+                        <p:column headerText="Apellido paterno">
+                            <h:outputText value="#{usuario.apellidoPaterno}"/>
+                        </p:column>
 
-                    <p:column headerText="Apellido materno">
-                        <h:outputText value="#{usuario.apellidoMaterno}"/>
-                    </p:column>
+                        <p:column headerText="Apellido materno">
+                            <h:outputText value="#{usuario.apellidoMaterno}"/>
+                        </p:column>
 
-                    <p:column headerText="Correo electrónico">
-                        <h:outputText value="#{usuario.correoElectronico}"/>
-                    </p:column>
+                        <p:column headerText="Correo electrónico">
+                            <h:outputText value="#{usuario.correoElectronico}"/>
+                        </p:column>
 
-                    <p:column headerText="Usuario">
-                        <h:outputText value="#{usuario.usuario}"/>
-                    </p:column>
+                        <p:column headerText="Usuario">
+                            <h:outputText value="#{usuario.usuario}"/>
+                        </p:column>
 
-                </p:dataTable>
+                    </p:dataTable>
+                </div>
 
             </p:panel>
         </h:form>
