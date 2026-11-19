@@ -5,12 +5,13 @@
                 xmlns:f="jakarta.faces.core"
                 template="/plantilla.xhtml">
 
-    <f:metadata>
-        <f:viewAction action="#{loginUI.verificarAccesoAdmin}"
-                      onPostback="true"/>
-    </f:metadata>
-
     <ui:define name="contenido">
+
+        <f:metadata>
+            <f:viewAction action="#{loginUI.verificarAccesoAdmin}"
+                          onPostback="true"/>
+            <ui:insert name="metadata"/>
+        </f:metadata>
 
         <ui:insert name="contenidoAdmin">
 
