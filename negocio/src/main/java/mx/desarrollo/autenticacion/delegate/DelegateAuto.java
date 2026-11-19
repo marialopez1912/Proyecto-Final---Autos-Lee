@@ -3,7 +3,6 @@ package mx.desarrollo.autenticacion.delegate;
 import mx.desarrollo.entity.Auto;
 import mx.desarrollo.entity.AutoEquipamiento;
 import mx.desarrollo.entity.AutoSeguridad;
-import mx.desarrollo.persistence.dao.AutoDAO;
 import mx.desarrollo.persistence.integration.ServiceLocator;
 
 import java.math.BigDecimal;
