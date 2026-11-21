@@ -1,5 +1,4 @@
-package mx.desarrollo.estadisticas.delegate;
-
+package mx.desarrollo.autenticacion.delegate;
 import mx.desarrollo.estadisticas.dto.TotalCategoria;
 import mx.desarrollo.persistence.dao.GastoEstadisticasDAO;
 import mx.desarrollo.persistence.persistence.HibernateUtil;

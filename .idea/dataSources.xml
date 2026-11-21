@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="Autos_Lee_Nube" uuid="ed3f66eb-e5cd-402c-9141-09427fa871cc">
+    <data-source source="LOCAL" name="entity_prueba1PU/Hibernate" uuid="ed3f66eb-e5cd-402c-9141-09427fa871cc">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <imported>true</imported>

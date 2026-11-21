@@ -10,22 +10,18 @@ public class FacadeUsuario {
     private final DelegateUsuario delegateUsuario;
 
     public FacadeUsuario() {
-
         this.delegateUsuario = new DelegateUsuario();
     }
 
-    public Usuario login(String password, String correo){
-
+    public Usuario login(String password, String correo) {
         return delegateUsuario.login(password, correo);
     }
 
-    public void saveUsuario(Usuario usuario){
-
+    public void saveUsuario(Usuario usuario) {
         delegateUsuario.saveUsario(usuario);
     }
 
     public List<Usuario> obtenerTodos() {
         return delegateUsuario.obtenerTodos();
     }
-
 }

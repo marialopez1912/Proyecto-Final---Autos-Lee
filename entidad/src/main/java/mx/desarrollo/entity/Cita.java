@@ -3,9 +3,6 @@ package mx.desarrollo.entity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
-
 @Entity
 @Table(name = "cita")
 public class Cita {
@@ -35,11 +32,11 @@ public class Cita {
 
     @NotNull
     @Column(name = "Fecha", nullable = false)
-    private LocalDate fecha;
+    private java.time.LocalDate fecha;
 
     @NotNull
     @Column(name = "Hora", nullable = false)
-    private LocalTime hora;
+    private java.time.LocalTime hora;
 
     public CitaId getId() {
         return id;
@@ -73,19 +70,19 @@ public class Cita {
         this.administradorIdAdministrador = administradorIdAdministrador;
     }
 
-    public LocalDate getFecha() {
+    public java.time.LocalDate getFecha() {
         return fecha;
     }
 
-    public void setFecha(LocalDate fecha) {
+    public void setFecha(java.time.LocalDate fecha) {
         this.fecha = fecha;
     }
 
-    public LocalTime getHora() {
+    public java.time.LocalTime getHora() {
         return hora;
     }
 
-    public void setHora(LocalTime hora) {
+    public void setHora(java.time.LocalTime hora) {
         this.hora = hora;
     }
 

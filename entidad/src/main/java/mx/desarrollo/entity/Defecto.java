@@ -27,12 +27,12 @@ public class Defecto {
     @Size(max = 1000)
     @NotNull
     @Column(name = "Descripcion", nullable = false, length = 1000)
-    private String descripcion;
+    private java.lang.String descripcion;
 
     @NotNull
     @Lob
     @Column(name = "Tipo", nullable = false)
-    private String tipo;
+    private java.lang.String tipo;
 
     public DefectoId getId() {
         return id;
@@ -50,19 +50,19 @@ public class Defecto {
         this.auto = auto;
     }
 
-    public String getDescripcion() {
+    public java.lang.String getDescripcion() {
         return descripcion;
     }
 
-    public void setDescripcion(String descripcion) {
+    public void setDescripcion(java.lang.String descripcion) {
         this.descripcion = descripcion;
     }
 
-    public String getTipo() {
+    public java.lang.String getTipo() {
         return tipo;
     }
 
-    public void setTipo(String tipo) {
+    public void setTipo(java.lang.String tipo) {
         this.tipo = tipo;
     }
 

@@ -4,35 +4,30 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import jakarta.validation.constraints.NotNull;
 
-import java.io.Serial;
-import java.io.Serializable;
-import java.util.Objects;
-
 @Embeddable
-public class AutoId implements Serializable {
-    @Serial
-    private static final long serialVersionUID = -5230301233415718625L;
+public class AutoId implements java.io.Serializable {
+    private static final long serialVersionUID = -1L;
     @NotNull
     @Column(name = "Id_Auto_Sistema", nullable = false)
-    private Integer idAutoSistema;
+    private java.lang.Integer idAutoSistema;
 
     @NotNull
     @Column(name = "Administrador_Id_Administrador", nullable = false)
-    private Integer administradorIdAdministrador;
+    private java.lang.Integer administradorIdAdministrador;
 
-    public Integer getIdAutoSistema() {
+    public java.lang.Integer getIdAutoSistema() {
         return idAutoSistema;
     }
 
-    public void setIdAutoSistema(Integer idAutoSistema) {
+    public void setIdAutoSistema(java.lang.Integer idAutoSistema) {
         this.idAutoSistema = idAutoSistema;
     }
 
-    public Integer getAdministradorIdAdministrador() {
+    public java.lang.Integer getAdministradorIdAdministrador() {
         return administradorIdAdministrador;
     }
 
-    public void setAdministradorIdAdministrador(Integer administradorIdAdministrador) {
+    public void setAdministradorIdAdministrador(java.lang.Integer administradorIdAdministrador) {
         this.administradorIdAdministrador = administradorIdAdministrador;
     }
 
@@ -41,12 +36,12 @@ public class AutoId implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         AutoId entity = (AutoId) o;
-        return Objects.equals(this.idAutoSistema, entity.idAutoSistema) &&
-                Objects.equals(this.administradorIdAdministrador, entity.administradorIdAdministrador);
+        return java.util.Objects.equals(this.idAutoSistema, entity.idAutoSistema) &&
+                java.util.Objects.equals(this.administradorIdAdministrador, entity.administradorIdAdministrador);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idAutoSistema, administradorIdAdministrador);
+        return java.util.Objects.hash(idAutoSistema, administradorIdAdministrador);
     }
 }

@@ -1,6 +1,6 @@
-package mx.desarrollo.estadisticas.facade;
+package mx.desarrollo.autenticacion.facade;
 
-import mx.desarrollo.estadisticas.delegate.DelegateCatalogo;
+import mx.desarrollo.autenticacion.delegate.DelegateCatalogo;
 import mx.desarrollo.estadisticas.dto.AutoResumen;
 import mx.desarrollo.estadisticas.dto.VentaAnual;
 

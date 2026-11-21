@@ -17,8 +17,6 @@ import mx.desarrollo.entity.Administrador;
 import mx.desarrollo.entity.Auto;
 import mx.desarrollo.entity.AutoId;
 import org.primefaces.event.FlowEvent;
-
-import java.math.BigDecimal;
 import java.util.*;
 import java.io.Serializable;
 
@@ -91,10 +89,7 @@ public class AutoBeanUI implements Serializable {
             auto = new Auto();
             auto.setId(new AutoId());
 
-        } catch(IllegalStateException e){
-            e.getMessage();
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
 
             FacesContext.getCurrentInstance().addMessage(null,
@@ -222,12 +217,7 @@ public class AutoBeanUI implements Serializable {
     }
 
 
-    public BigDecimal getPrecioVentaCalculado(){
-        if(auto == null){
-            return null;
-        }
-        return AutoHelper.calcularPrecioVenta(auto.getPrecioCompra(), auto.getPorcentajeGanancia());
-    }
+
 
     public List<Auto> getListaAutos() {
         return listaAutos;

@@ -1,6 +1,6 @@
-package mx.desarrollo.estadisticas.facade;
+package mx.desarrollo.autenticacion.facade;
 
-import mx.desarrollo.estadisticas.delegate.DelegateGasto;
+import mx.desarrollo.autenticacion.delegate.DelegateGasto;
 import mx.desarrollo.estadisticas.dto.TotalCategoria;
 import java.util.List;
 

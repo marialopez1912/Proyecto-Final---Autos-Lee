@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="jakarta.faces.html"
+                xmlns:f="jakarta.faces.core"
+                xmlns:ui="jakarta.faces.facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/plantilla.xhtml">
+
+    <ui:define name="metadata">
+        <f:viewAction action="#{margenUI.iniciar}"/>
+    </ui:define>
+
+    <ui:define name="contenido">
+        <div class="tarjeta">
+            <h2>Margen de venta por auto</h2>
+
+            <h:form id="formMargen">
+                <div class="filtros">
+                    <p:selectOneMenu value="#{margenUI.vin}">
+                        <f:selectItem itemLabel="Todos los autos" itemValue=""/>
+                        <f:selectItems value="#{margenUI.todos}" var="a" itemLabel="#{a.vehiculo}" itemValue="#{a.vin}"/>
+                        <p:ajax listener="#{margenUI.cargar}" update="formMargen"/>
+                    </p:selectOneMenu>
+                </div>
+
+                <p:dataTable value="#{margenUI.mostrados}" var="m" emptyMessage="No hay autos registrados."
+                             paginator="true" rows="10" paginatorPosition="bottom">
+                    <p:column headerText="Vehículo">
+                        <h:outputText value="#{m.vehiculo}"/>
+                    </p:column>
+                    <p:column headerText="Precio de venta" style="text-align:right">
+                        <h:outputText value="#{m.precioVenta}">
+                            <f:convertNumber type="currency" currencySymbol="$"/>
+                        </h:outputText>
+                    </p:column>
+                    <p:column headerText="Costo del auto" style="text-align:right">
+                        <h:outputText value="#{m.precioCompra}">
+                            <f:convertNumber type="currency" currencySymbol="$"/>
+                        </h:outputText>
+                    </p:column>
+                    <p:column headerText="Gastos" style="text-align:right">
+                        <h:outputText value="#{m.gastos}">
+                            <f:convertNumber type="currency" currencySymbol="$"/>
+                        </h:outputText>
+                    </p:column>
+                    <p:column headerText="Costo total" style="text-align:right">
+                        <h:outputText value="#{m.costoTotal}">
+                            <f:convertNumber type="currency" currencySymbol="$"/>
+                        </h:outputText>
+                    </p:column>
+                    <p:column headerText="Margen" style="text-align:right">
+                        <h:outputText value="#{m.margen}" styleClass="#{m.negativo ? 'margen-neg' : 'margen-pos'}">
+                            <f:convertNumber type="currency" currencySymbol="$"/>
+                        </h:outputText>
+                    </p:column>
+                </p:dataTable>
+            </h:form>
+        </div>
+    </ui:define>
+</ui:composition>

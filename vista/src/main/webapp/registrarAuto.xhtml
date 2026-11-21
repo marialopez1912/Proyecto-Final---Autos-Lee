@@ -1,109 +1,122 @@
 <?xml version='1.0' encoding='UTF-8' ?>
-<ui:composition xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:ui="jakarta.faces.facelets"
-                xmlns:h="jakarta.faces.html"
-                xmlns:f="jakarta.faces.core"
-                xmlns:p="http://primefaces.org/ui"
-                template="/panel.xhtml">
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui" xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-    <ui:define name="metadata">
-        <f:viewAction action="#{AutoBeanUI.nuevoRegistro()}"/>
-    </ui:define>
+<f:metadata>
+    <f:viewAction action="#{AutoBeanUI.nuevoRegistro()}"/>
+</f:metadata>
 
-    <ui:define name="contenidoAdmin">
+    <h:head>
+        <title>Registrar Auto</title>
+        <style>
+            body{
+                display: flex;
+                justify-content: center;
+                align-items: center;
 
-        <h1>Registrar auto</h1>
+            }
 
-        <p>Completa los datos para registrar un nuevo vehículo.</p>
+        </style>
+    </h:head>
 
+    <h:body>
         <h:form id="formAuto">
-
             <p:messages id="messages" showDetail="true" closable="true" autoUpdate="true"/>
-            <p:wizard flowListener="#{AutoBeanUI.onFlowProcess}" backLabel="Atras" nextLabel="Siguiente">
+            <p:wizard flowListener="#{AutoBeanUI.onFlowProcess}">
                 <p:tab id="identificacion" title="Informacion de Identificacion">
                     <p:panel header="Informacion de Identificacion">
 
-                <!-- PESTAÑA 1 -->
-                        <p:panelGrid columns="2" layout="grid" styleClass="ui-fluid">
-
-                            <p:outputLabel for="marca" value="Marca:"/>
+                        <h:panelGrid columns="2" columnClasses="label, value">
+                            <p:outputLabel for="marca" value="Marca:" />
                             <p:inputText id="marca" value="#{AutoBeanUI.auto.marca}" required="true"/>
 
-                            <p:outputLabel for="modelo" value="Modelo:"/>
+
+                            <p:outputLabel for="modelo" value="Modelo:" />
                             <p:inputText id="modelo" value="#{AutoBeanUI.auto.modelo}" required="true"/>
 
-                            <p:outputLabel for="version" value="Versión:"/>
+
+                            <p:outputLabel for="version" value="Version:" />
                             <p:inputText id="version" value="#{AutoBeanUI.auto.version}" required="true"/>
 
-                            <p:outputLabel for="vin" value="VIN:"/>
+
+                            <p:outputLabel for="anio" value="Anio:"/>
+                            <p:inputText id="anio" value="#{AutoBeanUI.auto.anio}" required="true"/>
+
+
+                            <h:outputLabel for="vin" value="VIN:" />
                             <p:inputText id="vin" value="#{AutoBeanUI.auto.vin}" required="true"/>
 
-                            <p:outputLabel for="placa" value="Placa:"/>
+
+                            <p:outputLabel for="placa" value="Placa:" />
                             <p:inputText id="placa" value="#{AutoBeanUI.auto.placa}" required="true"/>
 
-                            <p:outputLabel for="carroceria" value="Carrocería:"/>
+
+                            <p:outputLabel for="carroceria" value="Carroceria:" />
                             <p:inputText id="carroceria" value="#{AutoBeanUI.auto.carroceria}" required="true"/>
-
-                        </p:panelGrid>
+                        </h:panelGrid>
                     </p:panel>
                 </p:tab>
 
-                <!-- PESTAÑA 2 -->
-                <p:tab id="mecanicos" title="Información mecánica">
-                    <p:panel header="Información mecánica">
-                        <p:panelGrid columns="2" layout="grid" styleClass="ui-fluid">
+                <p:tab id="mecanicos" title="Informacion mecanica">
+                    <p:panel header="Informacion Mecanica">
 
-                            <p:outputLabel for="tipo_motor" value="Tipo de motor:"/>
-                            <p:inputText id="tipo_motor" value="#{AutoBeanUI.auto.tipoMotor}"/>
+                        <h:panelGrid columns="2" columnClasses="label, value">
+                            <p:outputLabel for="tipo_motor" value="Tipo de motor:" required="true"/>
+                            <p:inputText id="tipo_motor" value="#{AutoBeanUI.auto.tipoMotor}" />
 
-                            <p:outputLabel for="tipo_combustible" value="Combustible:"/>
-                            <p:inputText id="tipo_combustible" value="#{AutoBeanUI.auto.tipoCombustible}"/>
 
-                            <p:outputLabel for="cilindros" value="Cilindros:"/>
-                            <p:inputText id="cilindros" value="#{AutoBeanUI.auto.cilindros}"/>
+                            <p:outputLabel for="tipo_combustible" value="Combustible:" required="true" />
+                            <p:inputText id="tipo_combustible" value="#{AutoBeanUI.auto.tipoCombustible}" />
 
-                            <p:outputLabel for="potencia_maxima" value="Potencia máxima:"/>
-                            <p:inputText id="potencia_maxima" value="#{AutoBeanUI.auto.potenciaMaxima}"/>
 
-                            <p:outputLabel for="transmision" value="Transmisión:"/>
-                            <p:inputText id="transmision" value="#{AutoBeanUI.auto.transmision}"/>
+                            <p:outputLabel for="cilindros" value="Cilindros:" required="true" />
+                            <p:inputText id="cilindros" value="#{AutoBeanUI.auto.cilindros}" />
 
-                            <p:outputLabel for="frenos" value="Frenos:"/>
-                            <p:inputText id="frenos" value="#{AutoBeanUI.auto.frenos}"/>
 
-                            <p:outputLabel for="suspension" value="Suspensión:"/>
-                            <p:inputText id="suspension" value="#{AutoBeanUI.auto.suspension}"/>
+                            <p:outputLabel for="potencia_maxima" value="Potencia_Maxima:" required="true"/>
+                            <p:inputText id="potencia_maxima" value="#{AutoBeanUI.auto.potenciaMaxima}" />
 
-                        </p:panelGrid>
+
+                            <p:outputLabel for="transmision" value="Transmision:" required="true"/>
+                            <p:inputText id="transmision" value="#{AutoBeanUI.auto.transmision}" />
+
+
+                            <p:outputLabel for="frenos" value="Frenos:" required="true"/>
+                            <p:inputText id="frenos" value="#{AutoBeanUI.auto.frenos}" />
+
+
+                            <p:outputLabel for="suspension" value="Suspension:" required="true"/>
+                            <p:inputText id="suspension" value="#{AutoBeanUI.auto.suspension}" />
+
+                        </h:panelGrid>
                     </p:panel>
                 </p:tab>
 
-                <!-- PESTAÑA 3 -->
-                <p:tab id="venta" title="Información de venta">
-                    <p:panel header="Información de venta">
-                        <p:panelGrid columns="2" layout="grid" styleClass="ui-fluid">
+                <p:tab id="venta" title="Informacion de venta">
+                    <p:panel header="Informacion de Venta">
 
-                            <p:outputLabel for="precio_compra" value="Precio de compra:"/>
-                            <p:inputText id="precio_compra" value="#{AutoBeanUI.auto.precioCompra}"/>
+                        <h:panelGrid columns="2" columnClasses="label, value">
+                            <p:outputLabel for="precio_compra" value="Precio de compra:" required="true"/>
+                            <p:inputText id="precio_compra" value="#{AutoBeanUI.auto.precioCompra}" />
 
-                            <p:outputLabel for="porcentaje_ganancia" value="Ganancia (%):" />
+
+                            <p:outputLabel for="porcentaje_ganancia" value="Ganancia (decimales):" />
                             <p:inputText id="porcentaje_ganancia" value="#{AutoBeanUI.auto.porcentajeGanancia}" />
 
-                        </p:panelGrid>
+
+                            <p:outputLabel for="precio_venta" value="Precio de venta:" />
+                            <p:inputText id="precio_venta" value="#{AutoBeanUI.auto.precioVenta}" />
+
+                        </h:panelGrid>
                     </p:panel>
                 </p:tab>
-
-                <!-- PESTAÑA 4 -->
 
                 <p:tab id="confirmacion" title="Confirmar registro">
                     <p:panel header="Confirmar registro">
+
                         <h:panelGrid columns="2" columnClasses="label, value">
-
-                            <h:outputText value="Precio de venta: "/>
-                            <h:outputText value="#{AutoBeanUI.precioVentaCalculado}">
-                                <f:convertNumber type="currency" currencySymbol="$"/>
-                            </h:outputText>
-
                             <p:commandButton value="Guardar auto"
                                              actionListener="#{AutoBeanUI.guardar()}" update="messages btnEquipamiento" />
 
@@ -116,7 +129,5 @@
 
             </p:wizard>
         </h:form>
-
-    </ui:define>
-
-</ui:composition>
+    </h:body>
+</html>

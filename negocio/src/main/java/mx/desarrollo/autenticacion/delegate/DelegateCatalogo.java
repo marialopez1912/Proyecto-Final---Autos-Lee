@@ -1,4 +1,4 @@
-package mx.desarrollo.estadisticas.delegate;
+package mx.desarrollo.autenticacion.delegate;
 
 import mx.desarrollo.estadisticas.dto.AutoResumen;
 import mx.desarrollo.estadisticas.dto.VentaAnual;

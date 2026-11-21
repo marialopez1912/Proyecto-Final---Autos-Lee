@@ -19,7 +19,7 @@
                     <f:selectItem itemLabel="Por tipo de gasto" itemValue="tipo"/>
                     <f:selectItem itemLabel="Por marca" itemValue="marca"/>
                     <p:ajax listener="#{gastosUI.cargar}" update="formGastos"/>
-                </p:selectOneButton>
+                    </p:selectOneButton>
 
                 <h:panelGroup rendered="#{empty gastosUI.filas}" layout="block" styleClass="aviso">
                     No hay gastos registrados.

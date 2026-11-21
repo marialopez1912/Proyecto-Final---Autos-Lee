@@ -3,9 +3,6 @@ package mx.desarrollo.entity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
-
 @Entity
 @Table(name = "compra")
 public class Compra {
@@ -30,11 +27,11 @@ public class Compra {
 
     @NotNull
     @Column(name = "Fecha", nullable = false)
-    private LocalDate fecha;
+    private java.time.LocalDate fecha;
 
     @NotNull
     @Column(name = "Precio_Final", nullable = false, precision = 10, scale = 2)
-    private BigDecimal precioFinal;
+    private java.math.BigDecimal precioFinal;
 
     public CompraId getId() {
         return id;
@@ -60,19 +57,19 @@ public class Compra {
         this.usuarioIdUsuario = usuarioIdUsuario;
     }
 
-    public LocalDate getFecha() {
+    public java.time.LocalDate getFecha() {
         return fecha;
     }
 
-    public void setFecha(LocalDate fecha) {
+    public void setFecha(java.time.LocalDate fecha) {
         this.fecha = fecha;
     }
 
-    public BigDecimal getPrecioFinal() {
+    public java.math.BigDecimal getPrecioFinal() {
         return precioFinal;
     }
 
-    public void setPrecioFinal(BigDecimal precioFinal) {
+    public void setPrecioFinal(java.math.BigDecimal precioFinal) {
         this.precioFinal = precioFinal;
     }
 

@@ -4,71 +4,66 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import jakarta.validation.constraints.NotNull;
 
-import java.io.Serial;
-import java.io.Serializable;
-import java.util.Objects;
-
 @Embeddable
-public class CitaId implements Serializable {
-    @Serial
-    private static final long serialVersionUID = 3197081688888835040L;
+public class CitaId implements java.io.Serializable {
+    private static final long serialVersionUID = -1L;
     @NotNull
     @Column(name = "Id_Cita", nullable = false)
-    private Integer idCita;
+    private java.lang.Integer idCita;
 
     @NotNull
     @Column(name = "Usuario_Id_Usuario", nullable = false)
-    private Integer usuarioIdUsuario;
+    private java.lang.Integer usuarioIdUsuario;
 
     @NotNull
     @Column(name = "Auto_Id_Auto_Sistema", nullable = false)
-    private Integer autoIdAutoSistema;
+    private java.lang.Integer autoIdAutoSistema;
 
     @NotNull
     @Column(name = "Auto_Administrador_Id_Administrador", nullable = false)
-    private Integer autoAdministradorIdAdministrador;
+    private java.lang.Integer autoAdministradorIdAdministrador;
 
     @NotNull
     @Column(name = "Administrador_Id_Administrador", nullable = false)
-    private Integer administradorIdAdministrador;
+    private java.lang.Integer administradorIdAdministrador;
 
-    public Integer getIdCita() {
+    public java.lang.Integer getIdCita() {
         return idCita;
     }
 
-    public void setIdCita(Integer idCita) {
+    public void setIdCita(java.lang.Integer idCita) {
         this.idCita = idCita;
     }
 
-    public Integer getUsuarioIdUsuario() {
+    public java.lang.Integer getUsuarioIdUsuario() {
         return usuarioIdUsuario;
     }
 
-    public void setUsuarioIdUsuario(Integer usuarioIdUsuario) {
+    public void setUsuarioIdUsuario(java.lang.Integer usuarioIdUsuario) {
         this.usuarioIdUsuario = usuarioIdUsuario;
     }
 
-    public Integer getAutoIdAutoSistema() {
+    public java.lang.Integer getAutoIdAutoSistema() {
         return autoIdAutoSistema;
     }
 
-    public void setAutoIdAutoSistema(Integer autoIdAutoSistema) {
+    public void setAutoIdAutoSistema(java.lang.Integer autoIdAutoSistema) {
         this.autoIdAutoSistema = autoIdAutoSistema;
     }
 
-    public Integer getAutoAdministradorIdAdministrador() {
+    public java.lang.Integer getAutoAdministradorIdAdministrador() {
         return autoAdministradorIdAdministrador;
     }
 
-    public void setAutoAdministradorIdAdministrador(Integer autoAdministradorIdAdministrador) {
+    public void setAutoAdministradorIdAdministrador(java.lang.Integer autoAdministradorIdAdministrador) {
         this.autoAdministradorIdAdministrador = autoAdministradorIdAdministrador;
     }
 
-    public Integer getAdministradorIdAdministrador() {
+    public java.lang.Integer getAdministradorIdAdministrador() {
         return administradorIdAdministrador;
     }
 
-    public void setAdministradorIdAdministrador(Integer administradorIdAdministrador) {
+    public void setAdministradorIdAdministrador(java.lang.Integer administradorIdAdministrador) {
         this.administradorIdAdministrador = administradorIdAdministrador;
     }
 
@@ -77,15 +72,15 @@ public class CitaId implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         CitaId entity = (CitaId) o;
-        return Objects.equals(this.idCita, entity.idCita) &&
-                Objects.equals(this.usuarioIdUsuario, entity.usuarioIdUsuario) &&
-                Objects.equals(this.autoIdAutoSistema, entity.autoIdAutoSistema) &&
-                Objects.equals(this.autoAdministradorIdAdministrador, entity.autoAdministradorIdAdministrador) &&
-                Objects.equals(this.administradorIdAdministrador, entity.administradorIdAdministrador);
+        return java.util.Objects.equals(this.idCita, entity.idCita) &&
+                java.util.Objects.equals(this.usuarioIdUsuario, entity.usuarioIdUsuario) &&
+                java.util.Objects.equals(this.autoIdAutoSistema, entity.autoIdAutoSistema) &&
+                java.util.Objects.equals(this.autoAdministradorIdAdministrador, entity.autoAdministradorIdAdministrador) &&
+                java.util.Objects.equals(this.administradorIdAdministrador, entity.administradorIdAdministrador);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idCita, usuarioIdUsuario, autoIdAutoSistema, autoAdministradorIdAdministrador, administradorIdAdministrador);
+        return java.util.Objects.hash(idCita, usuarioIdUsuario, autoIdAutoSistema, autoAdministradorIdAdministrador, administradorIdAdministrador);
     }
 }

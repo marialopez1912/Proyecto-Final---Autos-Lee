@@ -4,47 +4,42 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import jakarta.validation.constraints.NotNull;
 
-import java.io.Serial;
-import java.io.Serializable;
-import java.util.Objects;
-
 @Embeddable
-public class GastoId implements Serializable {
-    @Serial
-    private static final long serialVersionUID = -274401930322118254L;
+public class GastoId implements java.io.Serializable {
+    private static final long serialVersionUID = -1L;
     @NotNull
     @Column(name = "Id_Gasto", nullable = false)
-    private Integer idGasto;
+    private java.lang.Integer idGasto;
 
     @NotNull
     @Column(name = "Auto_Id_Auto_Sistema", nullable = false)
-    private Integer autoIdAutoSistema;
+    private java.lang.Integer autoIdAutoSistema;
 
     @NotNull
     @Column(name = "Auto_Administrador_Id_Administrador", nullable = false)
-    private Integer autoAdministradorIdAdministrador;
+    private java.lang.Integer autoAdministradorIdAdministrador;
 
-    public Integer getIdGasto() {
+    public java.lang.Integer getIdGasto() {
         return idGasto;
     }
 
-    public void setIdGasto(Integer idGasto) {
+    public void setIdGasto(java.lang.Integer idGasto) {
         this.idGasto = idGasto;
     }
 
-    public Integer getAutoIdAutoSistema() {
+    public java.lang.Integer getAutoIdAutoSistema() {
         return autoIdAutoSistema;
     }
 
-    public void setAutoIdAutoSistema(Integer autoIdAutoSistema) {
+    public void setAutoIdAutoSistema(java.lang.Integer autoIdAutoSistema) {
         this.autoIdAutoSistema = autoIdAutoSistema;
     }
 
-    public Integer getAutoAdministradorIdAdministrador() {
+    public java.lang.Integer getAutoAdministradorIdAdministrador() {
         return autoAdministradorIdAdministrador;
     }
 
-    public void setAutoAdministradorIdAdministrador(Integer autoAdministradorIdAdministrador) {
+    public void setAutoAdministradorIdAdministrador(java.lang.Integer autoAdministradorIdAdministrador) {
         this.autoAdministradorIdAdministrador = autoAdministradorIdAdministrador;
     }
 
@@ -53,13 +48,13 @@ public class GastoId implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         GastoId entity = (GastoId) o;
-        return Objects.equals(this.idGasto, entity.idGasto) &&
-                Objects.equals(this.autoIdAutoSistema, entity.autoIdAutoSistema) &&
-                Objects.equals(this.autoAdministradorIdAdministrador, entity.autoAdministradorIdAdministrador);
+        return java.util.Objects.equals(this.idGasto, entity.idGasto) &&
+                java.util.Objects.equals(this.autoIdAutoSistema, entity.autoIdAutoSistema) &&
+                java.util.Objects.equals(this.autoAdministradorIdAdministrador, entity.autoAdministradorIdAdministrador);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idGasto, autoIdAutoSistema, autoAdministradorIdAdministrador);
+        return java.util.Objects.hash(idGasto, autoIdAutoSistema, autoAdministradorIdAdministrador);
     }
 }

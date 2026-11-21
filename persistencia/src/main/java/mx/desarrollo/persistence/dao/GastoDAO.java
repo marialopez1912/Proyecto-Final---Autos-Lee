@@ -2,7 +2,6 @@ package mx.desarrollo.persistence.dao;
 
 import jakarta.persistence.EntityManager;
 import mx.desarrollo.entity.Gasto;
-import mx.desarrollo.entity.GastoId;
 import mx.desarrollo.persistence.persistence.AbstractDAO;
 
 import java.util.List;

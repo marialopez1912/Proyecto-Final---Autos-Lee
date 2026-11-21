@@ -3,7 +3,6 @@ package mx.desarrollo.autenticacion.facade;
 import mx.desarrollo.autenticacion.delegate.DelegateAuto;
 import mx.desarrollo.entity.Auto;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 public class FacadeAuto {
@@ -35,9 +34,5 @@ public class FacadeAuto {
     public void guardarSeguridad(String VIN, List<String> elementos){
 
         delegateAuto.guardarSeguridad(VIN, elementos);
-    }
-
-    public BigDecimal calcularPrecioVenta(BigDecimal precioCompra, BigDecimal porcentaje){
-        return delegateAuto.calcularPrecioVenta(precioCompra, porcentaje);
     }
 }

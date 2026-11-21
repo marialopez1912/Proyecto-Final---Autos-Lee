@@ -3,7 +3,6 @@ package helper;
 import mx.desarrollo.autenticacion.integration.ServiceFacadeLocator;
 import mx.desarrollo.entity.Auto;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 
@@ -32,9 +31,5 @@ public class AutoHelper {
 
     public static void guardarSeguridad(String VIN, List<String> elementos){
         ServiceFacadeLocator.getInstanceFacadeAuto().guardarSeguridad(VIN, elementos);
-    }
-
-    public static BigDecimal calcularPrecioVenta(BigDecimal precioCompra, BigDecimal porcentaje){
-        return ServiceFacadeLocator.getInstanceFacadeAuto().calcularPrecioVenta(precioCompra, porcentaje);
     }
 }

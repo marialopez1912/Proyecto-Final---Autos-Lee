@@ -6,8 +6,6 @@ import jakarta.validation.constraints.Size;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
-import java.math.BigDecimal;
-
 @Entity
 @Table(name = "gasto")
 public class Gasto {
@@ -29,16 +27,16 @@ public class Gasto {
     @Size(max = 1000)
     @NotNull
     @Column(name = "Descripcion", nullable = false, length = 1000)
-    private String descripcion;
+    private java.lang.String descripcion;
 
     @NotNull
     @Lob
     @Column(name = "Tipo", nullable = false)
-    private String tipo;
+    private java.lang.String tipo;
 
     @NotNull
     @Column(name = "Monto", nullable = false, precision = 10, scale = 2)
-    private BigDecimal monto;
+    private java.math.BigDecimal monto;
 
     public GastoId getId() {
         return id;
@@ -56,27 +54,27 @@ public class Gasto {
         this.auto = auto;
     }
 
-    public String getDescripcion() {
+    public java.lang.String getDescripcion() {
         return descripcion;
     }
 
-    public void setDescripcion(String descripcion) {
+    public void setDescripcion(java.lang.String descripcion) {
         this.descripcion = descripcion;
     }
 
-    public String getTipo() {
+    public java.lang.String getTipo() {
         return tipo;
     }
 
-    public void setTipo(String tipo) {
+    public void setTipo(java.lang.String tipo) {
         this.tipo = tipo;
     }
 
-    public BigDecimal getMonto() {
+    public java.math.BigDecimal getMonto() {
         return monto;
     }
 
-    public void setMonto(BigDecimal monto) {
+    public void setMonto(java.math.BigDecimal monto) {
         this.monto = monto;
     }
 

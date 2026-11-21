@@ -14,9 +14,25 @@
         <div class="tarjeta">
             <h2>Reportes de ventas</h2>
 
-            <div class="tabla-responsive">
-                <p:dataTable value="#{ventasUI.ventas}" var="v"
-                             emptyMessage="No hay ventas registradas."
+            <h:form id="formVentas">
+                <div class="filtros">
+                    <p:selectOneMenu value="#{ventasUI.marca}">
+                        <f:selectItem itemLabel="Todas las marcas" itemValue=""/>
+                        <f:selectItems value="#{ventasUI.marcas}"/>
+                        <p:ajax listener="#{ventasUI.cambiarMarca}" update="formVentas"/>
+                    </p:selectOneMenu>
+
+                    <p:selectOneMenu value="#{ventasUI.modelo}">
+                        <f:selectItem itemLabel="Todos los modelos" itemValue=""/>
+                        <f:selectItems value="#{ventasUI.modelos}"/>
+                        <p:ajax listener="#{ventasUI.buscar}" update="formVentas"/>
+                    </p:selectOneMenu>
+
+                    <p:commandButton value="Quitar filtros" action="#{ventasUI.limpiar}"
+                                     process="@this" update="formVentas" rendered="#{ventasUI.hayFiltro}"/>
+                </div>
+
+                <p:dataTable value="#{ventasUI.ventas}" var="v" emptyMessage="#{ventasUI.mensajeVacio}"
                              paginator="true" rows="10" paginatorPosition="bottom">
                     <p:column headerText="Vehículo vendido">
                         <h:outputText value="#{v.vehiculo}"/>
@@ -25,13 +41,19 @@
                         <h:outputText value="#{v.fecha}"/>
                     </p:column>
                     <p:column headerText="Importe" style="width:160px; text-align:right">
-                        <h:outputText value="#{v.importe}" styleClass="importe">
+                        <h:outputText value="#{v.importe}">
                             <f:convertNumber type="currency" currencySymbol="$"/>
                         </h:outputText>
                     </p:column>
                 </p:dataTable>
-            </div>
+
+                <h:panelGroup rendered="#{not empty ventasUI.ventas}" layout="block" styleClass="total-general">
+                    #{ventasUI.cantidad} ventas, total:
+                    <h:outputText value="#{ventasUI.total}">
+                        <f:convertNumber type="currency" currencySymbol="$"/>
+                    </h:outputText>
+                </h:panelGroup>
+            </h:form>
         </div>
     </ui:define>
-
 </ui:composition>

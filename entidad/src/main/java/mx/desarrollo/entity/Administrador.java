@@ -11,116 +11,116 @@ public class Administrador {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Id_Administrador", nullable = false)
-    private Integer id;
+    private java.lang.Integer id;
 
     @Size(max = 45)
     @NotNull
     @Column(name = "Nombre", nullable = false, length = 45)
-    private String nombre;
+    private java.lang.String nombre;
 
     @Size(max = 45)
     @NotNull
     @Column(name = "Apellido_Paterno", nullable = false, length = 45)
-    private String apellidoPaterno;
+    private java.lang.String apellidoPaterno;
 
     @Size(max = 45)
     @Column(name = "Apellido_Materno", length = 45)
-    private String apellidoMaterno;
+    private java.lang.String apellidoMaterno;
 
     @Size(max = 45)
     @NotNull
     @Column(name = "Correo_Electronico", nullable = false, length = 45)
-    private String correoElectronico;
+    private java.lang.String correoElectronico;
 
     @Size(max = 45)
     @NotNull
     @Column(name = "Numero_Telefonico", nullable = false, length = 45)
-    private String numeroTelefonico;
+    private java.lang.String numeroTelefonico;
 
     @Size(max = 255)
     @NotNull
     @Column(name = "Usuario", nullable = false)
-    private String usuario;
+    private java.lang.String usuario;
 
     @Size(max = 255)
     @NotNull
     @Column(name = "Contrasenia", nullable = false)
-    private String contrasenia;
+    private java.lang.String contrasenia;
 
     @NotNull
     @ColumnDefault("0")
     @Column(name = "Es_Principal", nullable = false)
-    private Boolean esPrincipal;
+    private java.lang.Boolean esPrincipal;
 
-    public Integer getId() {
+    public java.lang.Integer getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(java.lang.Integer id) {
         this.id = id;
     }
 
-    public String getNombre() {
+    public java.lang.String getNombre() {
         return nombre;
     }
 
-    public void setNombre(String nombre) {
+    public void setNombre(java.lang.String nombre) {
         this.nombre = nombre;
     }
 
-    public String getApellidoPaterno() {
+    public java.lang.String getApellidoPaterno() {
         return apellidoPaterno;
     }
 
-    public void setApellidoPaterno(String apellidoPaterno) {
+    public void setApellidoPaterno(java.lang.String apellidoPaterno) {
         this.apellidoPaterno = apellidoPaterno;
     }
 
-    public String getApellidoMaterno() {
+    public java.lang.String getApellidoMaterno() {
         return apellidoMaterno;
     }
 
-    public void setApellidoMaterno(String apellidoMaterno) {
+    public void setApellidoMaterno(java.lang.String apellidoMaterno) {
         this.apellidoMaterno = apellidoMaterno;
     }
 
-    public String getCorreoElectronico() {
+    public java.lang.String getCorreoElectronico() {
         return correoElectronico;
     }
 
-    public void setCorreoElectronico(String correoElectronico) {
+    public void setCorreoElectronico(java.lang.String correoElectronico) {
         this.correoElectronico = correoElectronico;
     }
 
-    public String getNumeroTelefonico() {
+    public java.lang.String getNumeroTelefonico() {
         return numeroTelefonico;
     }
 
-    public void setNumeroTelefonico(String numeroTelefonico) {
+    public void setNumeroTelefonico(java.lang.String numeroTelefonico) {
         this.numeroTelefonico = numeroTelefonico;
     }
 
-    public String getUsuario() {
+    public java.lang.String getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(String usuario) {
+    public void setUsuario(java.lang.String usuario) {
         this.usuario = usuario;
     }
 
-    public String getContrasenia() {
+    public java.lang.String getContrasenia() {
         return contrasenia;
     }
 
-    public void setContrasenia(String contrasenia) {
+    public void setContrasenia(java.lang.String contrasenia) {
         this.contrasenia = contrasenia;
     }
 
-    public Boolean getEsPrincipal() {
+    public java.lang.Boolean getEsPrincipal() {
         return esPrincipal;
     }
 
-    public void setEsPrincipal(Boolean esPrincipal) {
+    public void setEsPrincipal(java.lang.Boolean esPrincipal) {
         this.esPrincipal = esPrincipal;
     }
 

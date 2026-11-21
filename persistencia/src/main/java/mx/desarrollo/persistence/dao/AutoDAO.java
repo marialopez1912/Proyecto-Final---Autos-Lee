@@ -44,8 +44,6 @@ public class AutoDAO extends AbstractDAO<Auto> {
                 throw new IllegalStateException("No se encontró el administrador");
             }
 
-            auto.setAdministradorIdAdministrador(admin);
-
             if (auto.getId() == null) {
                 auto.setId(new AutoId());
             }

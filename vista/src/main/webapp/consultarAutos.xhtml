@@ -26,53 +26,52 @@
                                  update="tablaAutos messages"
                                  style="margin-bottom: 15px;"/>
 
-                <div class="tabla-responsive">
-                    <p:dataTable id="tablaAutos"
-                                 value="#{AutoBeanUI.listaAutos}"
-                                 var="auto"
-                                 paginator="true"
-                                 rows="5"
-                                 emptyMessage="No hay autos registrados."
-                                 paginatorPosition="bottom">
+                <p:dataTable id="tablaAutos"
+                             value="#{AutoBeanUI.listaAutos}"
+                             var="auto"
+                             paginator="true"
+                             rows="5"
+                             emptyMessage="No hay autos registrados."
+                             responsiveLayout="scroll"
+                             paginatorPosition="bottom">
 
-                        <p:column headerText="ID">
-                            <h:outputText value="#{auto.id.idAutoSistema}"/>
-                        </p:column>
+                    <p:column headerText="ID">
+                        <h:outputText value="#{auto.id.idAutoSistema}"/>
+                    </p:column>
 
-                        <p:column headerText="Marca">
-                            <h:outputText value="#{auto.marca}"/>
-                        </p:column>
+                    <p:column headerText="Marca">
+                        <h:outputText value="#{auto.marca}"/>
+                    </p:column>
 
-                        <p:column headerText="Modelo">
-                            <h:outputText value="#{auto.modelo}"/>
-                        </p:column>
+                    <p:column headerText="Modelo">
+                        <h:outputText value="#{auto.modelo}"/>
+                    </p:column>
 
-                        <p:column headerText="Versión">
-                            <h:outputText value="#{auto.version}"/>
-                        </p:column>
+                    <p:column headerText="Versión">
+                        <h:outputText value="#{auto.version}"/>
+                    </p:column>
 
-                        <p:column headerText="Año">
-                            <h:outputText value="#{auto.anio}"/>
-                        </p:column>
+                    <p:column headerText="Año">
+                        <h:outputText value="#{auto.anio}"/>
+                    </p:column>
 
-                        <p:column headerText="VIN">
-                            <h:outputText value="#{auto.vin}"/>
-                        </p:column>
+                    <p:column headerText="VIN">
+                        <h:outputText value="#{auto.vin}"/>
+                    </p:column>
 
-                        <p:column headerText="Placa">
-                            <h:outputText value="#{auto.placa}"/>
-                        </p:column>
+                    <p:column headerText="Placa">
+                        <h:outputText value="#{auto.placa}"/>
+                    </p:column>
 
-                        <p:column headerText="Precio de venta">
-                            <h:outputText value="#{auto.precioVenta}">
-                                <f:convertNumber type="currency"
-                                                 currencySymbol="$"
-                                                 locale="es_MX"/>
-                            </h:outputText>
-                        </p:column>
+                    <p:column headerText="Precio de venta">
+                        <h:outputText value="#{auto.precioVenta}">
+                            <f:convertNumber type="currency"
+                                             currencySymbol="$"
+                                             locale="es_MX"/>
+                        </h:outputText>
+                    </p:column>
 
-                    </p:dataTable>
-                </div>
+                </p:dataTable>
 
             </p:panel>
 

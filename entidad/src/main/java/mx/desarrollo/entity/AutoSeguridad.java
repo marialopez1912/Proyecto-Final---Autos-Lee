@@ -10,13 +10,16 @@ public class AutoSeguridad {
     @EmbeddedId
     private AutoSeguridadId id;
 
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JoinColumn(name = "Auto_Id_Auto_Sistema",
+            referencedColumnName = "Id_Auto_Sistema",
+            insertable = false, updatable = false)
+    private Auto autoIdAutoSistema;
 
-    public AutoSeguridadId getId() {
-        return id;
-    }
+    public AutoSeguridadId getId() { return id; }
+    public void setId(AutoSeguridadId id) { this.id = id; }
 
-    public void setId(AutoSeguridadId id) {
-        this.id = id;
-    }
-
+    public Auto getAutoIdAutoSistema() { return autoIdAutoSistema; }
+    public void setAutoIdAutoSistema(Auto autoIdAutoSistema) { this.autoIdAutoSistema = autoIdAutoSistema; }
 }

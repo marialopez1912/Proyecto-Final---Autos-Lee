@@ -1,6 +1,7 @@
 package helper;
 
 import mx.desarrollo.estadisticas.dto.AutoResumen;
+import mx.desarrollo.estadisticas.dto.MargenAuto;
 import mx.desarrollo.estadisticas.dto.TotalCategoria;
 import mx.desarrollo.estadisticas.dto.VentaAnual;
 import mx.desarrollo.estadisticas.dto.VentaReporte;
@@ -18,6 +19,22 @@ public class EstadisticasHelper implements Serializable {
 
     public List<VentaReporte> ventas() {
         return EstadisticasFacadeLocator.getInstanceFacadeVenta().listar();
+    }
+
+    public List<VentaReporte> ventasFiltradas(String marca, String modelo) {
+        return EstadisticasFacadeLocator.getInstanceFacadeVenta().listarFiltrado(marca, modelo);
+    }
+
+    public List<String> marcas() {
+        return EstadisticasFacadeLocator.getInstanceFacadeVenta().marcas();
+    }
+
+    public List<String> modelos(String marca) {
+        return EstadisticasFacadeLocator.getInstanceFacadeVenta().modelos(marca);
+    }
+
+    public List<MargenAuto> margenes() {
+        return EstadisticasFacadeLocator.getInstanceFacadeMargen().todos();
     }
 
     public List<AutoResumen> autos() {

@@ -5,20 +5,12 @@ import mx.desarrollo.entity.AutoEquipamiento;
 import mx.desarrollo.entity.AutoSeguridad;
 import mx.desarrollo.persistence.integration.ServiceLocator;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
 public class DelegateAuto {
 
     public void saveAuto(Auto auto, Integer administradorId) {
-
-        BigDecimal precioCalculadoVenta = calcularPrecioVenta(auto.getPrecioCompra(), auto.getPorcentajeGanancia());
-        if(precioCalculadoVenta == null){
-            throw new IllegalStateException("Rellena todos los campos");
-        }
-        auto.setPrecioVenta(precioCalculadoVenta);
 
         ServiceLocator.getInstanceAutoDAO()
                 .guardarAuto(auto, administradorId);
@@ -119,15 +111,5 @@ public class DelegateAuto {
         if(!listaNueva.isEmpty()){
             ServiceLocator.getInstanceAutoSeguridadDAO().guardar(idAuto, listaNueva);
         }
-    }
-
-    public BigDecimal calcularPrecioVenta(BigDecimal precioCompra, BigDecimal porcentaje){
-        if(precioCompra == null || porcentaje == null){
-            return null;
-        }
-        return
-        precioCompra.multiply(BigDecimal
-                .ONE.add(porcentaje.divide(BigDecimal.valueOf(100))))
-                .setScale(2, RoundingMode.HALF_UP);
     }
 }
